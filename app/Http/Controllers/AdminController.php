@@ -143,9 +143,10 @@ class AdminController extends Controller
     // --- Career Paths ---
     public function careerPaths()
     {
-        $paths = CareerPath::with('category')->orderBy('sort_order')->paginate(15);
+        $careerPaths = CareerPath::with('category')->orderBy('sort_order')->paginate(15);
+        $paths = $careerPaths;
         $categories = CareerCategory::all();
-        return view('admin.career-paths.index', compact('paths', 'categories'));
+        return view('admin.career-paths.index', compact('careerPaths', 'paths', 'categories'));
     }
 
     public function storeCareerPath(Request $request)

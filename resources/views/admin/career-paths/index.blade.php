@@ -13,7 +13,7 @@
 
     <!-- Career Paths Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        @foreach($careerPaths as $path)
+        @foreach(($careerPaths ?? $paths ?? []) as $path)
             <div class="bg-white rounded-2xl border-2 border-[#00245A] shadow-[4px_4px_0px_#00245a] p-6 flex flex-col justify-between">
                 <div>
                     <div class="flex items-center justify-between mb-3">
@@ -31,11 +31,11 @@
                     </p>
 
                     <p class="text-xs text-[#00245A]/75 line-clamp-3 mb-4 leading-relaxed">
-                        {{ $path->short_description }}
+                        {{ $path->short_description ?? ($path->summary ?? '') }}
                     </p>
 
                     <div class="space-y-2 pt-2 border-t border-[#00245A]/10 text-[11px] text-[#00245A]/80">
-                        <p><strong>Required Degree:</strong> {{ $path->required_qualifications ?? 'B.Pharm' }}</p>
+                        <p><strong>Required Degree:</strong> {{ is_array($path->relevant_qualifications) ? implode(', ', $path->relevant_qualifications) : ($path->required_qualifications ?? ($path->relevant_qualifications ?? 'B.Pharm')) }}</p>
                         <p><strong>Work Environment:</strong> {{ $path->work_environment ?? 'Pharma Plant' }}</p>
                     </div>
                 </div>
@@ -49,5 +49,15 @@
             </div>
         @endforeach
     </div>
+
+    @if(isset($careerPaths) && method_exists($careerPaths, 'hasPages') && $careerPaths->hasPages())
+        <div class="mt-6">
+            {{ $careerPaths->links() }}
+        </div>
+    @elseif(isset($paths) && method_exists($paths, 'hasPages') && $paths->hasPages())
+        <div class="mt-6">
+            {{ $paths->links() }}
+        </div>
+    @endif
 </div>
 @endsection

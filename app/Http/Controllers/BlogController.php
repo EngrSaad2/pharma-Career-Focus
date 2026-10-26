@@ -30,9 +30,8 @@ class BlogController extends Controller
         }
 
         $posts = $query->orderBy('published_at', 'desc')->paginate(6)->withQueryString();
-        $recentPosts = BlogPost::where('is_published', true)->orderBy('published_at', 'desc')->take(4)->get();
-
-        return view('pages.blog.index', compact('posts', 'categories', 'recentPosts'));
+        $selectedCategory = $request->category;
+        return view('pages.blog.index', compact('posts', 'categories', 'recentPosts', 'selectedCategory'));
     }
 
     public function show($slug)
