@@ -226,7 +226,11 @@
                 </div>
             @endif
 
-            @yield('admin_content')
+            @if(View::hasSection('admin_content'))
+                @yield('admin_content')
+            @else
+                @yield('content')
+            @endif
         </main>
     </div>
 

@@ -2,7 +2,7 @@
 
 @section('title', 'Seminars & Workshops Management | Admin Portal')
 
-@section('content')
+@section('admin_content')
 <div class="space-y-6">
 
     {{-- Top Action Bar --}}

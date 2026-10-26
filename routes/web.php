@@ -201,6 +201,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     // Seminar Registrations & Payment Verification
     Route::get('/seminars-registrations/export', [AdminSeminarController::class, 'exportCsv'])->name('seminars.registrations.export');
     Route::get('/seminars-registrations', [AdminSeminarController::class, 'registrations'])->name('seminars.registrations');
+    Route::get('/seminar-registrations', [AdminSeminarController::class, 'registrations'])->name('seminars.registrations.alias');
+    Route::get('/payments', [AdminSeminarController::class, 'registrations'])->name('payments');
     Route::post('/seminars-registrations/{id}/verify', [AdminSeminarController::class, 'verifyPayment'])->name('seminars.registrations.verify');
     Route::post('/seminars-registrations/{id}/reject', [AdminSeminarController::class, 'rejectPayment'])->name('seminars.registrations.reject');
     Route::post('/seminars-registrations/{id}/resend', [AdminSeminarController::class, 'resendConfirmation'])->name('seminars.registrations.resend');

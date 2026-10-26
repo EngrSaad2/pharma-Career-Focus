@@ -2,7 +2,7 @@
 
 @section('title', 'Create Seminar Program | Admin Portal')
 
-@section('content')
+@section('admin_content')
 <div class="max-w-5xl mx-auto space-y-6">
 
     {{-- Breadcrumb & Header --}}
