@@ -3,10 +3,61 @@
 @section('title', 'Manage Career Paths - Pharma Career Compass Admin')
 
 @section('admin_content')
-<div class="space-y-6">
+<div class="space-y-6" x-data="{
+    createModal: false,
+    editModal: false,
+    editPath: {
+        id: null,
+        title: '',
+        category_id: '',
+        icon: 'clipboard-check',
+        badge: '',
+        experience_level: 'Fresh Graduate / Entry Level',
+        salary_range: '',
+        work_environment: '',
+        sort_order: 0,
+        summary: '',
+        overview: '',
+        typical_day: '',
+        relevant_qualifications: '',
+        required_skills: '',
+        possible_entry_points: '',
+        recommended_preparation: '',
+        is_featured: false,
+        is_active: true
+    },
+    openEdit(path) {
+        const toLines = (val) => {
+            if (!val) return '';
+            if (Array.isArray(val)) return val.join('\n');
+            return String(val);
+        };
+        this.editPath = {
+            id: path.id,
+            title: path.title || '',
+            category_id: path.category_id || '',
+            icon: path.icon || 'clipboard-check',
+            badge: path.badge || '',
+            experience_level: path.experience_level || 'Fresh Graduate / Entry Level',
+            salary_range: path.salary_range || '',
+            work_environment: path.work_environment || '',
+            sort_order: path.sort_order ?? 0,
+            summary: path.summary || '',
+            overview: path.overview || '',
+            typical_day: path.typical_day || '',
+            relevant_qualifications: toLines(path.relevant_qualifications),
+            required_skills: toLines(path.required_skills),
+            possible_entry_points: toLines(path.possible_entry_points),
+            recommended_preparation: toLines(path.recommended_preparation),
+            is_featured: Boolean(path.is_featured),
+            is_active: (path.is_active !== false && path.is_active !== 0 && path.is_active !== '0')
+        };
+        this.editModal = true;
+    }
+}">
 
-    {{-- Flash Notifications --}}
-    @if(session('success'))
+    {{-- Flash Notifications (if not caught by layout) --}}
+    @if(session('success') && !View::hasSection('admin_content_notifications'))
         <div class="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-semibold flex items-center justify-between shadow-xs">
             <div class="flex items-center gap-2">
                 <span class="text-lg">✓</span>
@@ -16,17 +67,7 @@
         </div>
     @endif
 
-    @if(session('error'))
-        <div class="p-4 rounded-xl bg-red-50 border border-red-200 text-red-800 text-sm font-semibold flex items-center justify-between shadow-xs">
-            <div class="flex items-center gap-2">
-                <span class="text-lg">⚠️</span>
-                <span>{{ session('error') }}</span>
-            </div>
-            <button type="button" onclick="this.parentElement.remove()" class="text-red-600 hover:text-red-900 font-bold">&times;</button>
-        </div>
-    @endif
-
-    @if($errors->any())
+    @if(isset($errors) && $errors->any())
         <div class="p-4 rounded-xl bg-red-50 border border-red-200 text-red-800 text-sm shadow-xs">
             <div class="font-bold mb-1 flex items-center gap-2">
                 <span>⚠️</span>
@@ -51,7 +92,7 @@
             </p>
         </div>
         <div class="flex items-center gap-2.5 flex-wrap">
-            <button type="button" id="btnOpenCreateCareerPath" onclick="openCreateModal()"
+            <button type="button" @click="createModal = true" id="btnOpenCreateCareerPath"
                     class="px-4 py-2 rounded-xl bg-[#0085FF] hover:bg-[#0070d9] text-white font-bold text-xs inline-flex items-center gap-1.5 shadow-sm transition">
                 <span>+ Add Career Path</span>
             </button>
@@ -150,8 +191,7 @@
 
                     <div class="flex items-center gap-1.5">
                         <button type="button"
-                                onclick="openEditModalFromButton(this)"
-                                data-path="{{ json_encode($path) }}"
+                                @click="openEdit({{ json_encode($path) }})"
                                 class="px-2.5 py-1 rounded-lg bg-[#00245A] hover:bg-[#00173B] text-white text-xs font-bold transition shadow-xs">
                             Edit
                         </button>
@@ -175,7 +215,7 @@
                 <span class="text-4xl block mb-2">📋</span>
                 <h3 class="text-base font-bold text-slate-800">No career paths found</h3>
                 <p class="text-xs text-slate-500 mt-1 mb-4">Get started by creating your first pharmaceutical career sector.</p>
-                <button type="button" onclick="openCreateModal()" class="px-4 py-2 bg-[#0085FF] text-white text-xs font-bold rounded-xl">
+                <button type="button" @click="createModal = true" class="px-4 py-2 bg-[#0085FF] text-white text-xs font-bold rounded-xl">
                     + Add Career Path
                 </button>
             </div>
@@ -194,14 +234,26 @@
     @endif
 
     {{-- Create Career Path Modal --}}
-    <div id="createModal" class="fixed inset-0 z-50 overflow-y-auto bg-black/60 hidden items-center justify-center p-4" style="display: none;">
-        <div class="bg-white rounded-2xl border-2 border-[#00245A] shadow-[8px_8px_0px_#00245a] max-w-3xl w-full p-6 sm:p-8 my-8 relative max-h-[90vh] overflow-y-auto">
+    <div x-show="createModal"
+         x-transition:enter="transition ease-out duration-200"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-150"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0"
+         @keydown.escape.window="createModal = false"
+         @click.self="createModal = false"
+         class="fixed inset-0 z-50 overflow-y-auto bg-black/60 flex items-center justify-center p-4"
+         style="display: none;"
+         x-cloak>
+        <div class="bg-white rounded-2xl border-2 border-[#00245A] shadow-[8px_8px_0px_#00245a] max-w-3xl w-full p-6 sm:p-8 my-8 relative max-h-[90vh] overflow-y-auto"
+             @click.stop>
             <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
                 <div>
                     <h3 class="text-xl font-extrabold text-[#00245A]">Create New Career Path</h3>
                     <p class="text-xs text-slate-500 mt-0.5">Add a new pharmaceutical career sector, qualifications, and role outline</p>
                 </div>
-                <button type="button" onclick="closeCreateModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold flex items-center justify-center text-base transition-colors">&times;</button>
+                <button type="button" @click="createModal = false" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold flex items-center justify-center text-base transition-colors">&times;</button>
             </div>
 
             <form action="{{ route('admin.career-paths.store') }}" method="POST" class="space-y-4">
@@ -343,7 +395,7 @@
                 </div>
 
                 <div class="pt-4 border-t border-slate-100 flex justify-end gap-3">
-                    <button type="button" onclick="closeCreateModal()" class="px-5 py-2.5 rounded-xl border border-slate-300 text-slate-700 text-xs font-bold hover:bg-slate-50 transition-colors">
+                    <button type="button" @click="createModal = false" class="px-5 py-2.5 rounded-xl border border-slate-300 text-slate-700 text-xs font-bold hover:bg-slate-50 transition-colors">
                         Cancel
                     </button>
                     <button type="submit" class="px-6 py-2.5 bg-[#0085FF] hover:bg-[#0070d9] text-white rounded-xl text-xs font-black uppercase tracking-wider shadow-sm transition-all">
@@ -355,29 +407,41 @@
     </div>
 
     {{-- Edit Career Path Modal --}}
-    <div id="editModal" class="fixed inset-0 z-50 overflow-y-auto bg-black/60 hidden items-center justify-center p-4" style="display: none;">
-        <div class="bg-white rounded-2xl border-2 border-[#00245A] shadow-[8px_8px_0px_#00245a] max-w-3xl w-full p-6 sm:p-8 my-8 relative max-h-[90vh] overflow-y-auto">
+    <div x-show="editModal"
+         x-transition:enter="transition ease-out duration-200"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-150"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0"
+         @keydown.escape.window="editModal = false"
+         @click.self="editModal = false"
+         class="fixed inset-0 z-50 overflow-y-auto bg-black/60 flex items-center justify-center p-4"
+         style="display: none;"
+         x-cloak>
+        <div class="bg-white rounded-2xl border-2 border-[#00245A] shadow-[8px_8px_0px_#00245a] max-w-3xl w-full p-6 sm:p-8 my-8 relative max-h-[90vh] overflow-y-auto"
+             @click.stop>
             <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
                 <div>
                     <h3 class="text-xl font-extrabold text-[#00245A]">Edit Career Path</h3>
                     <p class="text-xs text-slate-500 mt-0.5">Update department parameters, compensation, and qualifications</p>
                 </div>
-                <button type="button" onclick="closeEditModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold flex items-center justify-center text-base transition-colors">&times;</button>
+                <button type="button" @click="editModal = false" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold flex items-center justify-center text-base transition-colors">&times;</button>
             </div>
 
-            <form action="" method="POST" id="editCareerPathForm" class="space-y-4">
+            <form :action="'{{ url('admin/career-paths') }}/' + editPath.id" method="POST" class="space-y-4">
                 @csrf
                 @method('PUT')
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Career Title *</label>
-                        <input type="text" name="title" id="edit_title" required
+                        <input type="text" name="title" x-model="editPath.title" required
                                class="w-full px-3.5 py-2.5 border-2 border-[#00245A] rounded-xl text-sm focus:ring-2 focus:ring-[#0085FF]">
                     </div>
                     <div>
                         <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Sector Category *</label>
-                        <select name="category_id" id="edit_category_id" required class="w-full px-3.5 py-2.5 border-2 border-[#00245A] rounded-xl text-sm bg-white focus:ring-2 focus:ring-[#0085FF]">
+                        <select name="category_id" x-model="editPath.category_id" required class="w-full px-3.5 py-2.5 border-2 border-[#00245A] rounded-xl text-sm bg-white focus:ring-2 focus:ring-[#0085FF]">
                             @foreach($categories as $cat)
                                 <option value="{{ $cat->id }}">{{ $cat->name }}</option>
                             @endforeach
@@ -388,7 +452,7 @@
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
                         <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Icon Representation *</label>
-                        <select name="icon" id="edit_icon" class="w-full px-3.5 py-2.5 border-2 border-[#00245A] rounded-xl text-sm bg-white focus:ring-2 focus:ring-[#0085FF]">
+                        <select name="icon" x-model="editPath.icon" class="w-full px-3.5 py-2.5 border-2 border-[#00245A] rounded-xl text-sm bg-white focus:ring-2 focus:ring-[#0085FF]">
                             <option value="clipboard-check">📋 Quality / Checklist (clipboard-check)</option>
                             <option value="microscope">🔬 QC / Lab Testing (microscope)</option>
                             <option value="cpu">🏭 Production / Plant (cpu)</option>
@@ -405,7 +469,7 @@
                     </div>
                     <div>
                         <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Experience Level *</label>
-                        <select name="experience_level" id="edit_experience_level" required class="w-full px-3.5 py-2.5 border-2 border-[#00245A] rounded-xl text-sm bg-white focus:ring-2 focus:ring-[#0085FF]">
+                        <select name="experience_level" x-model="editPath.experience_level" required class="w-full px-3.5 py-2.5 border-2 border-[#00245A] rounded-xl text-sm bg-white focus:ring-2 focus:ring-[#0085FF]">
                             <option value="Fresh Graduate / Entry Level">Fresh Graduate / Entry Level</option>
                             <option value="Fresh Graduate / 1-2 Years">Fresh Graduate / 1-2 Years</option>
                             <option value="Entry / Postgraduate">Entry / Postgraduate</option>
@@ -414,7 +478,7 @@
                     </div>
                     <div>
                         <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Badge Tag</label>
-                        <input type="text" name="badge" id="edit_badge"
+                        <input type="text" name="badge" x-model="editPath.badge" placeholder="e.g. High Demand, Core Sector"
                                class="w-full px-3.5 py-2.5 border-2 border-[#00245A] rounded-xl text-sm focus:ring-2 focus:ring-[#0085FF]">
                     </div>
                 </div>
@@ -422,36 +486,36 @@
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
                         <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Work Environment</label>
-                        <input type="text" name="work_environment" id="edit_work_environment"
+                        <input type="text" name="work_environment" x-model="editPath.work_environment" placeholder="e.g. Corporate Office / Hybrid"
                                class="w-full px-3.5 py-2.5 border-2 border-[#00245A] rounded-xl text-sm focus:ring-2 focus:ring-[#0085FF]">
                     </div>
                     <div>
                         <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Salary Range</label>
-                        <input type="text" name="salary_range" id="edit_salary_range"
+                        <input type="text" name="salary_range" x-model="editPath.salary_range" placeholder="e.g. BDT 35,000 - 55,000 / month"
                                class="w-full px-3.5 py-2.5 border-2 border-[#00245A] rounded-xl text-sm focus:ring-2 focus:ring-[#0085FF]">
                     </div>
                     <div>
                         <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Sort Order</label>
-                        <input type="number" name="sort_order" id="edit_sort_order" min="0"
+                        <input type="number" name="sort_order" x-model.number="editPath.sort_order" min="0"
                                class="w-full px-3.5 py-2.5 border-2 border-[#00245A] rounded-xl text-sm focus:ring-2 focus:ring-[#0085FF]">
                     </div>
                 </div>
 
                 <div>
                     <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Role Summary (Shown on Cards) *</label>
-                    <textarea name="summary" id="edit_summary" rows="2" required
+                    <textarea name="summary" x-model="editPath.summary" rows="2" required
                               class="w-full px-3.5 py-2.5 border-2 border-[#00245A] rounded-xl text-sm focus:ring-2 focus:ring-[#0085FF]"></textarea>
                 </div>
 
                 <div>
                     <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Detailed Role Overview (Public Page)</label>
-                    <textarea name="overview" id="edit_overview" rows="3"
+                    <textarea name="overview" x-model="editPath.overview" rows="3"
                               class="w-full px-3.5 py-2.5 border-2 border-[#00245A] rounded-xl text-sm focus:ring-2 focus:ring-[#0085FF]"></textarea>
                 </div>
 
                 <div>
                     <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">A Typical Day on the Job</label>
-                    <textarea name="typical_day" id="edit_typical_day" rows="2"
+                    <textarea name="typical_day" x-model="editPath.typical_day" rows="2"
                               class="w-full px-3.5 py-2.5 border-2 border-[#00245A] rounded-xl text-sm focus:ring-2 focus:ring-[#0085FF]"></textarea>
                 </div>
 
@@ -461,7 +525,7 @@
                             Required Degree / Qualifications
                             <span class="text-[10px] text-slate-400 font-normal lowercase">(one per line or comma-separated)</span>
                         </label>
-                        <textarea name="relevant_qualifications" id="edit_relevant_qualifications" rows="2"
+                        <textarea name="relevant_qualifications" x-model="editPath.relevant_qualifications" rows="2"
                                   class="w-full px-3.5 py-2.5 border-2 border-[#00245A] rounded-xl text-xs focus:ring-2 focus:ring-[#0085FF] font-mono"></textarea>
                     </div>
                     <div>
@@ -469,7 +533,7 @@
                             Core Required Skills
                             <span class="text-[10px] text-slate-400 font-normal lowercase">(one per line or comma-separated)</span>
                         </label>
-                        <textarea name="required_skills" id="edit_required_skills" rows="2"
+                        <textarea name="required_skills" x-model="editPath.required_skills" rows="2"
                                   class="w-full px-3.5 py-2.5 border-2 border-[#00245A] rounded-xl text-xs focus:ring-2 focus:ring-[#0085FF] font-mono"></textarea>
                     </div>
                 </div>
@@ -480,7 +544,7 @@
                             Possible Entry Designations
                             <span class="text-[10px] text-slate-400 font-normal lowercase">(one per line or comma-separated)</span>
                         </label>
-                        <textarea name="possible_entry_points" id="edit_possible_entry_points" rows="2"
+                        <textarea name="possible_entry_points" x-model="editPath.possible_entry_points" rows="2"
                                   class="w-full px-3.5 py-2.5 border-2 border-[#00245A] rounded-xl text-xs focus:ring-2 focus:ring-[#0085FF] font-mono"></textarea>
                     </div>
                     <div>
@@ -488,24 +552,24 @@
                             Recommended Preparation Steps
                             <span class="text-[10px] text-slate-400 font-normal lowercase">(one per line or comma-separated)</span>
                         </label>
-                        <textarea name="recommended_preparation" id="edit_recommended_preparation" rows="2"
+                        <textarea name="recommended_preparation" x-model="editPath.recommended_preparation" rows="2"
                                   class="w-full px-3.5 py-2.5 border-2 border-[#00245A] rounded-xl text-xs focus:ring-2 focus:ring-[#0085FF] font-mono"></textarea>
                     </div>
                 </div>
 
                 <div class="flex items-center gap-6 pt-2">
                     <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="checkbox" name="is_active" id="edit_is_active" value="1" class="w-4 h-4 rounded text-[#0085FF] focus:ring-[#0085FF]">
+                        <input type="checkbox" name="is_active" value="1" :checked="editPath.is_active" @change="editPath.is_active = $event.target.checked" class="w-4 h-4 rounded text-[#0085FF] focus:ring-[#0085FF]">
                         <span class="text-xs font-bold text-slate-800">Active (Visible on public site)</span>
                     </label>
                     <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="checkbox" name="is_featured" id="edit_is_featured" value="1" class="w-4 h-4 rounded text-[#0085FF] focus:ring-[#0085FF]">
+                        <input type="checkbox" name="is_featured" value="1" :checked="editPath.is_featured" @change="editPath.is_featured = $event.target.checked" class="w-4 h-4 rounded text-[#0085FF] focus:ring-[#0085FF]">
                         <span class="text-xs font-bold text-slate-800">Featured Role (Homepage Spotlight)</span>
                     </label>
                 </div>
 
                 <div class="pt-4 border-t border-slate-100 flex justify-end gap-3">
-                    <button type="button" onclick="closeEditModal()" class="px-5 py-2.5 rounded-xl border border-slate-300 text-slate-700 text-xs font-bold hover:bg-slate-50 transition-colors">
+                    <button type="button" @click="editModal = false" class="px-5 py-2.5 rounded-xl border border-slate-300 text-slate-700 text-xs font-bold hover:bg-slate-50 transition-colors">
                         Cancel
                     </button>
                     <button type="submit" class="px-6 py-2.5 bg-[#0085FF] hover:bg-[#0070d9] text-white rounded-xl text-xs font-black uppercase tracking-wider shadow-sm transition-all">
@@ -517,92 +581,4 @@
     </div>
 
 </div>
-
-<script>
-    function openCreateModal() {
-        const modal = document.getElementById('createModal');
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-        modal.style.display = 'flex';
-    }
-
-    function closeCreateModal() {
-        const modal = document.getElementById('createModal');
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-        modal.style.display = 'none';
-    }
-
-    function openEditModalFromButton(btn) {
-        try {
-            const path = JSON.parse(btn.getAttribute('data-path'));
-            openEditModal(path);
-        } catch (e) {
-            console.error('Failed to parse career path data:', e);
-        }
-    }
-
-    function openEditModal(path) {
-        const form = document.getElementById('editCareerPathForm');
-        form.action = `/admin/career-paths/${path.id}`;
-
-        document.getElementById('edit_title').value = path.title || '';
-        document.getElementById('edit_category_id').value = path.category_id || '';
-        document.getElementById('edit_icon').value = path.icon || 'clipboard-check';
-        document.getElementById('edit_badge').value = path.badge || '';
-        document.getElementById('edit_experience_level').value = path.experience_level || 'Fresh Graduate / Entry Level';
-        document.getElementById('edit_salary_range').value = path.salary_range || '';
-        document.getElementById('edit_work_environment').value = path.work_environment || '';
-        document.getElementById('edit_sort_order').value = path.sort_order ?? 0;
-        document.getElementById('edit_summary').value = path.summary || '';
-        document.getElementById('edit_overview').value = path.overview || '';
-        document.getElementById('edit_typical_day').value = path.typical_day || '';
-
-        const toLines = (val) => {
-            if (!val) return '';
-            if (Array.isArray(val)) return val.join('\n');
-            return String(val);
-        };
-
-        document.getElementById('edit_relevant_qualifications').value = toLines(path.relevant_qualifications);
-        document.getElementById('edit_required_skills').value = toLines(path.required_skills);
-        document.getElementById('edit_possible_entry_points').value = toLines(path.possible_entry_points);
-        document.getElementById('edit_recommended_preparation').value = toLines(path.recommended_preparation);
-
-        document.getElementById('edit_is_featured').checked = Boolean(path.is_featured);
-        document.getElementById('edit_is_active').checked = (path.is_active !== false && path.is_active !== 0 && path.is_active !== '0');
-
-        const modal = document.getElementById('editModal');
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-        modal.style.display = 'flex';
-    }
-
-    function closeEditModal() {
-        const modal = document.getElementById('editModal');
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-        modal.style.display = 'none';
-    }
-
-    // Close on Escape or click outside
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closeCreateModal();
-            closeEditModal();
-        }
-    });
-
-    ['createModal', 'editModal'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) {
-            el.addEventListener('click', function(e) {
-                if (e.target === this) {
-                    if (id === 'createModal') closeCreateModal();
-                    if (id === 'editModal') closeEditModal();
-                }
-            });
-        }
-    });
-</script>
 @endsection
