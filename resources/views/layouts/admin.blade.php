@@ -107,9 +107,14 @@
                 </a>
 
                 <a href="{{ route('admin.seminars.registrations') }}"
-                   class="flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-bold transition-all {{ request()->routeIs('admin.seminars.registrations*') ? 'bg-[#00245A] text-white' : 'text-[#00245A] hover:bg-slate-100' }}">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                    <span>Seminar Registrations</span>
+                   class="flex items-center justify-between px-3 py-2 rounded-lg text-xs font-bold transition-all {{ request()->routeIs('admin.seminars.registrations*') ? 'bg-[#00245A] text-white' : 'text-[#00245A] hover:bg-slate-100' }}">
+                    <div class="flex items-center gap-3">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        <span>Seminar Registrations</span>
+                    </div>
+                    <span class="text-[9px] uppercase px-1.5 py-0.5 rounded font-black {{ request()->routeIs('admin.seminars.registrations*') ? 'bg-[#FFCD00] text-[#00245A]' : 'bg-emerald-100 text-emerald-800' }}">
+                        Payments
+                    </span>
                 </a>
 
                 <a href="{{ route('admin.services') }}"

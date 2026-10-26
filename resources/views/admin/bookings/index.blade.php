@@ -43,7 +43,7 @@
                 <table class="w-full text-left text-sm text-[#00245A]">
                     <thead class="bg-[#F4F9FF] border-b border-[#00245A]/15 text-xs font-bold uppercase tracking-wider text-[#00245A]/70">
                         <tr>
-                            <th class="px-6 py-4">Ref / Candidate</th>
+                            <th class="px-6 py-4">Candidate</th>
                             <th class="px-6 py-4">Consultant & Service</th>
                             <th class="px-6 py-4">Schedule</th>
                             <th class="px-6 py-4">Meeting Link & Status</th>
@@ -54,10 +54,7 @@
                         @foreach($bookings as $bk)
                             <tr class="hover:bg-slate-50">
                                 <td class="px-6 py-4 align-top">
-                                    <span class="text-xs font-bold font-mono text-[#0085FF] block">
-                                        #{{ $bk->id }} • {{ $bk->booking_reference ?? ('PCB-' . str_pad($bk->id, 5, '0', STR_PAD_LEFT)) }}
-                                    </span>
-                                    <strong class="font-black text-sm text-[#00245A] block mt-0.5">
+                                    <strong class="font-black text-sm text-[#00245A] block">
                                         {{ $bk->client_name ?: ($bk->user->name ?? 'Candidate') }}
                                     </strong>
                                     <a href="mailto:{{ $bk->client_email ?: ($bk->user->email ?? '') }}" class="text-xs text-[#0085FF] hover:underline block">
@@ -67,16 +64,6 @@
                                         <span class="text-[11px] text-[#00245A]/70 block font-mono">
                                             ☎ {{ $bk->client_phone ?: $bk->user->phone }}
                                         </span>
-                                    @endif
-                                    @if($bk->current_qualification)
-                                        <span class="text-[11px] text-[#00245A]/75 block mt-1">
-                                            🎓 {{ $bk->current_qualification }}
-                                        </span>
-                                    @endif
-                                    @if($bk->notes)
-                                        <p class="text-[11px] text-[#00245A]/80 mt-1 bg-slate-100 p-1.5 rounded italic">
-                                            Note: "{{ $bk->notes }}"
-                                        </p>
                                     @endif
                                 </td>
 
