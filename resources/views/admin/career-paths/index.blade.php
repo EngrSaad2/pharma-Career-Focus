@@ -51,7 +51,7 @@
             </p>
         </div>
         <div class="flex items-center gap-2.5 flex-wrap">
-            <button type="button" onclick="openCreateModal()"
+            <button type="button" id="btnOpenCreateCareerPath" onclick="openCreateModal()"
                     class="px-4 py-2 rounded-xl bg-[#0085FF] hover:bg-[#0070d9] text-white font-bold text-xs inline-flex items-center gap-1.5 shadow-sm transition">
                 <span>+ Add Career Path</span>
             </button>
@@ -194,7 +194,7 @@
     @endif
 
     {{-- Create Career Path Modal --}}
-    <div id="createModal" class="fixed inset-0 z-50 overflow-y-auto bg-black/60 hidden items-center justify-center p-4">
+    <div id="createModal" class="fixed inset-0 z-50 overflow-y-auto bg-black/60 hidden items-center justify-center p-4" style="display: none;">
         <div class="bg-white rounded-2xl border-2 border-[#00245A] shadow-[8px_8px_0px_#00245a] max-w-3xl w-full p-6 sm:p-8 my-8 relative max-h-[90vh] overflow-y-auto">
             <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
                 <div>
@@ -355,7 +355,7 @@
     </div>
 
     {{-- Edit Career Path Modal --}}
-    <div id="editModal" class="fixed inset-0 z-50 overflow-y-auto bg-black/60 hidden items-center justify-center p-4">
+    <div id="editModal" class="fixed inset-0 z-50 overflow-y-auto bg-black/60 hidden items-center justify-center p-4" style="display: none;">
         <div class="bg-white rounded-2xl border-2 border-[#00245A] shadow-[8px_8px_0px_#00245a] max-w-3xl w-full p-6 sm:p-8 my-8 relative max-h-[90vh] overflow-y-auto">
             <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
                 <div>
@@ -523,12 +523,14 @@
         const modal = document.getElementById('createModal');
         modal.classList.remove('hidden');
         modal.classList.add('flex');
+        modal.style.display = 'flex';
     }
 
     function closeCreateModal() {
         const modal = document.getElementById('createModal');
         modal.classList.add('hidden');
         modal.classList.remove('flex');
+        modal.style.display = 'none';
     }
 
     function openEditModalFromButton(btn) {
@@ -573,12 +575,14 @@
         const modal = document.getElementById('editModal');
         modal.classList.remove('hidden');
         modal.classList.add('flex');
+        modal.style.display = 'flex';
     }
 
     function closeEditModal() {
         const modal = document.getElementById('editModal');
         modal.classList.add('hidden');
         modal.classList.remove('flex');
+        modal.style.display = 'none';
     }
 
     // Close on Escape or click outside
