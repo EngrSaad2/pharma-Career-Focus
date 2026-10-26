@@ -282,15 +282,15 @@
         <div id="lookup" class="relative overflow-hidden rounded-3xl text-white shadow-2xl border border-white/10"
              style="background: linear-gradient(135deg, #001A3D 0%, #002855 35%, #004B99 75%, #0077E6 100%);">
             
-            <!-- Ambient glowing backdrop blurs -->
-            <div style="position: absolute; right: -5rem; bottom: -5rem; width: 22rem; height: 22rem; background: radial-gradient(circle, rgba(0, 133, 255, 0.35) 0%, rgba(0, 133, 255, 0) 70%); pointer-events: none; border-radius: 9999px;"></div>
-            <div style="position: absolute; left: 15%; top: -6rem; width: 18rem; height: 18rem; background: radial-gradient(circle, rgba(255, 205, 0, 0.12) 0%, rgba(255, 205, 0) 0%); pointer-events: none; border-radius: 9999px;"></div>
+            <!-- Soft ambient background glow effects -->
+            <div style="position: absolute; right: -4rem; top: -4rem; width: 22rem; height: 22rem; background: radial-gradient(circle, rgba(0, 133, 255, 0.28) 0%, rgba(0, 133, 255, 0) 70%); pointer-events: none; border-radius: 9999px;"></div>
+            <div style="position: absolute; left: -4rem; bottom: -4rem; width: 22rem; height: 22rem; background: radial-gradient(circle, rgba(0, 75, 175, 0.35) 0%, rgba(0, 75, 175, 0) 70%); pointer-events: none; border-radius: 9999px;"></div>
 
             <div class="relative z-10 p-6 sm:p-10 lg:p-12">
-                <div style="display: flex; flex-direction: column; gap: 2rem; width: 100%;" class="lg:flex-row lg:items-center lg:justify-between">
+                <div class="seminar-status-banner-inner">
                     
                     {{-- Left column: informative pitch & live badge --}}
-                    <div style="flex: 1 1 50%; min-width: 280px; max-width: 100%;">
+                    <div class="seminar-status-left">
                         <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-[#FFCD00] text-xs font-bold tracking-wider uppercase mb-3.5 backdrop-blur-md">
                             <span class="relative flex h-2 w-2">
                                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FFCD00] opacity-75"></span>
@@ -303,28 +303,28 @@
                             Already Registered for a Seminar?
                         </h3>
                         
-                        <p class="text-sm sm:text-base text-blue-100/90 leading-relaxed font-normal" style="max-width: 34rem;">
+                        <p class="text-sm sm:text-base text-blue-100/90 leading-relaxed font-normal mb-4" style="max-width: 32rem;">
                             Check your payment verification progress, unlock online meeting links, access venue directions, and download your official participant pass.
                         </p>
 
-                        <div class="mt-4 flex flex-wrap items-center gap-4 text-xs text-blue-200/90">
+                        <div class="flex flex-wrap items-center gap-4 text-xs text-blue-200/90 font-medium">
                             <div class="flex items-center gap-1.5">
-                                <svg class="w-4 h-4 text-[#FFCD00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <svg class="w-4 h-4 text-[#FFCD00] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
                                 <span>Instant Status Check</span>
                             </div>
                             <div class="flex items-center gap-1.5">
-                                <svg class="w-4 h-4 text-[#FFCD00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <svg class="w-4 h-4 text-[#FFCD00] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
                                 <span>Official Digital Badge</span>
                             </div>
                             <div class="flex items-center gap-1.5">
-                                <svg class="w-4 h-4 text-[#FFCD00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <svg class="w-4 h-4 text-[#FFCD00] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
                                 <span>bKash Auto-Tracking</span>
                             </div>
                         </div>
                     </div>
 
                     {{-- Right column: ultra-sleek form card with single-line button --}}
-                    <div style="flex: 1 1 50%; min-width: 300px; width: 100%;">
+                    <div class="seminar-status-right">
                         <div style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 1.5rem; padding: 1.5rem;" class="shadow-2xl">
                             
                             <div class="text-[11px] font-bold tracking-wider uppercase text-blue-200 mb-3 flex items-center justify-between">
@@ -335,30 +335,28 @@
                                 <span class="text-[10px] text-blue-300/80 font-normal">Reference + Email/Phone</span>
                             </div>
 
-                            <form action="{{ route('seminars.status.lookup') }}" method="POST" style="display: flex; gap: 0.625rem; width: 100%;" class="flex-col sm:flex-row items-stretch">
+                            <form action="{{ route('seminars.status.lookup') }}" method="POST" class="seminar-status-form">
                                 @csrf
-                                <div style="flex: 1 1 40%; min-width: 0;">
+                                <div class="seminar-input-group">
                                     <input type="text" 
                                            name="reference" 
                                            value="{{ old('reference') }}"
                                            placeholder="Ref: SEM-2026-AB12CD" 
                                            required 
-                                           style="width: 100%; box-sizing: border-box;"
-                                           class="px-4 py-3.5 rounded-xl bg-white text-slate-900 text-xs sm:text-sm font-mono placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#FFCD00] border-0 shadow-sm font-semibold">
+                                           class="w-full px-4 py-3.5 rounded-xl bg-white text-slate-900 text-xs sm:text-sm font-mono placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#FFCD00] border-0 shadow-sm font-semibold">
                                 </div>
-                                <div style="flex: 1 1 40%; min-width: 0;">
+                                <div class="seminar-input-group">
                                     <input type="text" 
                                            name="identifier" 
                                            value="{{ old('identifier') }}"
                                            placeholder="Email or Mobile" 
                                            required 
-                                           style="width: 100%; box-sizing: border-box;"
-                                           class="px-4 py-3.5 rounded-xl bg-white text-slate-900 text-xs sm:text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#FFCD00] border-0 shadow-sm font-medium">
+                                           class="w-full px-4 py-3.5 rounded-xl bg-white text-slate-900 text-xs sm:text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#FFCD00] border-0 shadow-sm font-medium">
                                 </div>
                                 <button type="submit" 
-                                        style="white-space: nowrap !important; flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;"
-                                        class="px-6 py-3.5 rounded-xl bg-[#FFCD00] hover:bg-[#e6b800] text-[#00245A] font-black text-xs sm:text-sm transition-all duration-200 shadow-md hover:shadow-xl active:scale-98 whitespace-nowrap cursor-pointer">
-                                    <span style="white-space: nowrap;">Check Status</span>
+                                        style="white-space: nowrap !important;"
+                                        class="seminar-submit-btn px-6 py-3.5 rounded-xl bg-[#FFCD00] hover:bg-[#e6b800] text-[#00245A] font-black text-xs sm:text-sm transition-all duration-200 shadow-md hover:shadow-xl active:scale-98 cursor-pointer">
+                                    <span style="white-space: nowrap !important;">Check Status</span>
                                     <svg style="width: 1rem; height: 1rem; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                                 </button>
                             </form>
@@ -376,6 +374,56 @@
                 </div>
             </div>
         </div>
+
+        <style>
+            .seminar-status-banner-inner {
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+                width: 100%;
+            }
+            .seminar-status-left {
+                flex: 1 1 45%;
+                min-width: 280px;
+            }
+            .seminar-status-right {
+                flex: 1 1 55%;
+                min-width: 320px;
+                width: 100%;
+            }
+            .seminar-status-form {
+                display: flex;
+                flex-direction: column;
+                gap: 0.625rem;
+                width: 100%;
+            }
+            .seminar-input-group {
+                flex: 1 1 auto;
+                min-width: 0;
+            }
+            .seminar-submit-btn {
+                white-space: nowrap !important;
+                flex-shrink: 0;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+            @media (min-width: 640px) {
+                .seminar-status-form {
+                    flex-direction: row;
+                    align-items: stretch;
+                }
+            }
+            @media (min-width: 1024px) {
+                .seminar-status-banner-inner {
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: 3rem;
+                }
+            }
+        </style>
 
     </div>
 </div>
