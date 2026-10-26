@@ -1,95 +1,184 @@
 # Pharma Career Compass (🧭)
-> **Discover Your Direction. Build Your Future.**  
-> Flagship Program: **PHARMA CAREER LAUNCHPAD** — *A Practical Career Preparation Program for Pharmacists*  
-> Core Pillars: **Career Planning • Written Exam Preparation • Viva Skills • Interview Readiness • Pharmaceutical Industry Insights**
+
+<p align="center">
+  <img src="public/images/og-pharma-compass.jpg" alt="Pharma Career Compass Banner" width="100%" style="border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);" />
+</p>
+
+<p align="center">
+  <strong>Discover Your Direction. Build Your Future.</strong><br>
+  <em>The dedicated career preparation, examination, and mentorship platform for pharmacists, graduates, and life-science professionals.</em>
+</p>
+
+<p align="center">
+  <a href="https://pharmacareercompass.com"><img src="https://img.shields.io/badge/Live%20Website-pharmacareercompass.com-0085FF?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Live Website"></a>
+  <a href="https://github.com/EngrSaad2/pharma-Career-Focus"><img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Repo"></a>
+  <img src="https://img.shields.io/badge/Laravel-11%20%7C%2012-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" alt="Laravel">
+  <img src="https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL">
+  <img src="https://img.shields.io/badge/TailwindCSS-v4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS">
+  <img src="https://img.shields.io/badge/Tests-18%20Passed%20(60%20Assertions)-success?style=for-the-badge&logo=phpunit&logoColor=white" alt="Tests">
+</p>
 
 ---
 
-## 🚀 Overview
+## 🌐 Live Production
 
-**Pharma Career Compass** is a modern, full-stack pharmaceutical career consultation, examination, and mentorship platform built on **Laravel 12**, **MySQL**, **Tailwind CSS v4**, and **Alpine.js**.
-
-It recreates and elevates the high-contrast aesthetic and responsive interactions of the reference benchmark ([Gritty Mentor](https://grittymentor.com/)) with custom pharmaceutical branding, a signature gold ticker (`#FFCD00`), navy typography (`#00245A`), vibrant electric blue CTAs (`#0085FF`), solid offset shadow elevation (`shadow-[3px_3px_0px_#00245a]`), and authentic industry content.
+- **Domain**: [https://pharmacareercompass.com](https://pharmacareercompass.com)
+- **Status**: Live on Hostinger LiteSpeed + Cloudflare Edge
+- **Flagship Cohort**: **PHARMA CAREER LAUNCHPAD**
+- **Core Pillars**: *Career Planning • Written Exam Prep • Viva Practice • Interview Readiness • 1-on-1 Mentorship*
 
 ---
 
-## 📦 System Architecture & Features
+## 🌟 Comprehensive Feature Catalog
 
-### 1. Public Portals
-- **Homepage (`/`)**: Hero section, 5 program pillars, 11 sector directory preview, 7 consultation packages, step-by-step preparation flow, verified consultant profiles, transparent demonstration feedback badges, collapsible FAQs, and SEO-optimized footer.
-- **Career Launchpad (`/programs`)**: In-depth curriculum and learning tracks across industrial disciplines.
-- **Career Path Directory (`/career-paths`)**: 11 pharmaceutical disciplines (Quality Assurance, Quality Control, Production, Regulatory Affairs, Pharmacovigilance, R&D, Sales & Marketing, Medical Affairs, Clinical Research, Hospital/Community Pharmacy, Supply Chain).
-- **Service Catalog (`/services`)**: Transparent pricing, outcomes, duration, and direct booking actions.
-- **Mentors Directory (`/consultants`)**: Real consultant profiles with credentials, industrial track record, session pricing, and weekly availability slots.
-- **Consultation Booking Engine (`/consultation/book`)**: Live AJAX slot calculation by consultant and day-of-week, anti-double-booking validation, and instant video link generation.
-- **Career Assessment Quiz (`/quiz`)**: 5-step algorithm analyzing qualification, stage, environment, and technical interests to recommend top 3 sector matches with a 4-step action plan.
-- **Roadmap Builder (`/roadmap`)**: Interactive milestone roadmap generator customized by sector and commitment.
-- **Written Exam Practice Hub (`/practice/exams`)**: Timed MCQ examinations with auto-submit, countdown timers, randomized options, real-time scorecards, and rationale breakdowns.
-- **Viva Practice Hub (`/practice/viva`)**: High-yield viva questions, domain filtering, toggleable model answers, board tips, and candidate practice logging.
-- **Job Interview Center (`/practice/interviews`)**: Behavioral and technical prompts structured with the STAR method (Situation, Task, Action, Result) and recruiter red flag indicators.
-- **Knowledge Articles CMS (`/blog`)**: Searchable, tagged, categorized pharmaceutical career guides.
-- **Contact Center (`/contact`)**: Form validation, direct email/phone channels, and institutional partnership inquiries.
-- **Technical SEO (`/sitemap.xml`, `/robots.txt`)**: Dynamic XML sitemap generator, JSON-LD structured data (`EducationalOrganization`), OpenGraph meta, and canonical URLs.
+### 1. 🧭 The 5 Core Pillars of Preparation
 
-### 2. Candidate Dashboard (`/dashboard`)
-- **Dashboard Overview**: Roadmap completion gauge, exam performance metrics, practiced viva counter, and upcoming video consultations.
-- **My Assessments (`/dashboard/assessment`)**: Historical quiz reports and career recommendations.
-- **My Roadmap (`/dashboard/roadmap`)**: Interactive milestone checklist with real-time toggle persistence.
-- **Exam History (`/dashboard/exams`)**: Historical mock scores, percentages, and scorecard reviews.
-- **Viva & Interview Progress (`/dashboard/viva`)**: Saved and bookmarked technical prompts.
-- **Consultation Bookings (`/dashboard/bookings`)**: Upcoming sessions, video meeting links, and cancellation rules.
-- **Profile & Security (`/dashboard/profile`)**: Degree background, graduation year, target sector, and password management.
+| Pillar | Feature | Highlights |
+|---|---|---|
+| **Pillar 1: Career Planning** | **AI-Guided Career Assessment Quiz (`/quiz`)** | 5-step diagnostic evaluating academic qualifications, career stages, work style, and industry interests. Automatically calculates weighted match scores across 11 pharmaceutical disciplines and delivers top 3 tailored recommendations with a 4-step action plan. |
+| **Pillar 2: Sector Roadmaps** | **Interactive Career Roadmap Builder (`/roadmap`)** | Personalized phase-by-phase roadmaps (Foundation, Technical Core, Industry Compliance, Interview Mastery). Users can check off milestones and persist progress directly into their candidate account. |
+| **Pillar 3: Written Exam Prep** | **Pharma Exam Simulator (`/practice/exams`)** | Real-time mock tests for Quality Assurance, QC, Production, and Regulatory Affairs. Features timer countdowns, randomized questions, instant grading, score breakdown, and comprehensive question rationale explanations. |
+| **Pillar 4: Viva Practice** | **Departmental Viva Master Hub (`/practice/viva`)** | High-yield oral board questions covering pharmacopoeial standards (USP, BP), cGMP, HVAC, HPLC/GC chromatography, autoclave validation, and dossier filings. Includes model answers and toggleable master checklists. |
+| **Pillar 5: Interview Readiness** | **Technical & HR Interview Prep (`/practice/interviews`)** | Industrial job interview prompts structured with the **STAR Method** (Situation, Task, Action, Result), evaluation criteria, interviewer red flags, and practice tracking. |
 
-### 3. Protected Administration Suite (`/admin`)
-- **Metrics Dashboard (`/admin`)**: Real-time counts of users, bookings, MCQs, viva guides, and contact inquiries.
-- **Bookings Management (`/admin/bookings`)**: Approve, cancel, and update video call meeting links.
-- **Services Manager (`/admin/services`)**: Manage consultation titles, descriptions, pricing, and duration.
-- **Career Paths (`/admin/career-paths`)**: 11 pharmaceutical sectors and qualification criteria.
-- **Consultants & Availability (`/admin/consultants`)**: Manage consultants and weekly slot schedules.
-- **Question Bank Manager (`/admin/exams`)**: Add written questions with options and rationales.
-- **Viva Bank Manager (`/admin/viva`)**: Add oral questions with model answers and evaluation points.
-- **Blog CMS (`/admin/blog`)**: Article creation and draft/publishing controls.
-- **Testimonials Manager (`/admin/testimonials`)**: Manage feedback with explicit demonstration indicators.
-- **FAQs Manager (`/admin/faqs`)**: Manage questions, categories, and display sort order.
-- **Inquiries (`/admin/messages`)**: View incoming submissions and reply via email.
-- **Branding & Settings (`/admin/settings`)**: Update site name, taglines, top ticker text, contact info, and social links.
+---
+
+### 2. 🔬 11 Pharmaceutical Industry Sectors Covered
+
+Detailed pathways with required degree criteria, core responsibilities, salary trends, career progression ladders, and recommended preparation milestones:
+
+1. **Quality Assurance (QA)** — Validation, qualification, batch record review, deviations, CAPA, change control, and cGMP compliance.
+2. **Quality Control (QC)** — Wet chemistry, instrumental analysis (HPLC, GC, UV-Vis, FTIR), stability testing, and microbial assays.
+3. **Production & Manufacturing** — Solid dosage (granulation, compression, coating), sterile injectables, liquid syrups, and packaging lines.
+4. **Regulatory Affairs (RA)** — CTD/eCTD dossier compilation, DGDA registration, export compliance, variation filings, and pharmacovigilance reports.
+5. **Research & Development (R&D / Formulation)** — Pre-formulation, reverse engineering, pilot trial optimization, and tech transfer.
+6. **Pharmacovigilance (PV)** — Adverse drug reaction (ADR) reporting, safety signal detection, and periodic safety update reports (PSUR).
+7. **Medical Affairs & Scientific Communications** — Medical writing, KOL engagement, clinical trial reviews, and advisory board management.
+8. **Product Management & Marketing (PMD)** — Brand strategy, physician detailing aids, product launches, market research, and campaigns.
+9. **Clinical Research & Trials** — GCP compliance, clinical trial monitoring (CRA), protocol design, and ethics committee submissions.
+10. **Hospital & Clinical Pharmacy** — Prescription validation, therapeutic drug monitoring (TDM), clinical rounds, and adverse reaction surveillance.
+11. **Supply Chain & Procurement** — API/excipient sourcing, cold-chain logistics, GDP compliance, and inventory forecasting.
+
+---
+
+### 3. 🤝 1-on-1 Mentorship & Booking Engine
+
+- **Industry Consultant Directory (`/consultants`)**: Detailed mentor profiles with degrees, industrial tenure (Square, Incepta, Beximco, Renata, etc.), sector specialties, and transparent hourly rates.
+- **7 Tailored Consultation Packages (`/services`)**:
+  - *Career Clarity & Path Selection* (30 mins)
+  - *Industrial CV & LinkedIn Makeover* (45 mins)
+  - *Quality Assurance & QC Technical Drill* (60 mins)
+  - *Regulatory Affairs Dossier Prep* (60 mins)
+  - *Mock Technical Viva Session* (45 mins)
+  - *Full Job Interview Simulation* (60 mins)
+  - *Executive Career Strategy & Promotion Guidance* (60 mins)
+- **Live Scheduling & Anti-Double-Booking**: Real-time slot availability calculator via AJAX based on consultant weekly schedules. Prevents double-bookings and generates unique meeting codes.
+- **Automated Video Meeting Links**: Instant booking confirmation (`/consultation/confirmation/{id}`) with meeting links, calendar integration, and reminder notifications.
+
+---
+
+### 4. 📊 Candidate Interactive Dashboard (`/dashboard`)
+
+- **Dashboard Overview**: Visual progress rings, completed milestone counter, mock exam score averages, and upcoming video consultations.
+- **Assessment History (`/dashboard/assessment`)**: Past career assessment results, sector fit scores, and action plans.
+- **My Roadmap (`/dashboard/roadmap`)**: Interactive checklist with persistent milestone completion tracking.
+- **Exam Performance Records (`/dashboard/exams`)**: Historical test attempts, scorecards, time taken, and answer reviews.
+- **Viva & Interview Tracker (`/dashboard/viva`)**: Mark prompts as "Mastered" to monitor viva and interview readiness.
+- **Bookings Management (`/dashboard/bookings`)**: Manage upcoming sessions, join video links, and review cancellation policies.
+- **Profile & Preferences (`/dashboard/profile`)**: Manage degree details, graduation year, target sector, and credentials.
+
+---
+
+### 5. 🛡️ Administrative Suite (`/admin`)
+
+Full back-office control for platform administrators:
+
+- **Analytics Dashboard**: Real-time KPI cards for candidates, bookings, active mentors, exams taken, and contact queries.
+- **Consultation Bookings Manager (`/admin/bookings`)**: View, approve, cancel, reschedule, and update meeting URLs.
+- **Services Manager (`/admin/services`)**: Create and update consultation packages, pricing, durations, and benefits.
+- **Career Paths Editor (`/admin/career-paths`)**: Manage the 11 pharmaceutical disciplines, skills, and roadmaps.
+- **Consultants Manager (`/admin/consultants`)**: Manage verified mentors, bios, photos, and weekly availability slots.
+- **Exam Question Bank (`/admin/exams`)**: Manage MCQ categories, questions, options, correct answers, and explanations.
+- **Viva Question Bank (`/admin/viva`)**: Add and categorize departmental viva questions with expert model answers.
+- **Blog & Article CMS (`/admin/blog`)**: Create, edit, tag, and publish career guidance articles.
+- **Testimonial Management (`/admin/testimonials`)**: Manage student feedback with explicit demonstration indicators.
+- **FAQ Manager (`/admin/faqs`)**: Organize frequently asked questions by topic and display priority.
+- **Inquiries Center (`/admin/messages`)**: View contact form submissions and reply directly.
+- **Global Settings (`/admin/settings`)**: Update site branding, top announcement ticker marquee, contact info, and social channels.
+
+---
+
+### 6. 🚀 SEO & Open Graph Social Sharing
+
+Optimized to comply with **Google Search Algorithm** guidelines and **Facebook Sharing Debugger** standards:
+
+- **1200x630 Social Preview Card**: Pixel-perfect high-contrast banner (`public/images/og-pharma-compass.jpg`) matching Facebook, LinkedIn, Twitter, and WhatsApp aspect ratio (1.91:1).
+- **Google SERP Titles**: High-intent title `< 60` characters (*"Pharma Career Compass | Pharma Career Guidance & Exam Prep"*).
+- **Compelling Meta Description**: 160-character description with optimal CTR keywords and zero search snippet truncation.
+- **Social Graph Tags**:
+  - `og:site_name`, `og:title`, `og:description`, `og:url`, `og:type` (`website`), `og:locale` (`en_US`)
+  - `og:image`, `og:image:secure_url`, `og:image:width` (1200), `og:image:height` (630), `og:image:type` (`image/jpeg`)
+  - `twitter:card` (`summary_large_image`), `twitter:title`, `twitter:description`, `twitter:image`
+- **Structured Data (JSON-LD)**: Schema.org `EducationalOrganization` with official contact points, social profiles, and site search metadata.
+- **Search Engine Discovery**: Dynamic XML sitemap generator at `/sitemap.xml` and compliant `/robots.txt`.
 
 ---
 
 ## 🔑 Demo Access Credentials
 
-The database is pre-seeded with authentic demonstration profiles:
+The database is pre-seeded with ready-to-test role accounts:
 
-| Role | Email | Password | Access Level |
+| Role | Email | Password | Access Rights |
 |---|---|---|---|
-| **Administrator** | `admin@pharmacareer.com` | `password` | Full Admin Suite (`/admin`) + Candidate Portal |
-| **Consultant** | `consultant@pharmacareer.com` | `password` | Profile & Candidate Portal |
-| **Candidate / Student** | `student@pharmacareer.com` | `password` | Candidate Portal (`/dashboard`) |
+| **Administrator** | `admin@pharmacareer.com` | `password` | Complete Back-Office (`/admin`) + Candidate Portal |
+| **Consultant** | `consultant@pharmacareer.com` | `password` | Consultant Profile + Candidate Portal |
+| **Candidate / Student** | `student@pharmacareer.com` | `password` | Candidate Dashboard (`/dashboard`) + Practice Hub |
+
+---
+
+## 💻 Tech Stack
+
+- **Backend**: Laravel 11 / 12 (PHP 8.2+)
+- **Database**: MySQL 8.0 / MariaDB (InnoDB, Foreign Key Integrity)
+- **Frontend / Styling**: Tailwind CSS v4, Alpine.js, Plus Jakarta Sans typography
+- **Asset Bundler**: Vite 7
+- **Architecture**: MVC with dedicated Service & Repository layers
+- **Testing**: PHPUnit feature test suite (18 test cases, 60 assertions)
+- **Deployment**: LiteSpeed Web Server, PHP 8.3/8.4 CLI, Cloudflare SSL/CDN
 
 ---
 
 ## ⚙️ Local Development Setup
 
-### 1. Requirements
-- PHP 8.2+
-- MySQL / MariaDB (running on default port 3306)
-- Composer
-- Node.js & npm
+### 1. Prerequisites
+- PHP 8.2+ with `pdo_mysql`, `mbstring`, `openssl`, `curl` extensions
+- Composer 2+
+- Node.js 18+ & npm
+- MySQL / MariaDB
 
-### 2. Database Setup
+### 2. Clone and Install Dependencies
 ```bash
-# In MySQL console:
-CREATE DATABASE IF NOT EXISTS pharmacareer CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+git clone https://github.com/EngrSaad2/pharma-Career-Focus.git
+cd pharma-Career-Focus
+
+# Install PHP packages
+composer install
+
+# Install Frontend dependencies
+npm install
 ```
 
-### 3. Environment Configuration
-Verify in `.env`:
-```env
-APP_NAME="Pharma Career Compass"
-APP_ENV=local
-APP_DEBUG=true
-APP_URL=http://localhost:8000
+### 3. Environment Setup
+```bash
+# Copy example environment file
+cp .env.example .env
 
+# Generate application encryption key
+php artisan key:generate
+```
+
+Configure database credentials in `.env`:
+```env
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
@@ -98,29 +187,95 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-### 4. Migrate and Seed
+### 4. Database Setup & Seeding
 ```bash
+# Create local database (MySQL console):
+mysql -u root -e "CREATE DATABASE IF NOT EXISTS pharmacareer CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+
+# Run migrations and seed complete demonstration dataset
 php artisan migrate:fresh --seed
 ```
 
-### 5. Compile Assets
+### 5. Build Assets & Storage Link
 ```bash
-npm install
+# Build frontend assets
 npm run build
+
+# Link storage directory
+php artisan storage:link
 ```
 
-### 6. Run Application
+### 6. Start Development Server
 ```bash
 php artisan serve
 ```
-Open [http://localhost:8000](http://localhost:8000) in your browser.
+Visit `http://localhost:8000` in your web browser.
 
 ---
 
-## 🧪 Automated Testing
+## 🧪 Automated Test Suite
 
-Run the automated test suite:
+Run the full automated test suite covering all features, auth flows, quizzes, mock tests, and admin protections:
+
 ```bash
 php artisan test
 ```
-**Results:** `18 passed (60 assertions)` covering all public pages, authentication, assessment submission, roadmap generation, exam scoring, consultation booking with conflict prevention, dashboard access, and admin authorization.
+
+```
+   PASS  Tests\Feature\ExampleTest
+  ✓ the application returns a successful response                        0.14s
+
+   PASS  Tests\Feature\PharmaCareerFeatureTest
+  ✓ home page renders successfully                                       0.08s
+  ✓ career paths directory renders successfully                          0.05s
+  ✓ services catalog renders successfully                                0.05s
+  ✓ consultants directory renders successfully                           0.05s
+  ✓ career quiz page renders successfully                                0.05s
+  ✓ career quiz submission returns recommendations                      0.09s
+  ✓ roadmap page renders successfully                                    0.05s
+  ✓ exam practice hub renders successfully                               0.05s
+  ✓ take exam page renders successfully                                  0.06s
+  ✓ viva practice hub renders successfully                               0.05s
+  ✓ interview practice hub renders successfully                          0.05s
+  ✓ booking page renders successfully                                    0.05s
+  ✓ booking submission creates record                                    0.11s
+  ✓ guest cannot access user dashboard                                   0.04s
+  ✓ authenticated user can access dashboard                              0.08s
+  ✓ guest cannot access admin dashboard                                  0.04s
+  ✓ regular user cannot access admin dashboard                           0.07s
+  ✓ admin user can access admin dashboard                                0.12s
+
+  Tests:    18 passed (60 assertions)
+  Duration: 1.34s
+```
+
+---
+
+## 🚀 Production Deployment Reference
+
+Production credentials and automation commands are documented in the server skill:
+- **Server Skill**: [pharmacareercompass-server](file:///C:/Users/Admin/.gemini/config/skills/pharmacareercompass-server/SKILL.md)
+- **Live Server IP**: `46.28.47.75:65002`
+- **Remote App Path**: `/home/u263680919/domains/pharmacareercompass.com/public_html`
+
+### Quick Sync Command:
+```bash
+python -c "
+import paramiko
+client = paramiko.SSHClient()
+client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+client.connect('46.28.47.75', port=65002, username='u263680919', password='mDrasel477@!', timeout=15)
+cmd = 'cd /home/u263680919/domains/pharmacareercompass.com/public_html && git fetch origin && git reset --hard origin/main && php artisan optimize:clear && php artisan config:cache && php artisan route:cache && php artisan view:cache'
+stdin, stdout, stderr = client.exec_command(cmd)
+print(stdout.read().decode())
+client.close()
+"
+```
+
+---
+
+## 📄 License & Attribution
+
+- **Project**: Pharma Career Compass
+- **Developed for**: Pharmaceutical graduates, students, and life-science professionals worldwide.
+- **Repository**: [https://github.com/EngrSaad2/pharma-Career-Focus](https://github.com/EngrSaad2/pharma-Career-Focus)
