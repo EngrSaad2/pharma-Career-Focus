@@ -3,6 +3,10 @@
 @section('title', 'Manage Career Paths - Pharma Career Compass Admin')
 
 @section('admin_content')
+<script>
+    const careerPathsData = @json(($careerPaths ?? $paths ?? [])->keyBy('id'));
+</script>
+
 <div class="space-y-6" x-data="{
     createModal: false,
     editModal: false,
@@ -26,12 +30,16 @@
         is_featured: false,
         is_active: true
     },
-    openEdit(path) {
+    openEdit(id) {
+        const path = (typeof careerPathsData !== 'undefined' && careerPathsData[id]) ? careerPathsData[id] : null;
+        if (!path) return;
+
         const toLines = (val) => {
             if (!val) return '';
             if (Array.isArray(val)) return val.join('\n');
             return String(val);
         };
+
         this.editPath = {
             id: path.id,
             title: path.title || '',
@@ -191,8 +199,8 @@
 
                     <div class="flex items-center gap-1.5">
                         <button type="button"
-                                @click="openEdit({{ json_encode($path) }})"
-                                class="px-2.5 py-1 rounded-lg bg-[#00245A] hover:bg-[#00173B] text-white text-xs font-bold transition shadow-xs">
+                                @click="openEdit({{ $path->id }})"
+                                class="btn-edit-career-path px-2.5 py-1 rounded-lg bg-[#00245A] hover:bg-[#00173B] text-white text-xs font-bold transition shadow-xs">
                             Edit
                         </button>
 
@@ -244,7 +252,6 @@
          @keydown.escape.window="createModal = false"
          @click.self="createModal = false"
          class="fixed inset-0 z-50 overflow-y-auto bg-black/60 flex items-center justify-center p-4"
-         style="display: none;"
          x-cloak>
         <div class="bg-white rounded-2xl border-2 border-[#00245A] shadow-[8px_8px_0px_#00245a] max-w-3xl w-full p-6 sm:p-8 my-8 relative max-h-[90vh] overflow-y-auto"
              @click.stop>
@@ -417,7 +424,6 @@
          @keydown.escape.window="editModal = false"
          @click.self="editModal = false"
          class="fixed inset-0 z-50 overflow-y-auto bg-black/60 flex items-center justify-center p-4"
-         style="display: none;"
          x-cloak>
         <div class="bg-white rounded-2xl border-2 border-[#00245A] shadow-[8px_8px_0px_#00245a] max-w-3xl w-full p-6 sm:p-8 my-8 relative max-h-[90vh] overflow-y-auto"
              @click.stop>
