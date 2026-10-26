@@ -136,7 +136,7 @@
                                 <div class="text-[11px] text-slate-500 mt-1 line-clamp-2">{{ $serv['summary'] }}</div>
                                 <div class="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
                                     <span class="font-bold text-slate-800">
-                                        {{ $serv['price'] == 0 ? 'Complimentary' : '$' . number_format($serv['price'], 0) }}
+                                        {{ $serv['price'] == 0 ? 'Complimentary' : '৳' . number_format($serv['price'], 0) . ' BDT' }}
                                     </span>
                                     <a href="{{ route('services.show', $serv['slug']) }}" class="text-[#0085FF] font-bold hover:underline">
                                         Learn More &rarr;

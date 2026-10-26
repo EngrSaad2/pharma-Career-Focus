@@ -23,7 +23,7 @@ return new class extends Migration
             $table->json('expected_outcomes')->nullable();
             $table->integer('duration_minutes')->default(45);
             $table->decimal('price', 10, 2)->default(0.00);
-            $table->string('currency', 10)->default('USD');
+            $table->string('currency', 10)->default('BDT');
             $table->string('delivery_mode')->default('Live 1-on-1 Online Session');
             $table->boolean('is_featured')->default(false);
             $table->boolean('is_active')->default(true);
