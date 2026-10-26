@@ -97,11 +97,26 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('styles')
+    <style>
+        @media print {
+            header, footer, nav, .animate-marquee, [role="navigation"], .no-print {
+                display: none !important;
+            }
+            body {
+                background: #ffffff !important;
+                color: #0f172a !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+    </style>
 </head>
 <body class="font-sans antialiased text-slate-900 bg-white min-h-screen flex flex-col overflow-x-hidden w-full" x-data="{ mobileMenuOpen: false }">
 
     <!-- Top Announcement Ticker Banner (Gritty Mentor inspired) -->
-    <div class="bg-[#FFCD00] text-[#00245A] font-semibold text-xs sm:text-sm py-2 overflow-hidden border-b border-yellow-400 select-none shadow-sm">
+    <div class="bg-[#FFCD00] text-[#00245A] font-semibold text-xs sm:text-sm py-2 overflow-hidden border-b border-yellow-400 select-none shadow-sm print:hidden">
         <div class="relative w-full overflow-hidden flex items-center">
             <div class="animate-marquee whitespace-nowrap flex items-center gap-8 tracking-wide">
                 <span>• &nbsp; Consultation Packages Starting from ৳800 to ৳1,500 with Senior Industry Pharmacists</span>
@@ -115,7 +130,7 @@
     </div>
 
     <!-- Main Navigation Header -->
-    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80 transition-all duration-200">
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80 transition-all duration-200 print:hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <!-- Brand Logo -->
@@ -431,7 +446,7 @@
 
     <!-- Global Toast / Alerts -->
     @if(session('success'))
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4" x-data="{ show: true }" x-show="show">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4 print:hidden" x-data="{ show: true }" x-show="show">
             <div class="flex items-center justify-between p-4 bg-emerald-50 border border-emerald-300 rounded-xl text-emerald-900 shadow-sm">
                 <div class="flex items-center gap-3">
                     <svg class="w-5 h-5 text-emerald-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
@@ -443,7 +458,7 @@
     @endif
 
     @if(session('info'))
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4" x-data="{ show: true }" x-show="show">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4 print:hidden" x-data="{ show: true }" x-show="show">
             <div class="flex items-center justify-between p-4 bg-blue-50 border border-blue-300 rounded-xl text-blue-900 shadow-sm">
                 <div class="flex items-center gap-3">
                     <svg class="w-5 h-5 text-[#0085FF] shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
@@ -455,7 +470,7 @@
     @endif
 
     @if(session('error'))
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4" x-data="{ show: true }" x-show="show">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4 print:hidden" x-data="{ show: true }" x-show="show">
             <div class="flex items-center justify-between p-4 bg-rose-50 border border-rose-300 rounded-xl text-rose-900 shadow-sm">
                 <div class="flex items-center gap-3">
                     <svg class="w-5 h-5 text-rose-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path></svg>
@@ -472,7 +487,7 @@
     </main>
 
     <!-- Comprehensive Footer -->
-    <footer class="bg-[#00173B] text-slate-300 border-t border-slate-800 pt-16 pb-12 mt-20">
+    <footer class="bg-[#00173B] text-slate-300 border-t border-slate-800 pt-16 pb-12 mt-20 print:hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800">
                 <!-- Col 1: Brand Info -->
