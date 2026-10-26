@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Contact Us - Pharma Career Compass')
-@section('meta_description', 'Get in touch with Pharma Career Compass. Reach out for career consultation inquiries, exam preparation guidance, or partnership questions.')
+@section('title', 'Contact Pharma Career Compass | Pharma Career Guidance')
+@section('meta_description', 'Connect with Pharma Career Compass. Reach out for pharma career consultation, exam preparation guidance, and mentorship inquiries.')
 
 @section('content')
 <!-- Hero Header -->
@@ -11,7 +11,7 @@
             Get In Touch
         </span>
         <h1 class="text-3xl md:text-5xl font-extrabold text-[#00245A] tracking-tight mb-4">
-            We Are Here to Guide Your Career
+            Contact Pharma Career Compass
         </h1>
         <p class="text-base md:text-lg text-slate-600 max-w-2xl mx-auto">
             Have questions about Pharma Career Launchpad, one-on-one mentorship, mock exams, or booking a consultation? Drop us a line.

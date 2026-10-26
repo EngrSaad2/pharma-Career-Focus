@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Pharmaceutical Technical Viva Practice Hub | Pharma Career Compass')
-@section('meta_description', 'Practice high-yield pharmaceutical viva and oral interview questions with model answers, interviewer tips, and key takeaways.')
+@section('title', 'Pharma Career Technical Viva Practice Hub | Pharma Career Compass')
+@section('meta_description', 'Excel in your pharma career technical oral viva interviews with Pharma Career Compass. Model answers, examiner tips, and high-yield prompts.')
 
 @section('content')
 <section class="py-12 md:py-16 bg-white">
@@ -13,7 +13,7 @@
                 Pillar 3: Viva Skills Coaching
             </span>
             <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#00245A]">
-                Pharmaceutical Technical Viva Hub
+                Pharma Career Technical Viva Hub
             </h1>
             <p class="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto">
                 Review rapid-fire oral technical prompts, model answers, and board advice. Rehearse out loud to eliminate hesitation under interview pressure.

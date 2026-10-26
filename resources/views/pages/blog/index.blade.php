@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Pharmaceutical Career Insights & Articles - Pharma Career Compass')
-@section('meta_description', 'Practical pharmaceutical career insights, written exam guides, viva preparation tips, and department comparisons written by industry professionals.')
+@section('title', 'Pharma Career Insights & Articles | Pharma Career Compass')
+@section('meta_description', 'Practical pharma career insights, written exam guides, viva preparation tips, and department comparisons by Pharma Career Compass.')
 
 @section('content')
 <!-- Hero Header -->
@@ -11,7 +11,7 @@
             Knowledge & Insights
         </span>
         <h1 class="text-3xl md:text-5xl font-extrabold text-[#00245A] tracking-tight mb-4">
-            Pharmaceutical Career Resources
+            Pharma Career Resources & Articles
         </h1>
         <p class="text-base md:text-lg text-slate-600 max-w-2xl mx-auto">
             Practical articles, department analyses, exam breakdowns, and interview frameworks for ambitious pharmacists.

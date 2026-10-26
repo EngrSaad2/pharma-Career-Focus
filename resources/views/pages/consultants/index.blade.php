@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Pharmaceutical Career Consultants & Mentors | Pharma Career Compass')
-@section('meta_description', 'Meet our team of senior pharmaceutical career consultants with verified leadership experience across Quality Assurance, Regulatory Affairs, and Production.')
+@section('title', 'Pharma Career Consultants & Mentors | Pharma Career Compass')
+@section('meta_description', 'Meet senior pharma career consultants and industry mentors at Pharma Career Compass for Quality Assurance, QC, Production, and Regulatory Affairs.')
 
 @section('content')
 <section class="py-12 md:py-16 bg-white">
@@ -13,7 +13,7 @@
                 Industry Mentors
             </span>
             <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-                Senior Pharmaceutical Consultants Directory
+                Pharma Career Consultants & Mentors Directory
             </h1>
             <p class="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto">
                 Consult 1-on-1 with experienced practitioners who have led plant inspections, compiled global dossiers, and interviewed hundreds of pharmacy graduates.

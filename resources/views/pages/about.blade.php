@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'About Us | Pharma Career Compass')
-@section('meta_description', 'Learn about Pharma Career Compass, our mission to empower pharmacists, and our evidence-based career preparation methodology.')
+@section('title', 'About Pharma Career Compass | Guiding Your Pharma Career')
+@section('meta_description', 'Learn about Pharma Career Compass, our mission to guide and accelerate your pharma career through industrial mentorship, written exam prep, and viva coaching.')
 
 @section('content')
 <section class="py-14 md:py-20 bg-gradient-to-b from-white via-[#F4F9FF] to-white">
@@ -10,7 +10,7 @@
             About Our Organization
         </span>
         <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#00245A]">
-            Discover Your Direction. Build Your Future.
+            Empowering Your Pharma Career Direction
         </h1>
         <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
             Pharma Career Compass is an independent pharmaceutical career guidance and professional preparation platform dedicated to empowering pharmacy students, fresh graduates, and working professionals.

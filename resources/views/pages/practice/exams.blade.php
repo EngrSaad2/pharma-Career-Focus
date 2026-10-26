@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Pharmaceutical Written Exam Practice Hub | Pharma Career Compass')
-@section('meta_description', 'Practice multiple choice questions and timed mock tests for pharmaceutical recruitment examinations covering Pharmacology, Pharmaceutics, QC Analysis, and cGMP.')
+@section('title', 'Pharma Career Written Exam Practice Hub | Pharma Career Compass')
+@section('meta_description', 'Prepare for your pharma career recruitment tests with Pharma Career Compass. Practice timed MCQ mock exams in Pharmacology, Pharmaceutics, and cGMP compliance.')
 
 @section('content')
 <section class="py-12 md:py-16 bg-white">
@@ -13,7 +13,7 @@
                 Pillar 2: Written Exam Readiness
             </span>
             <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#00245A]">
-                Pharmaceutical Written Assessment Practice Hub
+                Pharma Career Written Exam Practice Hub
             </h1>
             <p class="text-xs sm:text-sm text-slate-600 max-w-2xl mx-auto">
                 Prepare for technical recruitment exams conducted by leading pharmaceutical manufacturers. Master high-yield MCQs with comprehensive pharmacopoeial explanations.

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Pharmaceutical Career Consultation & Preparation Services | Pharma Career Compass')
-@section('meta_description', 'Explore our 7 structured career consultation and exam preparation services for pharmacy graduates, including written exam prep, viva practice, and CV review.')
+@section('title', 'Pharma Career Services & Mentorship | Pharma Career Compass')
+@section('meta_description', 'Advance your pharma career with Pharma Career Compass consultation packages, written exam prep, viva coaching, and 1-on-1 industry mentorship.')
 
 @section('content')
 <section class="py-12 md:py-16 bg-white">
@@ -13,7 +13,7 @@
                 Service Catalog
             </span>
             <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-                Structured Career Guidance & Preparation Offerings
+                Pharma Career Guidance & Mentorship Services
             </h1>
             <p class="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto">
                 Practical, results-oriented consultation packages designed to bridge the gap between academic theory and recruitment benchmarks.

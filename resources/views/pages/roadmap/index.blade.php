@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Pharmaceutical Career Roadmap Builder | Pharma Career Compass')
-@section('meta_description', 'Build a structured, milestone-based pharmaceutical career roadmap for Quality Assurance, QC, Production, or Regulatory Affairs. Track your learning progress step by step.')
+@section('title', 'Pharma Career Roadmap Builder | Pharma Career Compass')
+@section('meta_description', 'Build a milestone-based Pharma Career Roadmap with Pharma Career Compass for Quality Assurance, QC, Production, or Regulatory Affairs.')
 
 @section('content')
 <section class="py-12 md:py-16 bg-white">
@@ -13,7 +13,7 @@
                 Interactive Career Roadmap
             </span>
             <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#00245A]">
-                Pharmaceutical Career Roadmap Builder
+                Pharma Career Roadmap Builder
             </h1>
             <p class="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto">
                 Select your target pharmaceutical role and current career stage to generate a structured 4-phase preparation roadmap with actionable milestones.

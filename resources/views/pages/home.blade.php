@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Pharma Career Compass | Pharma Career Guidance & Exam Prep')
-@section('meta_description', 'Practical pharmaceutical career preparation for pharmacists, students, and job seekers. Written exam prep, viva practice, interview readiness, and 1-on-1 mentorship.')
-@section('og_title', 'Pharma Career Compass | Pharma Career Guidance & Exam Prep')
-@section('og_description', 'Practical pharmaceutical career preparation for pharmacists, students, and job seekers. Written exam prep, viva practice, interview readiness, and 1-on-1 mentorship.')
+@section('title', 'Pharma Career Compass | Premier Pharma Career Guidance & Exam Prep')
+@section('meta_description', 'Advance your Pharma Career with Pharma Career Compass. Master pharmaceutical recruitment written exams, technical viva coaching, and 1-on-1 industry mentorship.')
+@section('og_title', 'Pharma Career Compass | Premier Pharma Career Guidance & Exam Prep')
+@section('og_description', 'Advance your Pharma Career with Pharma Career Compass. Master pharmaceutical recruitment written exams, technical viva coaching, and 1-on-1 industry mentorship.')
 
 @section('content')
 <!-- Hero Section (Classic White Background + Real Pharmaceutical Photo + Editorial Typography) -->
@@ -20,7 +20,7 @@
 
                 <!-- Main Heading (Modern Sans Typography) -->
                 <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-extrabold text-slate-900 tracking-tight leading-[1.12]">
-                    We guide you in advancing your <span class="text-[#0085FF]">pharmaceutical</span> career goals.
+                    Advance Your <span class="text-[#0085FF]">Pharma Career</span> with Pharma Career Compass
                 </h1>
 
                 <!-- Subtitle / Supporting copy -->

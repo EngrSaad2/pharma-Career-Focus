@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', 'Pharma Career Compass | Pharma Career Guidance & Exam Prep')</title>
-    <meta name="description" content="@yield('meta_description', 'Discover your pharmaceutical career direction. Complete written exam preparation, viva practice, interview coaching, and 1-on-1 industry mentorship.')">
-    <meta name="keywords" content="@yield('meta_keywords', 'pharmaceutical career, industrial pharmacy, QA pharmacist, QC pharmacist, pharma viva preparation, pharma mock test, pharmacy career guidance, hospital pharmacist, pharma jobs bangladesh, pharma career compass')">
+    <title>@yield('title', 'Pharma Career Compass | Premier Pharma Career Guidance, Exam Prep & Mentorship')</title>
+    <meta name="description" content="@yield('meta_description', 'Pharma Career Compass is your dedicated pharma career platform. Master pharmaceutical written exams, viva coaching, career planning, and 1-on-1 industry mentorship.')">
+    <meta name="keywords" content="@yield('meta_keywords', 'Pharma Career, Pharma Career Compass, pharma career bangladesh, pharmaceutical career guidance, industrial pharmacy, QA pharmacist career, QC analyst preparation, pharma viva coaching, pharma written exam preparation, pharma career launchpad')">
     <meta name="author" content="Pharma Career Compass">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="canonical" href="@yield('canonical', url()->current())">
@@ -21,7 +21,7 @@
     <!-- Open Graph / Facebook Debugger Metadata -->
     <meta property="og:site_name" content="Pharma Career Compass">
     <meta property="og:title" content="@yield('og_title', 'Pharma Career Compass | Pharma Career Guidance & Exam Prep')">
-    <meta property="og:description" content="@yield('og_description', 'Discover your pharmaceutical career direction. Complete written exam preparation, viva practice, interview coaching, and 1-on-1 industry mentorship.')">
+    <meta property="og:description" content="@yield('og_description', 'Discover your pharma career trajectory with Pharma Career Compass. Master recruitment exams, viva interviews, and industrial GMP standards with senior pharmaceutical mentors.')">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en_US">
@@ -35,7 +35,7 @@
     <!-- Twitter Card Metadata -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="@yield('og_title', 'Pharma Career Compass | Pharma Career Guidance & Exam Prep')">
-    <meta name="twitter:description" content="@yield('og_description', 'Discover your pharmaceutical career direction. Complete written exam preparation, viva practice, interview coaching, and 1-on-1 industry mentorship.')">
+    <meta name="twitter:description" content="@yield('og_description', 'Discover your pharma career trajectory with Pharma Career Compass. Master recruitment exams, viva interviews, and industrial GMP standards with senior pharmaceutical mentors.')">
     <meta name="twitter:image" content="@yield('og_image', asset('images/og-pharma-compass.jpg'))">
     <meta name="twitter:image:alt" content="Pharma Career Compass - Discover Your Direction. Build Your Future.">
 
@@ -44,27 +44,54 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
 
-    <!-- Structured Data (JSON-LD) -->
+    <!-- Structured Data (JSON-LD Schema) for Google Search -->
     <script type="application/ld+json">
     {
       "@@context": "https://schema.org",
-      "@@type": "EducationalOrganization",
-      "name": "Pharma Career Compass",
-      "url": "{{ url('/') }}",
-      "logo": "{{ asset('images/logo.png') }}",
-      "description": "Dedicated pharmaceutical career guidance and preparation platform offering career planning, written exam preparation, viva practice, and mentorship.",
-      "sameAs": [
-        "https://linkedin.com/company/pharma-career-compass",
-        "https://facebook.com/pharmacareercompass"
-      ],
-      "contactPoint": {
-        "@@type": "ContactPoint",
-        "telephone": "+880 1844 567890",
-        "contactType": "Customer Service",
-        "email": "info@pharmacareercompass.com",
-        "areaServed": "Global",
-        "availableLanguage": ["English", "Bengali"]
-      }
+      "@@graph": [
+        {
+          "@@type": "WebSite",
+          "@@id": "{{ url('/') }}#website",
+          "url": "{{ url('/') }}",
+          "name": "Pharma Career Compass",
+          "alternateName": ["Pharma Career", "Pharma Career BD", "Pharma Career Compass Bangladesh"],
+          "description": "Premier pharmaceutical career guidance, written exam preparation, viva coaching, and 1-on-1 mentorship platform.",
+          "inLanguage": "en-US",
+          "potentialAction": {
+            "@@type": "SearchAction",
+            "target": "{{ url('/career-paths') }}?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@@type": "EducationalOrganization",
+          "@@id": "{{ url('/') }}#organization",
+          "name": "Pharma Career Compass",
+          "alternateName": "Pharma Career",
+          "url": "{{ url('/') }}",
+          "logo": {
+            "@@type": "ImageObject",
+            "url": "{{ asset('favicon-192x192.png') }}",
+            "width": 192,
+            "height": 192
+          },
+          "image": "{{ asset('images/og-pharma-compass.jpg') }}",
+          "description": "Dedicated pharmaceutical career guidance and exam preparation platform. We help pharmacy graduates and professionals advance their pharma career in Industrial QA, QC, Production, and Regulatory Affairs.",
+          "keywords": "Pharma Career, Pharma Career Compass, Pharmacy Career Guidance, Pharmaceutical Exam Prep, Pharma Viva Coaching",
+          "sameAs": [
+            "https://linkedin.com/company/pharma-career-compass",
+            "https://facebook.com/pharmacareercompass"
+          ],
+          "contactPoint": {
+            "@@type": "ContactPoint",
+            "telephone": "+880 1844 567890",
+            "contactType": "Customer Support & Inquiries",
+            "email": "info@pharmacareercompass.com",
+            "areaServed": "BD",
+            "availableLanguage": ["English", "Bengali"]
+          }
+        }
+      ]
     }
     </script>
 
