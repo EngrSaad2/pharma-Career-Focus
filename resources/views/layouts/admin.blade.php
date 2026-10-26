@@ -35,6 +35,7 @@
             }
         }
     </style>
+    @stack('head')
 </head>
 <body class="h-full flex flex-col text-slate-900 bg-slate-50" x-data="{ sidebarOpen: false }">
 

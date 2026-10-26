@@ -54,9 +54,77 @@
         @endif
 
         <!-- Main Body -->
-        <div class="prose prose-lg max-w-none text-slate-800 space-y-6 leading-relaxed">
-            {!! nl2br(e($post->content)) !!}
+        <div class="blog-article-content text-slate-800 leading-relaxed font-normal">
+            {!! $post->content !!}
         </div>
+
+        <style>
+            .blog-article-content {
+                font-size: 1.0625rem;
+                line-height: 1.85;
+                color: #243048;
+            }
+            .blog-article-content p {
+                margin-bottom: 1.35rem;
+            }
+            .blog-article-content h2 {
+                font-size: 1.625rem;
+                font-weight: 800;
+                color: #00245A;
+                margin-top: 2.25rem;
+                margin-bottom: 0.85rem;
+                letter-spacing: -0.02em;
+            }
+            .blog-article-content h3 {
+                font-size: 1.3rem;
+                font-weight: 700;
+                color: #00245A;
+                margin-top: 1.75rem;
+                margin-bottom: 0.65rem;
+            }
+            .blog-article-content h4 {
+                font-size: 1.125rem;
+                font-weight: 700;
+                color: #00245A;
+                margin-top: 1.5rem;
+                margin-bottom: 0.5rem;
+            }
+            .blog-article-content ul {
+                list-style-type: disc;
+                padding-left: 1.5rem;
+                margin-bottom: 1.35rem;
+            }
+            .blog-article-content ol {
+                list-style-type: decimal;
+                padding-left: 1.5rem;
+                margin-bottom: 1.35rem;
+            }
+            .blog-article-content li {
+                margin-bottom: 0.5rem;
+                padding-left: 0.25rem;
+            }
+            .blog-article-content blockquote {
+                border-left: 4px solid #0085FF;
+                background: #F8FAFC;
+                padding: 1rem 1.25rem;
+                border-radius: 0 0.75rem 0.75rem 0;
+                font-style: italic;
+                color: #334155;
+                margin: 1.5rem 0;
+            }
+            .blog-article-content a {
+                color: #0085FF;
+                text-decoration: underline;
+                font-weight: 600;
+            }
+            .blog-article-content a:hover {
+                color: #00245A;
+            }
+            .blog-article-content strong {
+                color: #00245A;
+                font-weight: 700;
+            }
+        </style>
 
         <!-- Tags -->
         @if($post->tags && count($post->tags) > 0)

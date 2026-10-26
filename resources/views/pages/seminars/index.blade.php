@@ -32,7 +32,7 @@
         {{-- Hero Header --}}
         <div class="text-center max-w-3xl mx-auto mb-12">
             <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0085FF]/10 text-[#0085FF] font-bold text-xs uppercase tracking-wider mb-4">
-                <span>🎓 Professional Development Sessions</span>
+                <span>Professional Development Sessions</span>
             </div>
             <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#00245A] tracking-tight mb-4">
                 Pharmaceutical Seminars & Masterclasses
@@ -118,48 +118,52 @@
             @else
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                     @foreach($upcomingSeminars as $sem)
-                        <div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-md hover:border-[#0085FF]/40 transition-all flex flex-col overflow-hidden group">
+                        <div class="bg-white rounded-2xl border border-slate-200/80 hover:border-slate-300 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col overflow-hidden group">
                             
                             {{-- Event Graphic / Banner --}}
-                            <div class="relative h-48 bg-[#00245A] overflow-hidden">
+                            <div class="relative h-44 bg-gradient-to-br from-[#001D4A] via-[#002B66] to-[#004B99] overflow-hidden flex items-end p-5">
                                 @if($sem->featured_image || $sem->banner_image)
-                                    <img src="{{ $sem->featured_image ?: $sem->banner_image }}" alt="{{ $sem->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                    <img src="{{ $sem->featured_image ?: $sem->banner_image }}" alt="{{ $sem->title }}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                                 @else
-                                    <div class="w-full h-full bg-gradient-to-tr from-[#00245A] to-[#0085FF] flex items-center justify-center p-6 text-center text-white">
-                                        <div>
-                                            <span class="text-3xl mb-2 block">🎓</span>
-                                            <span class="font-bold text-sm tracking-wide text-white/90">{{ $sem->topic ?: 'Pharma Masterclass' }}</span>
-                                        </div>
+                                    <div class="relative z-10">
+                                        <span class="text-[11px] uppercase tracking-wider font-bold text-blue-200 block mb-1">
+                                            {{ $sem->category ?: 'Masterclass' }}
+                                        </span>
+                                        <span class="text-base font-extrabold text-white line-clamp-1">
+                                            {{ $sem->topic ?: $sem->title }}
+                                        </span>
                                     </div>
                                 @endif
 
-                                {{-- Badges overlay --}}
-                                <div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
-                                    <span class="px-2.5 py-1 rounded-full text-[11px] font-bold shadow-xs
-                                        @if($sem->participation_type === 'online') bg-sky-500 text-white
-                                        @elseif($sem->participation_type === 'offline') bg-amber-500 text-white
-                                        @else bg-emerald-600 text-white @endif">
-                                        {{ strtoupper($sem->participation_type) }}
+                                {{-- Single Clean Pill Badge: Participation Type --}}
+                                <div class="absolute top-3.5 left-3.5 flex items-center gap-1.5">
+                                    <span class="px-2.5 py-1 rounded-full text-[11px] font-bold tracking-wide backdrop-blur-md shadow-xs
+                                        @if($sem->participation_type === 'online') bg-sky-500/90 text-white
+                                        @elseif($sem->participation_type === 'offline') bg-amber-500/90 text-white
+                                        @else bg-[#00245A]/85 text-white border border-white/20 @endif">
+                                        @if($sem->participation_type === 'both')
+                                            🌐 Online & In-Person
+                                        @elseif($sem->participation_type === 'online')
+                                            🌐 Online Live
+                                        @else
+                                            📍 In-Person
+                                        @endif
                                     </span>
-                                    @if($sem->category)
-                                        <span class="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white/95 text-[#00245A] backdrop-blur-xs shadow-xs">
-                                            {{ $sem->category }}
-                                        </span>
-                                    @endif
                                 </div>
 
                                 {{-- Fee badge --}}
-                                <div class="absolute bottom-3 right-3 bg-white/95 text-[#00245A] font-extrabold text-xs px-2.5 py-1 rounded-lg shadow-xs">
+                                <div class="absolute top-3.5 right-3.5 bg-white/95 backdrop-blur-md text-[#00245A] font-extrabold text-xs px-2.5 py-1 rounded-lg shadow-xs">
                                     ৳{{ number_format($sem->registration_fee, 0) }} BDT
                                 </div>
                             </div>
 
                             {{-- Card Body --}}
-                            <div class="p-5 flex-1 flex flex-col justify-between">
+                            <div class="p-6 flex-1 flex flex-col justify-between">
                                 <div>
                                     {{-- Date & Time --}}
-                                    <div class="flex items-center gap-2 text-xs font-bold text-[#0085FF] mb-2">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                    <div class="flex items-center gap-1.5 text-xs font-semibold text-slate-500 mb-2.5">
+                                        <svg class="w-3.5 h-3.5 text-[#0085FF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                                         <span>{{ $sem->event_date ? $sem->event_date->format('l, F j, Y') : 'Date TBA' }}</span>
                                         @if($sem->start_time)
                                             <span>• {{ \Carbon\Carbon::parse($sem->start_time)->format('h:i A') }}</span>
@@ -167,71 +171,59 @@
                                     </div>
 
                                     {{-- Title --}}
-                                    <h3 class="text-lg font-bold text-[#00245A] group-hover:text-[#0085FF] transition-colors line-clamp-2 mb-2">
+                                    <h3 class="text-lg font-bold text-[#00245A] group-hover:text-[#0085FF] transition-colors leading-snug mb-2.5 line-clamp-2">
                                         <a href="{{ route('seminars.show', $sem->slug) }}">
                                             {{ $sem->title }}
                                         </a>
                                     </h3>
 
                                     {{-- Short Description --}}
-                                    <p class="text-xs text-slate-600 line-clamp-2 mb-4 leading-relaxed">
+                                    <p class="text-xs text-slate-600 line-clamp-2 mb-4 leading-relaxed font-normal">
                                         {{ $sem->short_description ?: 'Comprehensive industry preparation and interactive training session designed for pharmaceutical career acceleration.' }}
                                     </p>
 
-                                    {{-- Speaker Snapshot --}}
+                                    {{-- Editorial Speaker Byline (Clean, no bulky gray card) --}}
                                     @if($sem->speaker_name)
-                                        <div class="flex items-center gap-2.5 p-2 rounded-xl bg-slate-50 mb-4 border border-slate-100">
-                                            @if($sem->speaker_avatar)
-                                                <img src="{{ $sem->speaker_avatar }}" alt="{{ $sem->speaker_name }}" class="w-8 h-8 rounded-full object-cover">
-                                            @else
-                                                <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-[#00245A] to-[#0085FF] text-white flex items-center justify-center font-bold text-xs">
-                                                    {{ strtoupper(substr($sem->speaker_name, 0, 1)) }}
-                                                </div>
+                                        <div class="text-xs text-slate-700 font-medium mb-4 flex items-center gap-1.5 pt-2.5 border-t border-slate-100">
+                                            <span class="text-slate-400 font-normal">Speaker:</span>
+                                            <strong class="text-slate-900 font-bold truncate">{{ $sem->speaker_name }}</strong>
+                                            @if($sem->speaker_designation)
+                                                <span class="text-slate-400 hidden sm:inline">•</span>
+                                                <span class="text-slate-500 truncate hidden sm:inline">{{ $sem->speaker_designation }}</span>
                                             @endif
-                                            <div class="min-w-0 flex-1">
-                                                <div class="text-xs font-bold text-slate-800 truncate">{{ $sem->speaker_name }}</div>
-                                                <div class="text-[10px] text-slate-500 truncate">{{ $sem->speaker_designation ?: 'Industry Specialist' }}</div>
-                                            </div>
                                         </div>
                                     @endif
                                 </div>
 
                                 {{-- Seat Status & Action --}}
                                 <div class="pt-3 border-t border-slate-100">
-                                    <div class="flex items-center justify-between text-xs mb-2">
-                                        <span class="text-slate-500 font-medium">Available Seats:</span>
+                                    <div class="flex items-center justify-between text-xs text-slate-500 mb-3">
+                                        <span class="font-medium">Status</span>
                                         <span class="font-bold {{ $sem->availableSeats() > 10 ? 'text-emerald-600' : ($sem->availableSeats() > 0 ? 'text-amber-600' : 'text-red-600') }}">
                                             @if($sem->isFull())
-                                                Full (Waitlist Open)
+                                                Waitlist Open
+                                            @elseif($sem->availableSeats() > 0)
+                                                {{ $sem->availableSeats() }} seats open
                                             @else
-                                                {{ $sem->availableSeats() }} of {{ $sem->max_participants }} left
+                                                Registration Closed
                                             @endif
                                         </span>
                                     </div>
 
-                                    {{-- Seats Progress Bar --}}
-                                    <div class="w-full bg-slate-100 rounded-full h-1.5 mb-3 overflow-hidden">
-                                        @php
-                                            $confirmed = $sem->confirmedRegistrations()->count();
-                                            $percent = min(100, round(($confirmed / max(1, $sem->max_participants)) * 100));
-                                        @endphp
-                                        <div class="h-1.5 rounded-full {{ $percent >= 90 ? 'bg-red-500' : ($percent >= 60 ? 'bg-amber-500' : 'bg-emerald-500') }}" style="width: {{ $percent }}%"></div>
-                                    </div>
-
                                     <div class="flex items-center gap-2">
-                                        <a href="{{ route('seminars.show', $sem->slug) }}" style="white-space: nowrap !important;" class="flex-1 text-center py-2 px-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50 transition-colors whitespace-nowrap">
+                                        <a href="{{ route('seminars.show', $sem->slug) }}" style="white-space: nowrap !important;" class="flex-1 text-center py-2.5 px-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50 transition-colors whitespace-nowrap">
                                             Details
                                         </a>
                                         @if($sem->isRegistrationClosed())
-                                            <span style="white-space: nowrap !important;" class="flex-1 text-center py-2 px-3 rounded-xl bg-slate-100 text-slate-400 text-xs font-bold cursor-not-allowed whitespace-nowrap">
+                                            <span style="white-space: nowrap !important;" class="flex-1 text-center py-2.5 px-3 rounded-xl bg-slate-100 text-slate-400 text-xs font-bold cursor-not-allowed whitespace-nowrap">
                                                 Closed
                                             </span>
                                         @elseif($sem->isFull())
-                                            <a href="{{ route('seminars.register', $sem->slug) }}" style="white-space: nowrap !important;" class="flex-1 text-center py-2 px-3 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold transition-colors whitespace-nowrap">
+                                            <a href="{{ route('seminars.register', $sem->slug) }}" style="white-space: nowrap !important;" class="flex-1 text-center py-2.5 px-3 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold transition-colors whitespace-nowrap shadow-xs">
                                                 Join Waitlist
                                             </a>
                                         @else
-                                            <a href="{{ route('seminars.register', $sem->slug) }}" style="white-space: nowrap !important;" class="flex-1 text-center py-2 px-3 rounded-xl bg-[#0085FF] hover:bg-[#0070d9] text-white text-xs font-bold transition-colors shadow-xs whitespace-nowrap">
+                                            <a href="{{ route('seminars.register', $sem->slug) }}" style="white-space: nowrap !important;" class="flex-1 text-center py-2.5 px-3 rounded-xl bg-[#0085FF] hover:bg-[#0070d9] text-white text-xs font-bold transition-colors shadow-xs whitespace-nowrap">
                                                 Register Now →
                                             </a>
                                         @endif

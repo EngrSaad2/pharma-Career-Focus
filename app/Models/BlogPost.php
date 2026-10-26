@@ -43,4 +43,14 @@ class BlogPost extends Model
     {
         return $this->belongsTo(User::class, 'author_id');
     }
+
+    public function getExcerptAttribute()
+    {
+        return $this->summary;
+    }
+
+    public function getReadingTimeAttribute()
+    {
+        return $this->read_time_minutes;
+    }
 }

@@ -333,6 +333,49 @@ class AdminController extends Controller
         return back()->with('success', 'Blog article published successfully!');
     }
 
+    public function updateBlogPost(Request $request, $id)
+    {
+        $post = BlogPost::findOrFail($id);
+
+        $validated = $request->validate([
+            'title' => 'required|string|max:200',
+            'category_id' => 'required|exists:blog_categories,id',
+            'summary' => 'required|string|max:500',
+            'content' => 'required|string',
+            'author_name' => 'required|string|max:100',
+            'author_title' => 'nullable|string|max:100',
+            'read_time_minutes' => 'required|integer|min:1|max:60',
+            'is_published' => 'boolean',
+        ]);
+
+        if ($post->title !== $validated['title']) {
+            $baseSlug = Str::slug($validated['title']);
+            $slug = $baseSlug;
+            $counter = 1;
+            while (BlogPost::where('slug', $slug)->where('id', '!=', $post->id)->exists()) {
+                $slug = $baseSlug . '-' . $counter++;
+            }
+            $validated['slug'] = $slug;
+        }
+
+        $validated['is_published'] = $request->boolean('is_published');
+        if ($validated['is_published'] && !$post->published_at) {
+            $validated['published_at'] = now();
+        }
+
+        $post->update($validated);
+
+        return back()->with('success', 'Blog article updated successfully!');
+    }
+
+    public function destroyBlogPost($id)
+    {
+        $post = BlogPost::findOrFail($id);
+        $post->delete();
+
+        return back()->with('success', 'Blog article deleted successfully!');
+    }
+
     // --- FAQs ---
     public function faqs()
     {

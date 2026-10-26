@@ -170,6 +170,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     // Blog
     Route::get('/blog', [AdminController::class, 'blog'])->name('blog');
     Route::post('/blog', [AdminController::class, 'storeBlogPost'])->name('blog.store');
+    Route::put('/blog/{id}', [AdminController::class, 'updateBlogPost'])->name('blog.update');
+    Route::delete('/blog/{id}', [AdminController::class, 'destroyBlogPost'])->name('blog.destroy');
 
     // FAQs
     Route::get('/faqs', [AdminController::class, 'faqs'])->name('faqs');
