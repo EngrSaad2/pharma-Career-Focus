@@ -272,6 +272,12 @@ class AdminController extends Controller
         return back()->with('success', 'Exam question added successfully!');
     }
 
+    public function deleteExamQuestion($id)
+    {
+        ExamQuestion::findOrFail($id)->delete();
+        return back()->with('success', 'Question deleted successfully.');
+    }
+
     // --- Viva Questions ---
     public function viva()
     {
@@ -375,6 +381,12 @@ class AdminController extends Controller
         Testimonial::create($validated);
 
         return back()->with('success', 'Testimonial added successfully!');
+    }
+
+    public function deleteTestimonial($id)
+    {
+        Testimonial::findOrFail($id)->delete();
+        return back()->with('success', 'Testimonial deleted successfully!');
     }
 
     // --- Contact Messages ---

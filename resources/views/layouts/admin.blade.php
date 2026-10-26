@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Admin Panel - Pharma Career Compass')</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}?v=2">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}?v=2">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}?v=2">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}?v=2">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,6 +21,19 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+        @media print {
+            header, aside, .no-print { display: none !important; }
+            body, main { background: #ffffff !important; color: #000000 !important; padding: 0 !important; margin: 0 !important; }
+            .print-only { display: block !important; }
+            table { width: 100% !important; border-collapse: collapse !important; }
+            th, td { border: 1px solid #cbd5e1 !important; padding: 8px 10px !important; font-size: 11px !important; }
+            th { background-color: #f1f5f9 !important; color: #00245A !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .shadow-\[4px_4px_0px_\#00245a\], .shadow-\[2px_2px_0px_\#00245a\], .shadow-\[8px_8px_0px_\#00245a\], .border-2 {
+                box-shadow: none !important;
+                border: 1px solid #cbd5e1 !important;
+            }
+        }
     </style>
 </head>
 <body class="h-full flex flex-col text-slate-900 bg-slate-50" x-data="{ sidebarOpen: false }">
@@ -178,7 +197,7 @@
                 </div>
             @endif
 
-            @if($errors->any())
+            @if(isset($errors) && $errors->any())
                 <div class="mb-6 p-4 rounded-xl bg-red-50 border-2 border-red-500 text-red-900 text-xs">
                     <span class="font-bold">Errors encountered:</span>
                     <ul class="list-disc list-inside mt-1">

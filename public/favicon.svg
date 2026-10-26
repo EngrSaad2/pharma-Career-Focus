@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="compassBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00245A" />
+      <stop offset="100%" stop-color="#0085FF" />
+    </linearGradient>
+    <linearGradient id="goldNeedle" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF275" />
+      <stop offset="100%" stop-color="#FFCD00" />
+    </linearGradient>
+    <linearGradient id="silverNeedle" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#CBD5E1" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#001233" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <!-- Outer Circle -->
+  <circle cx="32" cy="32" r="30" fill="url(#compassBg)" stroke="#FFCD00" stroke-width="2" />
+
+  <!-- Inner Dial Ring -->
+  <circle cx="32" cy="32" r="23" fill="none" stroke="#FFFFFF" stroke-opacity="0.25" stroke-width="1.5" stroke-dasharray="2 3" />
+
+  <!-- Cardinal Tick Marks -->
+  <line x1="32" y1="8" x2="32" y2="12" stroke="#FFCD00" stroke-width="2" stroke-linecap="round" />
+  <line x1="32" y1="52" x2="32" y2="56" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.6" />
+  <line x1="8" y1="32" x2="12" y2="32" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.6" />
+  <line x1="52" y1="32" x2="56" y2="32" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.6" />
+
+  <!-- North Letter N -->
+  <text x="32" y="7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="6" font-weight="900" fill="#FFCD00" text-anchor="middle" dominant-baseline="central">N</text>
+
+  <!-- Compass Star / Needles -->
+  <!-- North Needle (Gold) -->
+  <polygon points="32,13 36.5,32 32,29" fill="url(#goldNeedle)" filter="url(#shadow)" />
+  <polygon points="32,13 27.5,32 32,29" fill="#E5B700" filter="url(#shadow)" />
+
+  <!-- South Needle (Silver/White) -->
+  <polygon points="32,51 36.5,32 32,35" fill="#94A3B8" />
+  <polygon points="32,51 27.5,32 32,35" fill="url(#silverNeedle)" />
+
+  <!-- East / West Small Needles -->
+  <polygon points="51,32 32,28.5 35,32" fill="#E2E8F0" />
+  <polygon points="51,32 32,35.5 35,32" fill="#94A3B8" />
+  <polygon points="13,32 32,28.5 29,32" fill="#E2E8F0" />
+  <polygon points="13,32 32,35.5 29,32" fill="#94A3B8" />
+
+  <!-- Center Pivot Cap -->
+  <circle cx="32" cy="32" r="3.5" fill="#FFFFFF" stroke="#00245A" stroke-width="1.5" />
+  <circle cx="32" cy="32" r="1.5" fill="#FFCD00" />
+</svg>

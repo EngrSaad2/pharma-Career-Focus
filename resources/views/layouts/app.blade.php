@@ -12,6 +12,12 @@
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="canonical" href="@yield('canonical', url()->current())">
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}?v=2">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}?v=2">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}?v=2">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}?v=2">
+
     <!-- Open Graph / Facebook Debugger Metadata -->
     <meta property="og:site_name" content="Pharma Career Compass">
     <meta property="og:title" content="@yield('og_title', 'Pharma Career Compass | Pharma Career Guidance & Exam Prep')">

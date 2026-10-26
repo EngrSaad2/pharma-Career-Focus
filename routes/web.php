@@ -151,6 +151,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     // Exams
     Route::get('/exams', [AdminController::class, 'exams'])->name('exams');
     Route::post('/exams', [AdminController::class, 'storeExamQuestion'])->name('exams.store');
+    Route::delete('/exams/{id}', [AdminController::class, 'deleteExamQuestion'])->name('exams.delete');
 
     // Viva
     Route::get('/viva', [AdminController::class, 'viva'])->name('viva');
@@ -167,6 +168,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     // Testimonials
     Route::get('/testimonials', [AdminController::class, 'testimonials'])->name('testimonials');
     Route::post('/testimonials', [AdminController::class, 'storeTestimonial'])->name('testimonials.store');
+    Route::delete('/testimonials/{id}', [AdminController::class, 'deleteTestimonial'])->name('testimonials.delete');
 
     // Messages
     Route::get('/messages', [AdminController::class, 'messages'])->name('messages');
