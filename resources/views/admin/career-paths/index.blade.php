@@ -28,9 +28,13 @@
                     'activity' => '🩺',
                     'sparkles' => '🧪',
                     'flask' => '🧪',
+                    'flask-conical' => '🧪',
                     'shield' => '🛡️',
                     'truck' => '📦',
                     'pill' => '💊',
+                    'stethoscope' => '🩺',
+                    'trending-up' => '📈',
+                    'heart-pulse' => '❤️',
                 ];
                 $displayIcon = $iconMap[$path->icon] ?? (str_contains($path->icon ?? '', '-') ? '💊' : ($path->icon ?: '💊'));
             @endphp
