@@ -6,6 +6,7 @@ use App\Models\Consultant;
 use App\Models\ConsultantAvailability;
 use App\Models\ConsultationBooking;
 use App\Models\Service;
+use App\Services\AdminNotificationService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -147,6 +148,9 @@ class BookingController extends Controller
             'notes' => $validated['notes'] ?? null,
             'meeting_link' => $meetingLink,
         ]);
+
+        // Send email alert to admin
+        AdminNotificationService::notifyNewBooking($booking);
 
         return redirect()->route('booking.confirmation', $booking->id)
             ->with('success', 'Your pharmaceutical consultation has been scheduled successfully!');

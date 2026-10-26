@@ -55,16 +55,23 @@
 
             <!-- Contact Channels -->
             <div class="border-b border-[#00245A]/10 pb-6">
-                <h3 class="text-base font-black text-[#00245A] mb-4">Contact & Support Details</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <h3 class="text-base font-black text-[#00245A] mb-4">Contact, Support & Admin Alert Channels</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
                     <div>
-                        <label class="block text-xs font-bold uppercase text-[#00245A] mb-1">Official Email</label>
+                        <label class="block text-xs font-bold uppercase text-[#00245A] mb-1">Official Public Email</label>
                         <input type="email" name="contact_email" value="{{ $settings['contact_email'] ?? 'support@pharmacareercompass.com' }}"
                                class="w-full px-3.5 py-2.5 border-2 border-[#00245A] rounded-lg text-sm">
                     </div>
                     <div>
+                        <label class="block text-xs font-bold uppercase text-[#00245A] mb-1">Admin Alert Notification Email (Registrations, Inquiries & Bookings)</label>
+                        <input type="email" name="admin_notification_email" value="{{ $settings['admin_notification_email'] ?? 'engr.saad477@gmail.com' }}"
+                               class="w-full px-3.5 py-2.5 border-2 border-[#0085FF] bg-blue-50/40 rounded-lg text-sm font-semibold text-[#00245A]">
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
                         <label class="block text-xs font-bold uppercase text-[#00245A] mb-1">Helpline Phone</label>
-                        <input type="text" name="contact_phone" value="{{ $settings['contact_phone'] ?? '+880 1700-000000' }}"
+                        <input type="text" name="contact_phone" value="{{ $settings['contact_phone'] ?? '+880 1844 567890' }}"
                                class="w-full px-3.5 py-2.5 border-2 border-[#00245A] rounded-lg text-sm">
                     </div>
                     <div>

@@ -12,6 +12,7 @@ use App\Models\BlogPost;
 use App\Models\ContactMessage;
 use App\Models\NewsletterSubscriber;
 use App\Models\SiteSetting;
+use App\Services\AdminNotificationService;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -75,7 +76,10 @@ class HomeController extends Controller
             'message' => 'required|string|max:3000',
         ]);
 
-        ContactMessage::create($validated);
+        $contactMessage = ContactMessage::create($validated);
+
+        // Send email alert to admin
+        AdminNotificationService::notifyNewContact($contactMessage);
 
         return back()->with('success', 'Thank you! Your message has been received. Our pharmaceutical advisory team will reply within 24 hours.');
     }

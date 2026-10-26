@@ -8,6 +8,7 @@ use App\Models\CareerRoadmap;
 use App\Models\RoadmapMilestone;
 use App\Models\User;
 use App\Models\UserProfile;
+use App\Services\AdminNotificationService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -86,6 +87,9 @@ class AuthController extends Controller
             'target_department' => $validated['target_department'] ?? null,
             'current_status' => 'Candidate',
         ]);
+
+        // Send email alert to admin
+        AdminNotificationService::notifyNewUser($user);
 
         Auth::login($user);
 
