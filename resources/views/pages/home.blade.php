@@ -304,12 +304,6 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($services as $service)
                 <div class="card-solid p-7 flex flex-col justify-between hover:border-[#0085FF] text-left relative overflow-hidden">
-                    @if($service->tag)
-                        <div class="absolute top-4 right-4 text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-[#FFCD00] text-[#00245A] uppercase tracking-wider">
-                            {{ $service->tag }}
-                        </div>
-                    @endif
-
                     <div>
                         <div class="text-xs font-semibold text-[#0085FF] uppercase tracking-wider mb-1">
                             {{ $service->delivery_mode }}

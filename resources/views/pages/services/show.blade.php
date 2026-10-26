@@ -25,11 +25,6 @@
                         <span class="text-xs font-bold text-[#0085FF] bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200">
                             {{ $service->delivery_mode }}
                         </span>
-                        @if($service->tag)
-                            <span class="text-xs font-bold text-[#00245A] bg-[#FFCD00] px-2.5 py-0.5 rounded-full">
-                                {{ $service->tag }}
-                            </span>
-                        @endif
                     </div>
 
                     <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#00245A]">
