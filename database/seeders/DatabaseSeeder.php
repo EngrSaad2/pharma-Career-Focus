@@ -48,14 +48,40 @@ class DatabaseSeeder extends Seeder
 
         // 2. Users
         $admin = User::firstOrCreate(
-            ['email' => 'admin@pharmacareer.com'],
+            ['email' => 'bashar@gmail.com'],
             [
                 'name' => 'MD Abul Bashar, RPh',
-                'password' => Hash::make('password'),
+                'password' => Hash::make('123456'),
                 'role' => 'admin',
                 'phone' => '+880 1711 000111',
                 'headline' => 'Founder & Lead Pharmaceutical Career Consultant',
                 'bio' => 'Founder of Pharma Career Compass. Over 15 years guiding pharmaceutical graduates across Bangladesh into top tier pharmaceutical companies.',
+                'is_active' => true,
+            ]
+        );
+
+        $adminSaad = User::firstOrCreate(
+            ['email' => 'saad@gmail.com'],
+            [
+                'name' => 'Engr Saad',
+                'password' => Hash::make('123456'),
+                'role' => 'admin',
+                'phone' => '+880 1844 567890',
+                'headline' => 'Platform Administrator & Tech Lead',
+                'bio' => 'Lead Platform Administrator for Pharma Career Compass.',
+                'is_active' => true,
+            ]
+        );
+
+        User::firstOrCreate(
+            ['email' => 'admin@pharmacareer.com'],
+            [
+                'name' => 'MD Abul Bashar, RPh',
+                'password' => Hash::make('123456'),
+                'role' => 'admin',
+                'phone' => '+880 1711 000111',
+                'headline' => 'Founder & Lead Pharmaceutical Career Consultant',
+                'bio' => 'Founder of Pharma Career Compass.',
                 'is_active' => true,
             ]
         );
