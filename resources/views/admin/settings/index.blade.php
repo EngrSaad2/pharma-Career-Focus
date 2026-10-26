@@ -59,12 +59,12 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
                     <div>
                         <label class="block text-xs font-bold uppercase text-[#00245A] mb-1">Official Public Email</label>
-                        <input type="email" name="contact_email" value="{{ $settings['contact_email'] ?? 'support@pharmacareercompass.com' }}"
+                        <input type="email" name="contact_email" value="{{ $settings['contact_email'] ?? 'hello@pharmacareercompass.com' }}"
                                class="w-full px-3.5 py-2.5 border-2 border-[#00245A] rounded-lg text-sm">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold uppercase text-[#00245A] mb-1">Admin Alert Notification Email (Registrations, Inquiries & Bookings)</label>
-                        <input type="email" name="admin_notification_email" value="{{ $settings['admin_notification_email'] ?? 'engr.saad477@gmail.com' }}"
+                        <label class="block text-xs font-bold uppercase text-[#00245A] mb-1">Admin Alert Notification Emails (comma-separated)</label>
+                        <input type="text" name="admin_notification_email" value="{{ $settings['admin_notification_email'] ?? 'engr.saad477@gmail.com, bashar3074@gmail.com, abashar.qo@acmeglobal.com' }}"
                                class="w-full px-3.5 py-2.5 border-2 border-[#0085FF] bg-blue-50/40 rounded-lg text-sm font-semibold text-[#00245A]">
                     </div>
                 </div>

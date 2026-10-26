@@ -14,20 +14,39 @@ use Illuminate\Support\Facades\Mail;
 
 class AdminNotificationService
 {
+    public static function getAdminEmails(): array
+    {
+        $raw = SiteSetting::get(
+            'admin_notification_email',
+            config('mail.admin_address', env('ADMIN_NOTIFICATION_EMAIL', 'engr.saad477@gmail.com,bashar3074@gmail.com,abashar.qo@acmeglobal.com'))
+        );
+
+        if (empty($raw)) {
+            return ['engr.saad477@gmail.com', 'bashar3074@gmail.com', 'abashar.qo@acmeglobal.com'];
+        }
+
+        $emails = preg_split('/[\s,;]+/', trim($raw));
+        $validEmails = array_values(array_filter($emails, function ($email) {
+            return filter_var($email, FILTER_VALIDATE_EMAIL);
+        }));
+
+        return !empty($validEmails)
+            ? $validEmails
+            : ['engr.saad477@gmail.com', 'bashar3074@gmail.com', 'abashar.qo@acmeglobal.com'];
+    }
+
     public static function getAdminEmail(): string
     {
-        return SiteSetting::get(
-            'admin_notification_email',
-            config('mail.admin_address', env('ADMIN_NOTIFICATION_EMAIL', 'engr.saad477@gmail.com'))
-        );
+        $emails = static::getAdminEmails();
+        return $emails[0] ?? 'engr.saad477@gmail.com';
     }
 
     public static function notifyNewUser(User $user): void
     {
         try {
-            $adminEmail = static::getAdminEmail();
-            if (!empty($adminEmail)) {
-                Mail::to($adminEmail)->send(new NewUserRegistrationMail($user));
+            $adminEmails = static::getAdminEmails();
+            if (!empty($adminEmails)) {
+                Mail::to($adminEmails)->send(new NewUserRegistrationMail($user));
             }
         } catch (\Throwable $e) {
             Log::error('Failed sending admin new user email alert: ' . $e->getMessage());
@@ -37,9 +56,9 @@ class AdminNotificationService
     public static function notifyNewContact(ContactMessage $contactMessage): void
     {
         try {
-            $adminEmail = static::getAdminEmail();
-            if (!empty($adminEmail)) {
-                Mail::to($adminEmail)->send(new NewContactMessageMail($contactMessage));
+            $adminEmails = static::getAdminEmails();
+            if (!empty($adminEmails)) {
+                Mail::to($adminEmails)->send(new NewContactMessageMail($contactMessage));
             }
         } catch (\Throwable $e) {
             Log::error('Failed sending admin contact message email alert: ' . $e->getMessage());
@@ -49,9 +68,9 @@ class AdminNotificationService
     public static function notifyNewBooking(ConsultationBooking $booking): void
     {
         try {
-            $adminEmail = static::getAdminEmail();
-            if (!empty($adminEmail)) {
-                Mail::to($adminEmail)->send(new NewBookingNotificationMail($booking));
+            $adminEmails = static::getAdminEmails();
+            if (!empty($adminEmails)) {
+                Mail::to($adminEmails)->send(new NewBookingNotificationMail($booking));
             }
         } catch (\Throwable $e) {
             Log::error('Failed sending admin booking notification email alert: ' . $e->getMessage());
