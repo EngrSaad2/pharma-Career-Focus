@@ -244,15 +244,15 @@
                     {{-- Primary Action Button --}}
                     <div class="mb-5">
                         @if($seminar->isRegistrationClosed())
-                            <button disabled class="w-full py-3.5 px-4 rounded-xl bg-slate-200 text-slate-500 font-bold text-sm cursor-not-allowed">
+                            <button disabled style="white-space: nowrap !important;" class="w-full py-3.5 px-4 rounded-xl bg-slate-200 text-slate-500 font-bold text-sm cursor-not-allowed whitespace-nowrap">
                                 Registration Closed
                             </button>
                         @elseif($seminar->isFull())
-                            <a href="{{ route('seminars.register', $seminar->slug) }}" class="w-full py-3.5 px-4 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-bold text-sm text-center block shadow-sm transition-colors">
+                            <a href="{{ route('seminars.register', $seminar->slug) }}" style="white-space: nowrap !important;" class="w-full py-3.5 px-4 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-bold text-sm text-center flex items-center justify-center shadow-sm transition-colors whitespace-nowrap">
                                 Join Participant Waitlist →
                             </a>
                         @else
-                            <a href="{{ route('seminars.register', $seminar->slug) }}" class="w-full py-3.5 px-4 rounded-xl bg-[#0085FF] hover:bg-[#0070d9] text-white font-extrabold text-sm text-center block shadow-md hover:shadow-lg transition-all">
+                            <a href="{{ route('seminars.register', $seminar->slug) }}" style="white-space: nowrap !important;" class="w-full py-3.5 px-4 rounded-xl bg-[#0085FF] hover:bg-[#0070d9] text-white font-extrabold text-sm text-center flex items-center justify-center shadow-md hover:shadow-lg transition-all whitespace-nowrap">
                                 Register for this Seminar →
                             </a>
                         @endif

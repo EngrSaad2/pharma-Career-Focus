@@ -7,6 +7,28 @@
 <div class="bg-gradient-to-b from-[#00245A]/5 via-white to-slate-50 min-h-screen py-10 md:py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
+        {{-- Flash Messages --}}
+        @if(session('success'))
+            <div class="mb-6 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-semibold flex items-center gap-3 shadow-xs">
+                <span class="text-xl">✓</span>
+                <div>{{ session('success') }}</div>
+            </div>
+        @endif
+
+        @if(session('error'))
+            <div class="mb-6 p-4 rounded-2xl bg-red-50 border border-red-200 text-red-800 text-sm font-semibold flex items-center gap-3 shadow-xs">
+                <span class="text-xl">⚠️</span>
+                <div>{{ session('error') }}</div>
+            </div>
+        @endif
+
+        @if(session('info'))
+            <div class="mb-6 p-4 rounded-2xl bg-blue-50 border border-blue-200 text-blue-800 text-sm font-semibold flex items-center gap-3 shadow-xs">
+                <span class="text-xl">ℹ</span>
+                <div>{{ session('info') }}</div>
+            </div>
+        @endif
+
         {{-- Hero Header --}}
         <div class="text-center max-w-3xl mx-auto mb-12">
             <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0085FF]/10 text-[#0085FF] font-bold text-xs uppercase tracking-wider mb-4">
@@ -52,7 +74,7 @@
 
                 {{-- Submit & Reset --}}
                 <div class="sm:col-span-2 flex gap-2">
-                    <button type="submit" class="w-full bg-[#0085FF] hover:bg-[#0070d9] text-white font-bold text-sm py-2.5 px-4 rounded-xl shadow-xs transition-colors">
+                    <button type="submit" style="white-space: nowrap !important;" class="w-full bg-[#0085FF] hover:bg-[#0070d9] text-white font-bold text-sm py-2.5 px-4 rounded-xl shadow-xs transition-colors whitespace-nowrap">
                         Filter
                     </button>
                     @if(request()->hasAny(['q', 'category', 'type']))
@@ -197,19 +219,19 @@
                                     </div>
 
                                     <div class="flex items-center gap-2">
-                                        <a href="{{ route('seminars.show', $sem->slug) }}" class="flex-1 text-center py-2 px-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50 transition-colors">
+                                        <a href="{{ route('seminars.show', $sem->slug) }}" style="white-space: nowrap !important;" class="flex-1 text-center py-2 px-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50 transition-colors whitespace-nowrap">
                                             Details
                                         </a>
                                         @if($sem->isRegistrationClosed())
-                                            <span class="flex-1 text-center py-2 px-3 rounded-xl bg-slate-100 text-slate-400 text-xs font-bold cursor-not-allowed">
+                                            <span style="white-space: nowrap !important;" class="flex-1 text-center py-2 px-3 rounded-xl bg-slate-100 text-slate-400 text-xs font-bold cursor-not-allowed whitespace-nowrap">
                                                 Closed
                                             </span>
                                         @elseif($sem->isFull())
-                                            <a href="{{ route('seminars.register', $sem->slug) }}" class="flex-1 text-center py-2 px-3 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold transition-colors">
+                                            <a href="{{ route('seminars.register', $sem->slug) }}" style="white-space: nowrap !important;" class="flex-1 text-center py-2 px-3 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold transition-colors whitespace-nowrap">
                                                 Join Waitlist
                                             </a>
                                         @else
-                                            <a href="{{ route('seminars.register', $sem->slug) }}" class="flex-1 text-center py-2 px-3 rounded-xl bg-[#0085FF] hover:bg-[#0070d9] text-white text-xs font-bold transition-colors shadow-xs">
+                                            <a href="{{ route('seminars.register', $sem->slug) }}" style="white-space: nowrap !important;" class="flex-1 text-center py-2 px-3 rounded-xl bg-[#0085FF] hover:bg-[#0070d9] text-white text-xs font-bold transition-colors shadow-xs whitespace-nowrap">
                                                 Register Now →
                                             </a>
                                         @endif
@@ -256,27 +278,101 @@
             </div>
         @endif
 
-        {{-- Check Registration Status Bar --}}
-        <div class="bg-gradient-to-r from-[#00245A] to-[#0085FF] rounded-2xl p-6 sm:p-8 text-white shadow-lg">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-                <div class="lg:col-span-6">
-                    <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-[#FFCD00] font-bold text-xs uppercase tracking-wider mb-2">
-                        <span>🔍 Live Status Verification</span>
+        {{-- Check Registration Status Banner --}}
+        <div id="lookup" class="relative overflow-hidden rounded-3xl text-white shadow-2xl border border-white/10"
+             style="background: linear-gradient(135deg, #001A3D 0%, #002855 35%, #004B99 75%, #0077E6 100%);">
+            
+            <!-- Ambient glowing backdrop blurs -->
+            <div style="position: absolute; right: -5rem; bottom: -5rem; width: 22rem; height: 22rem; background: radial-gradient(circle, rgba(0, 133, 255, 0.35) 0%, rgba(0, 133, 255, 0) 70%); pointer-events: none; border-radius: 9999px;"></div>
+            <div style="position: absolute; left: 15%; top: -6rem; width: 18rem; height: 18rem; background: radial-gradient(circle, rgba(255, 205, 0, 0.12) 0%, rgba(255, 205, 0) 0%); pointer-events: none; border-radius: 9999px;"></div>
+
+            <div class="relative z-10 p-6 sm:p-10 lg:p-12">
+                <div style="display: flex; flex-direction: column; gap: 2rem; width: 100%;" class="lg:flex-row lg:items-center lg:justify-between">
+                    
+                    {{-- Left column: informative pitch & live badge --}}
+                    <div style="flex: 1 1 50%; min-width: 280px; max-width: 100%;">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-[#FFCD00] text-xs font-bold tracking-wider uppercase mb-3.5 backdrop-blur-md">
+                            <span class="relative flex h-2 w-2">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FFCD00] opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-[#FFCD00]"></span>
+                            </span>
+                            <span>Live Status Verification</span>
+                        </div>
+                        
+                        <h3 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight mb-3">
+                            Already Registered for a Seminar?
+                        </h3>
+                        
+                        <p class="text-sm sm:text-base text-blue-100/90 leading-relaxed font-normal" style="max-width: 34rem;">
+                            Check your payment verification progress, unlock online meeting links, access venue directions, and download your official participant pass.
+                        </p>
+
+                        <div class="mt-4 flex flex-wrap items-center gap-4 text-xs text-blue-200/90">
+                            <div class="flex items-center gap-1.5">
+                                <svg class="w-4 h-4 text-[#FFCD00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>Instant Status Check</span>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <svg class="w-4 h-4 text-[#FFCD00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>Official Digital Badge</span>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <svg class="w-4 h-4 text-[#FFCD00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>bKash Auto-Tracking</span>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="text-xl sm:text-2xl font-extrabold mb-1">Already Registered for a Seminar?</h3>
-                    <p class="text-xs sm:text-sm text-slate-200">
-                        Check your payment verification progress, meeting links, venue address, and download your official participant pass.
-                    </p>
-                </div>
-                <div class="lg:col-span-6">
-                    <form action="{{ route('seminars.status.lookup') }}" method="POST" class="flex flex-col sm:flex-row gap-2.5">
-                        @csrf
-                        <input type="text" name="reference" placeholder="Ref (e.g. SEM-2026-AB12CD)" required class="flex-1 px-4 py-2.5 rounded-xl bg-white text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#FFCD00]">
-                        <input type="text" name="identifier" placeholder="Email or Phone" required class="flex-1 px-4 py-2.5 rounded-xl bg-white text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#FFCD00]">
-                        <button type="submit" class="bg-[#FFCD00] hover:bg-[#e6b800] text-[#00245A] font-extrabold text-sm px-6 py-2.5 rounded-xl transition-colors whitespace-nowrap shadow-sm">
-                            Check Status
-                        </button>
-                    </form>
+
+                    {{-- Right column: ultra-sleek form card with single-line button --}}
+                    <div style="flex: 1 1 50%; min-width: 300px; width: 100%;">
+                        <div style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 1.5rem; padding: 1.5rem;" class="shadow-2xl">
+                            
+                            <div class="text-[11px] font-bold tracking-wider uppercase text-blue-200 mb-3 flex items-center justify-between">
+                                <span class="flex items-center gap-1.5">
+                                    <svg class="w-4 h-4 text-[#FFCD00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                                    <span>Verify Your Registration</span>
+                                </span>
+                                <span class="text-[10px] text-blue-300/80 font-normal">Reference + Email/Phone</span>
+                            </div>
+
+                            <form action="{{ route('seminars.status.lookup') }}" method="POST" style="display: flex; gap: 0.625rem; width: 100%;" class="flex-col sm:flex-row items-stretch">
+                                @csrf
+                                <div style="flex: 1 1 40%; min-width: 0;">
+                                    <input type="text" 
+                                           name="reference" 
+                                           value="{{ old('reference') }}"
+                                           placeholder="Ref: SEM-2026-AB12CD" 
+                                           required 
+                                           style="width: 100%; box-sizing: border-box;"
+                                           class="px-4 py-3.5 rounded-xl bg-white text-slate-900 text-xs sm:text-sm font-mono placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#FFCD00] border-0 shadow-sm font-semibold">
+                                </div>
+                                <div style="flex: 1 1 40%; min-width: 0;">
+                                    <input type="text" 
+                                           name="identifier" 
+                                           value="{{ old('identifier') }}"
+                                           placeholder="Email or Mobile" 
+                                           required 
+                                           style="width: 100%; box-sizing: border-box;"
+                                           class="px-4 py-3.5 rounded-xl bg-white text-slate-900 text-xs sm:text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#FFCD00] border-0 shadow-sm font-medium">
+                                </div>
+                                <button type="submit" 
+                                        style="white-space: nowrap !important; flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;"
+                                        class="px-6 py-3.5 rounded-xl bg-[#FFCD00] hover:bg-[#e6b800] text-[#00245A] font-black text-xs sm:text-sm transition-all duration-200 shadow-md hover:shadow-xl active:scale-98 whitespace-nowrap cursor-pointer">
+                                    <span style="white-space: nowrap;">Check Status</span>
+                                    <svg style="width: 1rem; height: 1rem; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                                </button>
+                            </form>
+
+                            <div class="mt-3 flex items-center justify-between text-[11px] text-blue-200/75 pt-2 border-t border-white/10">
+                                <span class="flex items-center gap-1">
+                                    <span class="text-emerald-400">●</span> 24/7 Live Automated Verification
+                                </span>
+                                <a href="{{ route('contact') }}" class="hover:text-white underline transition-colors">Lost Reference?</a>
+                            </div>
+
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

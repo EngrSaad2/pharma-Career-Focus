@@ -228,9 +228,9 @@
 
                 {{-- Submit Button --}}
                 <div class="pt-2">
-                    <button type="submit" class="w-full py-4 px-6 rounded-2xl bg-[#0085FF] hover:bg-[#0070d9] text-white font-extrabold text-base shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2">
-                        <span>{{ $isWaitlist ? 'Submit Waitlist Application' : 'Complete Registration & Submit Payment' }}</span>
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    <button type="submit" style="white-space: nowrap !important;" class="w-full py-4 px-6 rounded-2xl bg-[#0085FF] hover:bg-[#0070d9] text-white font-extrabold text-sm sm:text-base shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 whitespace-nowrap">
+                        <span style="white-space: nowrap;">{{ $isWaitlist ? 'Submit Waitlist Application' : 'Complete Registration & Submit Payment' }}</span>
+                        <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </button>
                     <p class="text-center text-[11px] text-slate-400 mt-3">
                         🔒 Safe & Secure. Your personal details are strictly used for session logistics and attendance confirmation.
