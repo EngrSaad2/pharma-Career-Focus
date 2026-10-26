@@ -23,11 +23,11 @@
     <header class="bg-[#00245A] text-white border-b border-blue-950 sticky top-0 z-40">
         <div class="px-4 sm:px-6 py-3 flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <button type="button" @click="sidebarOpen = !sidebarOpen" class="md:hidden p-2 rounded-lg bg-blue-900 border border-white/20 text-white">
+                <button type="button" @click="sidebarOpen = !sidebarOpen" class="md:hidden p-2 rounded-lg bg-blue-900 border border-white/20 text-white hover:bg-blue-800 transition" aria-label="Toggle navigation">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
                 </button>
 
-                <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-2">
+                <a href="{{ route('admin.dashboard') }}" class="hidden md:flex items-center gap-2">
                     <div class="w-8 h-8 rounded-lg bg-[#FFCD00] text-[#00245A] flex items-center justify-center font-black text-sm border border-white">
                         🧭
                     </div>
@@ -39,16 +39,16 @@
             </div>
 
             <div class="flex items-center gap-3">
-                <a href="{{ route('home') }}" target="_blank" class="text-xs font-bold text-white/80 hover:text-white flex items-center gap-1.5 px-3 py-1.5 rounded bg-white/10 border border-white/20">
+                <a href="{{ route('home') }}" target="_blank" class="hidden md:flex text-xs font-bold text-white/80 hover:text-white items-center gap-1.5 px-3 py-1.5 rounded bg-white/10 border border-white/20 hover:bg-white/20 transition">
                     <span>View Live Site</span>
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                 </a>
 
-                <div class="flex items-center gap-2 border-l border-white/20 pl-3">
+                <div class="flex items-center gap-2 md:border-l md:border-white/20 md:pl-3">
                     <span class="text-xs font-bold text-[#FFCD00] hidden sm:inline">{{ auth()->user()->name }}</span>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
-                        <button type="submit" class="px-2.5 py-1 rounded bg-red-600 text-white text-[11px] font-bold hover:bg-red-700">
+                        <button type="submit" class="px-3 py-1.5 rounded bg-red-600 text-white text-xs font-bold hover:bg-red-700 transition">
                             Logout
                         </button>
                     </form>
@@ -149,13 +149,20 @@
                 </a>
             </div>
 
-            <div class="p-4 border-t border-slate-200 bg-slate-50">
+            <div class="p-4 border-t border-slate-200 bg-slate-50 space-y-2">
+                <a href="{{ route('home') }}" target="_blank" class="text-xs font-bold text-slate-700 hover:text-[#00245A] flex items-center gap-1.5">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    <span>View Live Site ↗</span>
+                </a>
                 <a href="{{ route('dashboard') }}" class="text-xs font-bold text-[#0085FF] hover:underline flex items-center gap-1.5">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
                     <span>Switch to Candidate Mode</span>
                 </a>
             </div>
         </aside>
+
+        <!-- Mobile Sidebar Backdrop Overlay -->
+        <div x-show="sidebarOpen" @click="sidebarOpen = false" class="fixed inset-0 bg-black/50 z-20 md:hidden" style="display: none;" x-transition.opacity></div>
 
         <!-- Main Admin Canvas -->
         <main class="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
