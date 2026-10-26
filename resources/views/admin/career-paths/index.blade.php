@@ -15,9 +15,23 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         @foreach(($careerPaths ?? $paths ?? []) as $path)
             <div class="bg-white rounded-2xl border-2 border-[#00245A] shadow-[4px_4px_0px_#00245a] p-6 flex flex-col justify-between">
-                <div>
+                    @php
+                        $iconMap = [
+                            'clipboard-check' => '📋',
+                            'microscope' => '🔬',
+                            'cpu' => '🏭',
+                            'file-text' => '📄',
+                            'activity' => '🩺',
+                            'sparkles' => '🧪',
+                            'flask' => '🧪',
+                            'shield' => '🛡️',
+                            'truck' => '📦',
+                            'pill' => '💊',
+                        ];
+                        $displayIcon = $iconMap[$path->icon] ?? (str_contains($path->icon ?? '', '-') ? '💊' : ($path->icon ?: '💊'));
+                    @endphp
                     <div class="flex items-center justify-between mb-3">
-                        <span class="text-2xl">{{ $path->icon ?? '💊' }}</span>
+                        <span class="text-2xl">{{ $displayIcon }}</span>
                         <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-[#FFCD00]/30 text-[#00245A] border border-[#FFCD00]">
                             {{ $path->experience_level ?? 'Entry Level' }}
                         </span>
