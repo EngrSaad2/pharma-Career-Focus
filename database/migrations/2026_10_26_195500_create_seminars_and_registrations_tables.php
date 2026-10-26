@@ -88,8 +88,9 @@ return new class extends Migration
             
             // Payment Info
             $table->decimal('amount_payable', 10, 2)->default(1000.00);
+            $table->decimal('verified_amount', 10, 2)->nullable();
             $table->string('payment_method')->default('bKash');
-            $table->string('transaction_id');
+            $table->string('transaction_id')->nullable();
             $table->string('sender_number')->nullable();
             $table->string('payment_proof')->nullable(); // uploaded receipt file path
             
