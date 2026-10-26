@@ -152,6 +152,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     // Career Paths
     Route::get('/career-paths', [AdminController::class, 'careerPaths'])->name('career-paths');
     Route::post('/career-paths', [AdminController::class, 'storeCareerPath'])->name('career-paths.store');
+    Route::put('/career-paths/{id}', [AdminController::class, 'updateCareerPath'])->name('career-paths.update');
+    Route::delete('/career-paths/{id}', [AdminController::class, 'deleteCareerPath'])->name('career-paths.delete');
 
     // Consultants
     Route::get('/consultants', [AdminController::class, 'consultants'])->name('consultants');

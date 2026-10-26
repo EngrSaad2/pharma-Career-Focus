@@ -154,22 +154,119 @@ class AdminController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:150',
             'category_id' => 'required|exists:career_categories,id',
+            'icon' => 'nullable|string|max:50',
             'badge' => 'nullable|string|max:50',
             'summary' => 'required|string',
             'overview' => 'nullable|string',
             'salary_range' => 'nullable|string|max:100',
             'work_environment' => 'nullable|string|max:100',
-            'experience_level' => 'required|string|max:50',
-            'is_featured' => 'boolean',
+            'experience_level' => 'required|string|max:100',
+            'sort_order' => 'nullable|integer',
+            'is_featured' => 'nullable|boolean',
+            'is_active' => 'nullable|boolean',
+            'typical_day' => 'nullable|string',
         ]);
 
-        $validated['slug'] = Str::slug($validated['title']);
+        $baseSlug = Str::slug($validated['title']);
+        $slug = $baseSlug;
+        $count = 1;
+        while (CareerPath::where('slug', $slug)->exists()) {
+            $slug = "{$baseSlug}-{$count}";
+            $count++;
+        }
+        $validated['slug'] = $slug;
+        $validated['icon'] = $request->input('icon') ?: 'clipboard-check';
+        $validated['sort_order'] = (int) $request->input('sort_order', 0);
         $validated['is_featured'] = $request->boolean('is_featured');
-        $validated['is_active'] = true;
+        $validated['is_active'] = $request->has('is_active') ? $request->boolean('is_active') : true;
+
+        // JSON array fields
+        $validated['relevant_qualifications'] = $this->parseDelimitedList($request->input('relevant_qualifications'));
+        $validated['required_skills'] = $this->parseDelimitedList($request->input('required_skills'));
+        $validated['possible_entry_points'] = $this->parseDelimitedList($request->input('possible_entry_points'));
+        $validated['recommended_preparation'] = $this->parseDelimitedList($request->input('recommended_preparation'));
 
         CareerPath::create($validated);
 
         return back()->with('success', 'Career path created successfully!');
+    }
+
+    public function updateCareerPath(Request $request, $id)
+    {
+        $path = CareerPath::findOrFail($id);
+
+        $validated = $request->validate([
+            'title' => 'required|string|max:150',
+            'category_id' => 'required|exists:career_categories,id',
+            'icon' => 'nullable|string|max:50',
+            'badge' => 'nullable|string|max:50',
+            'summary' => 'required|string',
+            'overview' => 'nullable|string',
+            'salary_range' => 'nullable|string|max:100',
+            'work_environment' => 'nullable|string|max:100',
+            'experience_level' => 'required|string|max:100',
+            'sort_order' => 'nullable|integer',
+            'is_featured' => 'nullable|boolean',
+            'is_active' => 'nullable|boolean',
+            'typical_day' => 'nullable|string',
+        ]);
+
+        if ($validated['title'] !== $path->title) {
+            $baseSlug = Str::slug($validated['title']);
+            $slug = $baseSlug;
+            $count = 1;
+            while (CareerPath::where('slug', $slug)->where('id', '!=', $path->id)->exists()) {
+                $slug = "{$baseSlug}-{$count}";
+                $count++;
+            }
+            $validated['slug'] = $slug;
+        }
+
+        $validated['icon'] = $request->input('icon') ?: ($path->icon ?: 'clipboard-check');
+        $validated['sort_order'] = (int) $request->input('sort_order', $path->sort_order ?? 0);
+        $validated['is_featured'] = $request->boolean('is_featured');
+        $validated['is_active'] = $request->boolean('is_active');
+
+        // JSON array fields
+        $validated['relevant_qualifications'] = $this->parseDelimitedList($request->input('relevant_qualifications'));
+        $validated['required_skills'] = $this->parseDelimitedList($request->input('required_skills'));
+        $validated['possible_entry_points'] = $this->parseDelimitedList($request->input('possible_entry_points'));
+        $validated['recommended_preparation'] = $this->parseDelimitedList($request->input('recommended_preparation'));
+
+        $path->update($validated);
+
+        return back()->with('success', 'Career path "' . $path->title . '" updated successfully!');
+    }
+
+    public function deleteCareerPath($id)
+    {
+        $path = CareerPath::findOrFail($id);
+        $title = $path->title;
+        $path->delete();
+
+        return back()->with('success', 'Career path "' . $title . '" deleted successfully!');
+    }
+
+    private function parseDelimitedList($val): array
+    {
+        if (is_array($val)) {
+            return array_values(array_filter(array_map('trim', $val)));
+        }
+        if (empty($val)) {
+            return [];
+        }
+        $lines = preg_split('/[\r\n]+/', (string)$val);
+        $items = [];
+        foreach ($lines as $line) {
+            $parts = explode(',', $line);
+            foreach ($parts as $p) {
+                $trimmed = trim($p);
+                if ($trimmed !== '') {
+                    $items[] = $trimmed;
+                }
+            }
+        }
+        return array_values(array_unique($items));
     }
 
     // --- Consultants ---
