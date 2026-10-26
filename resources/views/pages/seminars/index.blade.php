@@ -182,14 +182,16 @@
                                         {{ $sem->short_description ?: 'Comprehensive industry preparation and interactive training session designed for pharmaceutical career acceleration.' }}
                                     </p>
 
-                                    {{-- Editorial Speaker Byline (Clean, no bulky gray card) --}}
+                                    {{-- Speaker Byline: Full name, designation/qualification under name, no dot --}}
                                     @if($sem->speaker_name)
-                                        <div class="text-xs text-slate-700 font-medium mb-4 flex items-center gap-1.5 pt-2.5 border-t border-slate-100">
-                                            <span class="text-slate-400 font-normal">Speaker:</span>
-                                            <strong class="text-slate-900 font-bold truncate">{{ $sem->speaker_name }}</strong>
+                                        <div class="mb-4 pt-2.5 border-t border-slate-100">
+                                            <div class="text-xs text-slate-900 font-bold leading-snug">
+                                                <span class="text-slate-400 font-normal">Speaker:</span> {{ $sem->speaker_name }}
+                                            </div>
                                             @if($sem->speaker_designation)
-                                                <span class="text-slate-400 hidden sm:inline">•</span>
-                                                <span class="text-slate-500 truncate hidden sm:inline">{{ $sem->speaker_designation }}</span>
+                                                <div class="text-[11px] text-slate-500 font-medium leading-normal mt-0.5">
+                                                    {{ $sem->speaker_designation }}
+                                                </div>
                                             @endif
                                         </div>
                                     @endif
@@ -255,7 +257,12 @@
                                 <h4 class="font-bold text-[#00245A] text-base mb-1.5">{{ $psem->title }}</h4>
                                 <p class="text-xs text-slate-500 line-clamp-2 mb-3">{{ $psem->short_description }}</p>
                                 @if($psem->speaker_name)
-                                    <div class="text-xs text-slate-600 font-medium">Speaker: <strong>{{ $psem->speaker_name }}</strong></div>
+                                    <div class="mt-2 pt-2 border-t border-slate-100 text-xs">
+                                        <div class="text-slate-800 font-bold leading-snug"><span class="text-slate-400 font-normal">Speaker:</span> {{ $psem->speaker_name }}</div>
+                                        @if($psem->speaker_designation)
+                                            <div class="text-[11px] text-slate-500 font-normal mt-0.5">{{ $psem->speaker_designation }}</div>
+                                        @endif
+                                    </div>
                                 @endif
                             </div>
                             <div class="pt-3 border-t border-slate-100 mt-4 flex items-center justify-between">
