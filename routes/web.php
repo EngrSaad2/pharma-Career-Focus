@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\AdminSeminarController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BookingController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PracticeController;
 use App\Http\Controllers\RoadmapController;
+use App\Http\Controllers\SeminarController;
 use App\Http\Controllers\SeoController;
 use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Route;
@@ -86,6 +88,14 @@ Route::post('/practice/interviews/{id}/toggle', [PracticeController::class, 'tog
 // Blog & Resources CMS
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
+
+// Seminars & Workshops
+Route::get('/seminars', [SeminarController::class, 'index'])->name('seminars.index');
+Route::get('/seminars/{slug}', [SeminarController::class, 'show'])->name('seminars.show');
+Route::get('/seminars/{slug}/register', [SeminarController::class, 'registerForm'])->name('seminars.register');
+Route::post('/seminars/{slug}/register', [SeminarController::class, 'registerSubmit'])->name('seminars.register.submit');
+Route::get('/seminar/status/{reference}', [SeminarController::class, 'confirmation'])->name('seminars.confirmation');
+Route::post('/seminar/status/lookup', [SeminarController::class, 'statusLookup'])->name('seminars.status.lookup');
 
 // Technical SEO
 Route::get('/sitemap.xml', [SeoController::class, 'sitemap'])->name('sitemap');
@@ -177,4 +187,20 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     // Site Settings
     Route::get('/settings', [AdminController::class, 'settings'])->name('settings');
     Route::post('/settings', [AdminController::class, 'updateSettings'])->name('settings.update');
+
+    // Seminars & Workshops Management
+    Route::get('/seminars', [AdminSeminarController::class, 'index'])->name('seminars.index');
+    Route::get('/seminars/create', [AdminSeminarController::class, 'create'])->name('seminars.create');
+    Route::post('/seminars', [AdminSeminarController::class, 'store'])->name('seminars.store');
+    Route::get('/seminars/{id}/edit', [AdminSeminarController::class, 'edit'])->name('seminars.edit');
+    Route::put('/seminars/{id}', [AdminSeminarController::class, 'update'])->name('seminars.update');
+    Route::delete('/seminars/{id}', [AdminSeminarController::class, 'destroy'])->name('seminars.destroy');
+
+    // Seminar Registrations & Payment Verification
+    Route::get('/seminars-registrations/export', [AdminSeminarController::class, 'exportCsv'])->name('seminars.registrations.export');
+    Route::get('/seminars-registrations', [AdminSeminarController::class, 'registrations'])->name('seminars.registrations');
+    Route::post('/seminars-registrations/{id}/verify', [AdminSeminarController::class, 'verifyPayment'])->name('seminars.registrations.verify');
+    Route::post('/seminars-registrations/{id}/reject', [AdminSeminarController::class, 'rejectPayment'])->name('seminars.registrations.reject');
+    Route::post('/seminars-registrations/{id}/resend', [AdminSeminarController::class, 'resendConfirmation'])->name('seminars.registrations.resend');
+    Route::post('/seminars/{id}/broadcast', [AdminSeminarController::class, 'broadcastUpdate'])->name('seminars.broadcast');
 });

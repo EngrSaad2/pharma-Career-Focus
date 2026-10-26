@@ -82,6 +82,47 @@
                 </div>
             </div>
 
+            <!-- Seminar & Payment Management Configuration -->
+            <div class="border-b border-[#00245A]/10 pb-6">
+                <h3 class="text-base font-black text-[#00245A] mb-4">Seminar & Payment Gateway Configuration</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-[#00245A] mb-1">Primary Payment Method</label>
+                        <input type="text" name="seminar_payment_method" value="{{ $settings['seminar_payment_method'] ?? 'bKash' }}"
+                               class="w-full px-3.5 py-2.5 border-2 border-[#00245A] rounded-lg text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-[#00245A] mb-1">Official bKash / Payment Number</label>
+                        <input type="text" name="seminar_bkash_number" value="{{ $settings['seminar_bkash_number'] ?? '01722531335' }}"
+                               class="w-full px-3.5 py-2.5 border-2 border-[#0085FF] bg-blue-50/40 rounded-lg text-sm font-bold text-[#00245A]">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-[#00245A] mb-1">Account Type / Channel</label>
+                        <input type="text" name="seminar_bkash_type" value="{{ $settings['seminar_bkash_type'] ?? 'Personal (Send Money)' }}"
+                               class="w-full px-3.5 py-2.5 border-2 border-[#00245A] rounded-lg text-sm">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-[#00245A] mb-1">Default Seminar Fee (BDT)</label>
+                        <input type="number" step="0.01" name="seminar_default_fee" value="{{ $settings['seminar_default_fee'] ?? '1000.00' }}"
+                               class="w-full px-3.5 py-2.5 border-2 border-[#00245A] rounded-lg text-sm font-bold">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-[#00245A] mb-1">Default Participant Capacity Limit</label>
+                        <input type="number" name="seminar_default_capacity" value="{{ $settings['seminar_default_capacity'] ?? '100' }}"
+                               class="w-full px-3.5 py-2.5 border-2 border-[#00245A] rounded-lg text-sm font-bold">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase text-[#00245A] mb-1">Payment Instructions (Shown on public checkout)</label>
+                    <textarea name="seminar_payment_instructions" rows="3"
+                              class="w-full px-3.5 py-2.5 border-2 border-[#00245A] rounded-lg text-sm">{{ $settings['seminar_payment_instructions'] ?? "1. Send Money the applicable fee to our verified bKash number.\n2. Copy the 10-character Transaction ID (TrxID) received via SMS.\n3. Enter the TrxID below to confirm your seat." }}</textarea>
+                </div>
+            </div>
+
             <!-- Social Links -->
             <div class="pb-2">
                 <h3 class="text-base font-black text-[#00245A] mb-4">Social Media Channels</h3>

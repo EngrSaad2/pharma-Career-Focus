@@ -99,6 +99,18 @@
                     <span>Bookings</span>
                 </a>
 
+                <a href="{{ route('admin.seminars.index') }}"
+                   class="flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-bold transition-all {{ request()->routeIs('admin.seminars.index') || request()->routeIs('admin.seminars.create') || request()->routeIs('admin.seminars.edit') ? 'bg-[#00245A] text-white' : 'text-[#00245A] hover:bg-slate-100' }}">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+                    <span>Seminars & Events</span>
+                </a>
+
+                <a href="{{ route('admin.seminars.registrations') }}"
+                   class="flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-bold transition-all {{ request()->routeIs('admin.seminars.registrations*') ? 'bg-[#00245A] text-white' : 'text-[#00245A] hover:bg-slate-100' }}">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <span>Seminar Registrations</span>
+                </a>
+
                 <a href="{{ route('admin.services') }}"
                    class="flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-bold transition-all {{ request()->routeIs('admin.services') ? 'bg-[#00245A] text-white' : 'text-[#00245A] hover:bg-slate-100' }}">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>

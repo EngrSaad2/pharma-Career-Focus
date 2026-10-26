@@ -243,6 +243,10 @@
                         </div>
                     </div>
 
+                    <a href="{{ route('seminars.index') }}" class="hover:text-[#0085FF] transition-colors {{ request()->routeIs('seminars*') ? 'text-[#0085FF] font-semibold' : '' }}">
+                        Seminars
+                    </a>
+
                     <a href="{{ route('blog.index') }}" class="hover:text-[#0085FF] transition-colors {{ request()->routeIs('blog*') ? 'text-[#0085FF]' : '' }}">
                         Blog
                     </a>
@@ -373,6 +377,7 @@
                 <a href="{{ route('practice.viva') }}" class="p-2.5 rounded-lg bg-slate-50 font-medium text-slate-800 hover:bg-[#EAF4FF] hover:text-[#0085FF]">Viva Questions</a>
                 <a href="{{ route('practice.interviews') }}" class="p-2.5 rounded-lg bg-slate-50 font-medium text-slate-800 hover:bg-[#EAF4FF] hover:text-[#0085FF]">Interview Bank</a>
                 <a href="{{ route('consultants.index') }}" class="p-2.5 rounded-lg bg-slate-50 font-medium text-slate-800 hover:bg-[#EAF4FF] hover:text-[#0085FF]">Consultants</a>
+                <a href="{{ route('seminars.index') }}" class="p-2.5 rounded-lg bg-slate-50 font-medium text-slate-800 hover:bg-[#EAF4FF] hover:text-[#0085FF]">Seminars & Events</a>
                 <a href="{{ route('blog.index') }}" class="p-2.5 rounded-lg bg-slate-50 font-medium text-slate-800 hover:bg-[#EAF4FF] hover:text-[#0085FF]">Articles & Blog</a>
                 <a href="{{ route('contact') }}" class="p-2.5 rounded-lg bg-slate-50 font-medium text-slate-800 hover:bg-[#EAF4FF] hover:text-[#0085FF]">Contact Us</a>
             </div>
