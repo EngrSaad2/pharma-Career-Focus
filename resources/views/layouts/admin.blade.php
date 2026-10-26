@@ -65,7 +65,7 @@
                 </a>
 
                 <div class="flex items-center gap-2 md:border-l md:border-white/20 md:pl-3">
-                    <span class="text-xs font-bold text-[#FFCD00] hidden sm:inline">{{ auth()->user()->name }}</span>
+                    <span class="text-xs font-bold text-[#FFCD00] hidden sm:inline">{{ auth()->user()?->name ?? 'Admin' }}</span>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button type="submit" class="px-3 py-1.5 rounded bg-red-600 text-white text-xs font-bold hover:bg-red-700 transition">
