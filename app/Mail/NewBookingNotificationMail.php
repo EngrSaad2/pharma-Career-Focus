@@ -5,6 +5,7 @@ namespace App\Mail;
 use App\Models\ConsultationBooking;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
@@ -24,7 +25,7 @@ class NewBookingNotificationMail extends Mailable
     {
         return new Envelope(
             subject: 'New Consultation Booking #' . $this->booking->id . ': ' . $this->booking->client_name . ' (' . ($this->booking->service->title ?? 'Session') . ')',
-            replyTo: [$this->booking->client_email => $this->booking->client_name],
+            replyTo: [new Address($this->booking->client_email, $this->booking->client_name)],
         );
     }
 
