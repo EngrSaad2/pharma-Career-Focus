@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', ($seminar->seo_title ?: $seminar->title) . ' | Pharma Career Compass')
+@section('title', str_contains($seminar->seo_title ?? '', 'Pharma Career Compass') ? $seminar->seo_title : (($seminar->seo_title ?: $seminar->title) . ' | Pharma Career Compass'))
 @section('meta_description', $seminar->seo_meta_description ?: ($seminar->short_description ?: 'Join this specialized pharmaceutical workshop and professional training session by Pharma Career Compass.'))
 @php
     $seminarOgImage = $seminar->slug === 'module-1-career-in-pharmaceutical-industrial-operations' 
