@@ -50,27 +50,21 @@ return new class extends Migration
         <h3 class="text-lg font-bold text-[#00245A] mb-3">Course Outline: Career Preparation for Key Pharmaceutical Departments</h3>
         <ul class="space-y-2.5 text-sm text-slate-700">
             <li class="flex items-start gap-2">
-                <span class="text-[#0085FF] font-bold">•</span>
                 <span><strong>Production:</strong> Manufacturing operations, GMP practices, production documentation, and interview preparation.</span>
             </li>
             <li class="flex items-start gap-2">
-                <span class="text-[#0085FF] font-bold">•</span>
                 <span><strong>Quality Assurance (QA):</strong> Quality Management Systems (QMS), GMP compliance, deviation management, CAPA, change control, and audit preparation.</span>
             </li>
             <li class="flex items-start gap-2">
-                <span class="text-[#0085FF] font-bold">•</span>
                 <span><strong>Quality Control (QC):</strong> Pharmaceutical analysis, laboratory practices, analytical instruments, and QC interview preparation.</span>
             </li>
             <li class="flex items-start gap-2">
-                <span class="text-[#0085FF] font-bold">•</span>
                 <span><strong>Research & Development (R&D):</strong> Formulation development, preformulation studies, process development, and product development.</span>
             </li>
             <li class="flex items-start gap-2">
-                <span class="text-[#0085FF] font-bold">•</span>
                 <span><strong>Production Planning & Inventory Control (PPIC):</strong> Production planning, material management, inventory control, and coordination with other departments.</span>
             </li>
             <li class="flex items-start gap-2">
-                <span class="text-[#0085FF] font-bold">•</span>
                 <span><strong>Regulatory Affairs (RA):</strong> Regulatory documentation, product registration, dossier preparation, and regulatory compliance.</span>
             </li>
         </ul>
@@ -112,23 +106,18 @@ return new class extends Migration
         <h3 class="text-lg font-bold text-[#00245A] mb-3">Course Outline: Career Preparation for Pharmaceutical Marketing Professionals</h3>
         <ul class="space-y-2.5 text-sm text-slate-700">
             <li class="flex items-start gap-2">
-                <span class="text-[#0085FF] font-bold">•</span>
                 <span><strong>Sales & Brand Management Department (SBMD):</strong> Pharmaceutical sales, product knowledge, brand promotion, communication skills, and sales force career preparation.</span>
             </li>
             <li class="flex items-start gap-2">
-                <span class="text-[#0085FF] font-bold">•</span>
                 <span><strong>International Business Division (IBD):</strong> International pharmaceutical business, export operations, international market development, and global business communication.</span>
             </li>
             <li class="flex items-start gap-2">
-                <span class="text-[#0085FF] font-bold">•</span>
                 <span><strong>Marketing Career Pathways:</strong> Marketing career pathways and professional competencies.</span>
             </li>
             <li class="flex items-start gap-2">
-                <span class="text-[#0085FF] font-bold">•</span>
                 <span><strong>Recruitment Preparation:</strong> CV preparation, written examinations, and interview techniques.</span>
             </li>
             <li class="flex items-start gap-2">
-                <span class="text-[#0085FF] font-bold">•</span>
                 <span><strong>Core Competencies:</strong> Essential communication, negotiation, and presentation skills.</span>
             </li>
         </ul>

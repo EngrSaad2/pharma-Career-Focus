@@ -197,7 +197,7 @@
             <div class="bg-white rounded-3xl border-2 border-blue-200/80 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group">
                 <div>
                     <!-- Card Top Banner -->
-                    <div class="bg-gradient-to-r from-[#00245A] to-[#004B99] text-white p-6 sm:p-8 relative">
+                    <div class="bg-gradient-to-r from-[#00245A] to-[#004B99] text-white p-6 sm:p-8 relative" style="background: linear-gradient(135deg, #00245A 0%, #004B99 100%); color: #ffffff;">
                         <div class="flex items-center justify-between gap-3 mb-3">
                             <span class="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider bg-[#FFCD00] text-[#00245A] px-3 py-1 rounded-full shadow-xs">
                                 Module 1
@@ -228,32 +228,32 @@
 
                             <div class="space-y-3 text-xs sm:text-sm text-slate-700">
                                 <div class="p-3 rounded-xl bg-slate-50 border border-slate-100">
-                                    <strong class="text-[#00245A] font-bold block mb-0.5">• Production:</strong>
+                                    <strong class="text-[#00245A] font-bold block mb-0.5">Production:</strong>
                                     <span>Manufacturing operations, GMP practices, production documentation, and interview preparation.</span>
                                 </div>
 
                                 <div class="p-3 rounded-xl bg-slate-50 border border-slate-100">
-                                    <strong class="text-[#00245A] font-bold block mb-0.5">• Quality Assurance (QA):</strong>
+                                    <strong class="text-[#00245A] font-bold block mb-0.5">Quality Assurance (QA):</strong>
                                     <span>Quality Management Systems (QMS), GMP compliance, deviation management, CAPA, change control, and audit preparation.</span>
                                 </div>
 
                                 <div class="p-3 rounded-xl bg-slate-50 border border-slate-100">
-                                    <strong class="text-[#00245A] font-bold block mb-0.5">• Quality Control (QC):</strong>
+                                    <strong class="text-[#00245A] font-bold block mb-0.5">Quality Control (QC):</strong>
                                     <span>Pharmaceutical analysis, laboratory practices, analytical instruments, and QC interview preparation.</span>
                                 </div>
 
                                 <div class="p-3 rounded-xl bg-slate-50 border border-slate-100">
-                                    <strong class="text-[#00245A] font-bold block mb-0.5">• Research & Development (R&D):</strong>
+                                    <strong class="text-[#00245A] font-bold block mb-0.5">Research & Development (R&D):</strong>
                                     <span>Formulation development, preformulation studies, process development, and product development.</span>
                                 </div>
 
                                 <div class="p-3 rounded-xl bg-slate-50 border border-slate-100">
-                                    <strong class="text-[#00245A] font-bold block mb-0.5">• Production Planning & Inventory Control (PPIC):</strong>
+                                    <strong class="text-[#00245A] font-bold block mb-0.5">Production Planning & Inventory Control (PPIC):</strong>
                                     <span>Material planning, capacity planning, supply chain coordination, and production scheduling.</span>
                                 </div>
 
                                 <div class="p-3 rounded-xl bg-slate-50 border border-slate-100">
-                                    <strong class="text-[#00245A] font-bold block mb-0.5">• Regulatory Affairs:</strong>
+                                    <strong class="text-[#00245A] font-bold block mb-0.5">Regulatory Affairs:</strong>
                                     <span>Drug registration, regulatory compliance, dossier preparation (CTD/ACTD), and submissions.</span>
                                 </div>
                             </div>
@@ -280,22 +280,22 @@
             </div>
 
             <!-- MODULE 2: Pharmaceutical Marketing -->
-            <div class="bg-white rounded-3xl border-2 border-emerald-200/80 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group">
+            <div class="bg-white rounded-3xl border-2 border-blue-200/80 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group">
                 <div>
                     <!-- Card Top Banner -->
-                    <div class="bg-gradient-to-r from-[#003840] to-[#0A5C5A] text-white p-6 sm:p-8 relative">
+                    <div class="bg-gradient-to-r from-[#00245A] to-[#004B99] text-white p-6 sm:p-8 relative" style="background: linear-gradient(135deg, #00245A 0%, #004B99 100%); color: #ffffff;">
                         <div class="flex items-center justify-between gap-3 mb-3">
                             <span class="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider bg-[#FFCD00] text-[#00245A] px-3 py-1 rounded-full shadow-xs">
                                 Module 2
                             </span>
-                            <span class="text-xs text-emerald-200 font-bold bg-white/10 px-2.5 py-1 rounded-lg backdrop-blur-md">
+                            <span class="text-xs text-blue-200 font-bold bg-white/10 px-2.5 py-1 rounded-lg backdrop-blur-md">
                                 Commercial & Marketing Track
                             </span>
                         </div>
                         <h3 class="text-2xl sm:text-3xl font-extrabold text-white leading-tight">
                             Career in Pharmaceutical Marketing
                         </h3>
-                        <p class="text-xs sm:text-sm text-emerald-100/90 mt-2">
+                        <p class="text-xs sm:text-sm text-blue-100/90 mt-2">
                             Professional preparation for brand management, medical information, promotion, and commercial interview mastery.
                         </p>
                     </div>
@@ -306,7 +306,7 @@
                         <!-- Course Outline: Marketing Functions -->
                         <div>
                             <div class="flex items-center gap-2 mb-3.5 pb-2 border-b border-slate-100">
-                                <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg>
+                                <svg class="w-5 h-5 text-[#0085FF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg>
                                 <h4 class="font-bold text-base text-[#00245A]">
                                     Course Outline: Career Preparation for Pharmaceutical Marketing
                                 </h4>
@@ -314,27 +314,27 @@
 
                             <div class="space-y-3 text-xs sm:text-sm text-slate-700">
                                 <div class="p-3 rounded-xl bg-slate-50 border border-slate-100">
-                                    <strong class="text-[#00245A] font-bold block mb-0.5">• Medical Information & Product Promotion:</strong>
+                                    <strong class="text-[#00245A] font-bold block mb-0.5">Medical Information & Product Promotion:</strong>
                                     <span>Scientific communication, product detailing strategies, doctor engagement techniques, and therapy knowledge.</span>
                                 </div>
 
                                 <div class="p-3 rounded-xl bg-slate-50 border border-slate-100">
-                                    <strong class="text-[#00245A] font-bold block mb-0.5">• Brand Management:</strong>
+                                    <strong class="text-[#00245A] font-bold block mb-0.5">Brand Management:</strong>
                                     <span>Product positioning, brand strategy, campaign planning, and promotional material development.</span>
                                 </div>
 
                                 <div class="p-3 rounded-xl bg-slate-50 border border-slate-100">
-                                    <strong class="text-[#00245A] font-bold block mb-0.5">• Market Research & Sales Analysis:</strong>
+                                    <strong class="text-[#00245A] font-bold block mb-0.5">Market Research & Sales Analysis:</strong>
                                     <span>Prescription auditing, market share analysis, competitor monitoring, and forecasting.</span>
                                 </div>
 
                                 <div class="p-3 rounded-xl bg-slate-50 border border-slate-100">
-                                    <strong class="text-[#00245A] font-bold block mb-0.5">• Communication & Presentation Skills:</strong>
+                                    <strong class="text-[#00245A] font-bold block mb-0.5">Communication & Presentation Skills:</strong>
                                     <span>Professional pitching, objection handling, medical detailing role-play, and corporate communication.</span>
                                 </div>
 
                                 <div class="p-3 rounded-xl bg-slate-50 border border-slate-100">
-                                    <strong class="text-[#00245A] font-bold block mb-0.5">• Pharmaceutical Marketing Interview Preparation:</strong>
+                                    <strong class="text-[#00245A] font-bold block mb-0.5">Pharmaceutical Marketing Interview Preparation:</strong>
                                     <span>Behavioral viva drills, marketing case studies, commercial scenarios, and interview tactics.</span>
                                 </div>
                             </div>
