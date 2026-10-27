@@ -83,7 +83,7 @@
             <div class="bg-white rounded-3xl border-2 border-blue-200/80 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group">
                 <div>
                     <!-- Card Top Banner -->
-                    <div class="bg-gradient-to-r from-[#00245A] to-[#004B99] text-white p-6 sm:p-8 relative" style="background: linear-gradient(135deg, #00245A 0%, #004B99 100%); color: #ffffff;">
+                    <div class="bg-gradient-to-r from-[#00245A] to-[#004B99] text-white p-6 sm:p-8 relative flex flex-col justify-start" style="background: linear-gradient(135deg, #00245A 0%, #004B99 100%); color: #ffffff; min-height: 235px;">
                         <div class="flex items-center justify-between gap-3 mb-3">
                             <span class="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider bg-[#FFCD00] text-[#00245A] px-3 py-1 rounded-full shadow-xs">
                                 Module 1
@@ -92,10 +92,10 @@
                                 Industrial & Technical Track
                             </span>
                         </div>
-                        <h3 class="text-2xl sm:text-3xl font-extrabold text-white leading-tight">
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-white leading-tight flex items-start" style="min-height: 4.75rem;">
                             Career in Pharmaceutical Industrial Operations
                         </h3>
-                        <p class="text-xs sm:text-sm text-blue-100/90 mt-2">
+                        <p class="text-xs sm:text-sm text-blue-100/90 mt-2" style="min-height: 2.75rem;">
                             Comprehensive preparation across all key manufacturing, analytical, formulation, planning, and regulatory functions.
                         </p>
                     </div>
@@ -199,7 +199,7 @@
             <div class="bg-white rounded-3xl border-2 border-blue-200/80 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group">
                 <div>
                     <!-- Card Top Banner -->
-                    <div class="bg-gradient-to-r from-[#00245A] to-[#004B99] text-white p-6 sm:p-8 relative" style="background: linear-gradient(135deg, #00245A 0%, #004B99 100%); color: #ffffff;">
+                    <div class="bg-gradient-to-r from-[#00245A] to-[#004B99] text-white p-6 sm:p-8 relative flex flex-col justify-start" style="background: linear-gradient(135deg, #00245A 0%, #004B99 100%); color: #ffffff; min-height: 235px;">
                         <div class="flex items-center justify-between gap-3 mb-3">
                             <span class="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider bg-[#FFCD00] text-[#00245A] px-3 py-1 rounded-full shadow-xs">
                                 Module 2
@@ -208,10 +208,10 @@
                                 Commercial & Strategic Track
                             </span>
                         </div>
-                        <h3 class="text-2xl sm:text-3xl font-extrabold text-white leading-tight">
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-white leading-tight flex items-start" style="min-height: 4.75rem;">
                             Career in Pharmaceutical Marketing
                         </h3>
-                        <p class="text-xs sm:text-sm text-blue-100/90 mt-2">
+                        <p class="text-xs sm:text-sm text-blue-100/90 mt-2" style="min-height: 2.75rem;">
                             Structured pathways into Sales & Brand Management (SBMD), International Business (IBD), and commercial leadership.
                         </p>
                     </div>
