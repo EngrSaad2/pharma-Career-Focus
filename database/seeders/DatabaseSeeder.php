@@ -30,9 +30,9 @@ class DatabaseSeeder extends Seeder
         $settings = [
             ['key' => 'site_name', 'value' => 'Pharma Career Compass', 'group' => 'general'],
             ['key' => 'site_tagline', 'value' => 'Discover Your Direction. Build Your Future.', 'group' => 'general'],
-            ['key' => 'program_name', 'value' => 'PHARMA CAREER LAUNCHPAD', 'group' => 'program'],
-            ['key' => 'program_description', 'value' => 'A Practical Career Preparation Program for Pharmacists', 'group' => 'program'],
-            ['key' => 'announcement_ticker', 'value' => '• Consultation Packages Starting from ৳800 to ৳1,500 with Senior Industry Pharmacists • Join the PHARMA CAREER LAUNCHPAD Cohort • Discover Your Direction in Quality Assurance, QC, Production & Regulatory Affairs •', 'group' => 'general'],
+            ['key' => 'program_name', 'value' => 'Pharmaceutical Career Development Program', 'group' => 'program'],
+            ['key' => 'program_description', 'value' => 'Building Your Future in the Pharmaceutical Industry', 'group' => 'program'],
+            ['key' => 'announcement_ticker', 'value' => '• Registration Open: Pharmaceutical Career Development Program • Module 1: Industrial Operations & Module 2: Pharmaceutical Marketing • Online Sessions Every Friday & Saturday • BDT 1,000 / Session •', 'group' => 'general'],
             ['key' => 'contact_email', 'value' => 'info@pharmacareercompass.com', 'group' => 'contact'],
             ['key' => 'contact_phone', 'value' => '+880 1844 567890', 'group' => 'contact'],
             ['key' => 'contact_address', 'value' => 'Suite 7B, Pharma Innovation Hub, Gulshan-1, Dhaka 1212', 'group' => 'contact'],

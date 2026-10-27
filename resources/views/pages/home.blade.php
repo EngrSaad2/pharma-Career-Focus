@@ -73,8 +73,8 @@
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
                             </div>
                             <div>
-                                <div class="text-xs font-bold text-slate-900">PHARMA CAREER LAUNCHPAD</div>
-                                <div class="text-[11px] text-slate-500">1-on-1 Mentorship • Real Industry Insights</div>
+                                <div class="text-xs font-bold text-slate-900 uppercase">Pharmaceutical Career Development Program</div>
+                                <div class="text-[11px] text-slate-500">Module 1: Industrial Operations • Module 2: Marketing</div>
                             </div>
                         </div>
                         <span class="inline-flex items-center text-[11px] font-bold text-[#0085FF] bg-blue-50 px-2.5 py-1 rounded-full">
@@ -88,116 +88,132 @@
     </div>
 </section>
 
-<!-- Career Launchpad Introduction & 5 Pillars Section -->
+<!-- Pharmaceutical Career Development Program Section -->
 <section id="pillars" class="py-20 bg-white border-y border-slate-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="text-center max-w-3xl mx-auto space-y-4">
-            <span class="text-xs font-bold uppercase tracking-widest text-[#0085FF] bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
-                Core Program Pillars
+            <span class="text-xs font-bold uppercase tracking-widest text-[#0085FF] bg-blue-50 px-3.5 py-1.5 rounded-full border border-blue-200">
+                Flagship Professional Program
             </span>
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-[#00245A]">
-                PHARMA CAREER LAUNCHPAD
+            <h2 class="text-3xl sm:text-4xl font-black text-[#00245A]">
+                Pharmaceutical Career Development Program
             </h2>
-            <p class="text-lg font-medium text-slate-600">
-                A Practical Career Preparation Program for Pharmacists
+            <p class="text-lg font-bold text-[#0085FF]">
+                Building Your Future in the Pharmaceutical Industry
             </p>
-            <p class="text-sm sm:text-base text-slate-500 leading-relaxed">
-                “Your pharmaceutical career deserves a clear direction. Pharma Career Launchpad helps you understand your opportunities, strengthen your knowledge, prepare for recruitment assessments, and develop the confidence to present yourself professionally.”
+            <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+                A career-oriented professional development program designed for final-year pharmacy students and graduate pharmacists who want to build a successful career in the pharmaceutical industry.
             </p>
         </div>
 
-        <!-- 5 Key Pillars Grid -->
-        <div class="mt-14 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
-            <!-- Pillar 1 -->
-            <div class="card-solid p-6 flex flex-col justify-between text-left group hover:border-[#0085FF]">
+        <!-- 2 Program Modules Grid -->
+        <div class="mt-14 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <!-- Module 1 Card -->
+            <div class="bg-gradient-to-b from-white to-blue-50/30 rounded-3xl border-2 border-blue-100 p-7 sm:p-8 shadow-sm hover:shadow-md hover:border-blue-300 transition-all flex flex-col justify-between">
                 <div>
-                    <div class="w-12 h-12 rounded-xl bg-blue-50 text-[#0085FF] flex items-center justify-center font-bold text-lg mb-5 group-hover:bg-[#0085FF] group-hover:text-white transition-colors">
-                        01
+                    <div class="flex items-center justify-between gap-3 mb-4">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-[#0085FF] text-white">
+                            Module 1
+                        </span>
+                        <span class="text-xs font-bold text-slate-500 bg-white px-2.5 py-1 rounded-lg border border-slate-200">
+                            Industrial & Technical
+                        </span>
                     </div>
-                    <h3 class="font-bold text-lg text-[#00245A] mb-2">Career Planning</h3>
-                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                        Identify your strengths, interests, and qualifications to map the ideal pharmaceutical department fit.
-                    </p>
+
+                    <h3 class="text-xl sm:text-2xl font-black text-[#00245A] mb-3">
+                        Career in Pharmaceutical Industrial Operations
+                    </h3>
+
+                    <div class="text-xs font-bold text-[#0085FF] uppercase tracking-wider mb-2">
+                        Course Outline: Career Preparation for Key Departments
+                    </div>
+
+                    <ul class="space-y-2 text-xs sm:text-sm text-slate-700 mb-5">
+                        <li class="flex items-start gap-1.5"><strong class="text-[#00245A] shrink-0">• Production:</strong> <span>Manufacturing operations, GMP practices, production documentation, and interview preparation.</span></li>
+                        <li class="flex items-start gap-1.5"><strong class="text-[#00245A] shrink-0">• Quality Assurance (QA):</strong> <span>QMS, GMP compliance, deviation management, CAPA, change control, and audit prep.</span></li>
+                        <li class="flex items-start gap-1.5"><strong class="text-[#00245A] shrink-0">• Quality Control (QC):</strong> <span>Pharmaceutical analysis, lab practices, analytical instruments, and QC interview prep.</span></li>
+                        <li class="flex items-start gap-1.5"><strong class="text-[#00245A] shrink-0">• R&D:</strong> <span>Formulation development, preformulation studies, process and product development.</span></li>
+                        <li class="flex items-start gap-1.5"><strong class="text-[#00245A] shrink-0">• PPIC:</strong> <span>Production planning, material management, inventory control, and departmental coordination.</span></li>
+                        <li class="flex items-start gap-1.5"><strong class="text-[#00245A] shrink-0">• Regulatory Affairs (RA):</strong> <span>Regulatory documentation, product registration, dossier preparation, compliance.</span></li>
+                    </ul>
+
+                    <div class="pt-3 border-t border-slate-200 text-xs text-slate-600 space-y-1">
+                        <div class="font-bold text-[#00245A]">Additional Focus Areas:</div>
+                        <div>Career planning • CV writing & job application • Written exam prep • Technical viva & interviews • Industry expectations</div>
+                    </div>
                 </div>
-                <div class="mt-6 pt-4 border-t border-slate-100">
-                    <a href="{{ route('services.show', 'career-planning-consultation') }}" class="text-xs font-bold text-[#0085FF] hover:underline flex items-center gap-1">
-                        Explore Pillar &rarr;
+
+                <div class="mt-6 pt-4 border-t border-slate-200 flex items-center justify-between gap-3">
+                    <div>
+                        <span class="text-[11px] text-slate-400 block font-medium">Session Fee</span>
+                        <span class="text-lg font-black text-[#00245A]">BDT 1,000 <span class="text-xs font-normal text-slate-500">/ session</span></span>
+                    </div>
+                    <a href="{{ route('seminars.register', 'module-1-career-in-pharmaceutical-industrial-operations') }}" class="btn-primary text-xs py-2.5 px-5 font-bold shadow-sm whitespace-nowrap">
+                        Register Module 1 →
                     </a>
                 </div>
             </div>
 
-            <!-- Pillar 2 -->
-            <div class="card-solid p-6 flex flex-col justify-between text-left group hover:border-[#0085FF]">
+            <!-- Module 2 Card -->
+            <div class="bg-gradient-to-b from-white to-amber-50/30 rounded-3xl border-2 border-amber-100 p-7 sm:p-8 shadow-sm hover:shadow-md hover:border-amber-300 transition-all flex flex-col justify-between">
                 <div>
-                    <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-lg mb-5 group-hover:bg-[#FFCD00] group-hover:text-[#00245A] transition-colors">
-                        02
+                    <div class="flex items-center justify-between gap-3 mb-4">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-[#FFCD00] text-[#00245A]">
+                            Module 2
+                        </span>
+                        <span class="text-xs font-bold text-slate-500 bg-white px-2.5 py-1 rounded-lg border border-slate-200">
+                            Commercial & Marketing
+                        </span>
                     </div>
-                    <h3 class="font-bold text-lg text-[#00245A] mb-2">Written Exam Prep</h3>
-                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                        Master technical assessment tests with structured topic reviews, MCQ banks, and timed mock exams.
-                    </p>
+
+                    <h3 class="text-xl sm:text-2xl font-black text-[#00245A] mb-3">
+                        Career in Pharmaceutical Marketing
+                    </h3>
+
+                    <div class="text-xs font-bold text-amber-700 uppercase tracking-wider mb-2">
+                        Course Outline: Career Preparation for Marketing Professionals
+                    </div>
+
+                    <ul class="space-y-2 text-xs sm:text-sm text-slate-700 mb-5">
+                        <li class="flex items-start gap-1.5"><strong class="text-[#00245A] shrink-0">• Sales & Brand Management (SBMD):</strong> <span>Pharmaceutical sales, product knowledge, brand promotion, communication skills, sales force prep.</span></li>
+                        <li class="flex items-start gap-1.5"><strong class="text-[#00245A] shrink-0">• International Business Division (IBD):</strong> <span>International pharma business, export operations, market development, global communication.</span></li>
+                        <li class="flex items-start gap-1.5"><strong class="text-[#00245A] shrink-0">• Career Pathways:</strong> <span>Marketing career ladders, product executive roles, and professional commercial competencies.</span></li>
+                        <li class="flex items-start gap-1.5"><strong class="text-[#00245A] shrink-0">• Assessment Readiness:</strong> <span>CV preparation, written examinations, and commercial interview techniques.</span></li>
+                        <li class="flex items-start gap-1.5"><strong class="text-[#00245A] shrink-0">• Core Skills:</strong> <span>Essential communication, physician negotiation, and executive presentation skills.</span></li>
+                    </ul>
+
+                    <div class="pt-3 border-t border-slate-200 text-xs text-slate-600 space-y-1">
+                        <div class="font-bold text-[#00245A]">Additional Focus Areas:</div>
+                        <div>Doctor engagement strategies • IMS/IQVIA market share analysis • Visual aid pitch practice • Commercial viva coaching</div>
+                    </div>
                 </div>
-                <div class="mt-6 pt-4 border-t border-slate-100">
-                    <a href="{{ route('practice.exams') }}" class="text-xs font-bold text-[#0085FF] hover:underline flex items-center gap-1">
-                        Start Practice &rarr;
+
+                <div class="mt-6 pt-4 border-t border-slate-200 flex items-center justify-between gap-3">
+                    <div>
+                        <span class="text-[11px] text-slate-400 block font-medium">Session Fee</span>
+                        <span class="text-lg font-black text-[#00245A]">BDT 1,000 <span class="text-xs font-normal text-slate-500">/ session</span></span>
+                    </div>
+                    <a href="{{ route('seminars.register', 'module-2-career-in-pharmaceutical-marketing') }}" class="btn-accent text-xs py-2.5 px-5 font-bold shadow-sm whitespace-nowrap">
+                        Register Module 2 →
                     </a>
                 </div>
             </div>
 
-            <!-- Pillar 3 -->
-            <div class="card-solid p-6 flex flex-col justify-between text-left group hover:border-[#0085FF]">
-                <div>
-                    <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-lg mb-5 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
-                        03
-                    </div>
-                    <h3 class="font-bold text-lg text-[#00245A] mb-2">Viva Skills</h3>
-                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                        Practise oral pharmaceutical concepts, technical questions, and structured verbal answers without hesitation.
-                    </p>
-                </div>
-                <div class="mt-6 pt-4 border-t border-slate-100">
-                    <a href="{{ route('practice.viva') }}" class="text-xs font-bold text-[#0085FF] hover:underline flex items-center gap-1">
-                        Browse Viva Q&A &rarr;
-                    </a>
-                </div>
-            </div>
+        </div>
 
-            <!-- Pillar 4 -->
-            <div class="card-solid p-6 flex flex-col justify-between text-left group hover:border-[#0085FF]">
-                <div>
-                    <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center font-bold text-lg mb-5 group-hover:bg-purple-600 group-hover:text-white transition-colors">
-                        04
-                    </div>
-                    <h3 class="font-bold text-lg text-[#00245A] mb-2">Interview Readiness</h3>
-                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                        Master behavioral, situational plant questions, and panel interviews with proven STAR answer structures.
-                    </p>
-                </div>
-                <div class="mt-6 pt-4 border-t border-slate-100">
-                    <a href="{{ route('practice.interviews') }}" class="text-xs font-bold text-[#0085FF] hover:underline flex items-center gap-1">
-                        Interview Bank &rarr;
-                    </a>
-                </div>
+        <!-- Schedule & Summary Strip -->
+        <div class="mt-10 bg-slate-50 rounded-2xl p-5 sm:p-6 border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-slate-700">
+            <div class="flex flex-wrap items-center gap-4 sm:gap-6 font-medium">
+                <div>📅 <strong>Session Days:</strong> Every Friday and Saturday</div>
+                <div>⏱️ <strong>Duration:</strong> 2–3 hours per session</div>
+                <div>🌐 <strong>Mode:</strong> Online Live</div>
+                <div>🎓 <strong>Eligibility:</strong> Final-year students & graduates</div>
             </div>
-
-            <!-- Pillar 5 -->
-            <div class="card-solid p-6 flex flex-col justify-between text-left group hover:border-[#0085FF]">
-                <div>
-                    <div class="w-12 h-12 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center font-bold text-lg mb-5 group-hover:bg-[#00245A] group-hover:text-white transition-colors">
-                        05
-                    </div>
-                    <h3 class="font-bold text-lg text-[#00245A] mb-2">Industry Insights</h3>
-                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                        Gain firsthand knowledge on pharmaceutical hierarchy, GMP audits, recruitment expectations, and trends.
-                    </p>
-                </div>
-                <div class="mt-6 pt-4 border-t border-slate-100">
-                    <a href="{{ route('services.show', 'pharmaceutical-industry-insights') }}" class="text-xs font-bold text-[#0085FF] hover:underline flex items-center gap-1">
-                        Learn More &rarr;
-                    </a>
-                </div>
-            </div>
+            <a href="{{ route('programs') }}" class="btn-secondary text-xs py-2.5 px-5 font-bold whitespace-nowrap shrink-0">
+                View Full Curriculum &rarr;
+            </a>
         </div>
 
     </div>
@@ -536,7 +552,7 @@
                     </div>
 
                     <div class="bg-white p-4 rounded-xl border border-emerald-300">
-                        <div class="font-bold text-emerald-700 mb-1">With Pharma Career Launchpad:</div>
+                        <div class="font-bold text-emerald-700 mb-1">With Pharmaceutical Career Development Program:</div>
                         <ul class="space-y-1 text-slate-700 list-disc list-inside font-medium">
                             <li>Targeted mastery over high-yield pharmaceutical exam questions</li>
                             <li>ATS-optimized pharmaceutical resume highlighting equipment skills</li>

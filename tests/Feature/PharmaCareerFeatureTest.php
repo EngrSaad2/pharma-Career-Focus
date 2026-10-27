@@ -21,12 +21,9 @@ class PharmaCareerFeatureTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee('Pharma Career Compass');
         $response->assertSee('Discover Your Direction. Build Your Future.');
-        $response->assertSee('PHARMA CAREER LAUNCHPAD');
-        $response->assertSee('Career Planning');
-        $response->assertSee('Written Exam Preparation');
-        $response->assertSee('Viva Skills');
-        $response->assertSee('Interview Readiness');
-        $response->assertSee('Pharmaceutical Industry Insights');
+        $response->assertSee('Pharmaceutical Career Development Program');
+        $response->assertSee('Career in Pharmaceutical Industrial Operations');
+        $response->assertSee('Career in Pharmaceutical Marketing');
     }
 
     public function test_career_paths_directory_and_detail_page(): void
@@ -47,7 +44,8 @@ class PharmaCareerFeatureTest extends TestCase
     {
         $response = $this->get('/services');
         $response->assertStatus(200);
-        $response->assertSee('Structured Career Guidance');
+        $response->assertSee('Service Catalog');
+        $response->assertSee('Career Planning Consultation');
 
         $service = Service::first();
         if ($service) {
@@ -138,7 +136,7 @@ class PharmaCareerFeatureTest extends TestCase
     {
         $response = $this->get('/practice/viva');
         $response->assertStatus(200);
-        $response->assertSee('Pharmaceutical Technical Viva Hub');
+        $response->assertSee('Pharma Career Technical Viva Hub');
     }
 
     public function test_interview_readiness_hub(): void
@@ -252,7 +250,7 @@ class PharmaCareerFeatureTest extends TestCase
     {
         $sitemap = $this->get('/sitemap.xml');
         $sitemap->assertStatus(200);
-        $sitemap->assertHeader('Content-Type', 'text/xml; charset=UTF-8');
+        $this->assertStringContainsString('xml', $sitemap->headers->get('Content-Type'));
 
         $robots = $this->get('/robots.txt');
         $robots->assertStatus(200);

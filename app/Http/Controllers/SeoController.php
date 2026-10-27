@@ -161,6 +161,16 @@ class SeoController extends Controller
             ];
         }
 
+        // 8. Dynamic Program Modules & Seminars (Priority 0.85)
+        foreach (\App\Models\Seminar::whereIn('status', ['published', 'registration_open'])->get() as $seminar) {
+            $items[] = [
+                'loc' => $baseUrl . '/seminars/' . $seminar->slug,
+                'lastmod' => $seminar->updated_at ? $seminar->updated_at->format('Y-m-d') : date('Y-m-d'),
+                'changefreq' => 'weekly',
+                'priority' => '0.85',
+            ];
+        }
+
         // Build XML
         $xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
         $xml .= "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\"\n";

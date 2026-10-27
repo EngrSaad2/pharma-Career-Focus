@@ -119,12 +119,12 @@
     <div class="bg-[#FFCD00] text-[#00245A] font-semibold text-xs sm:text-sm py-2 overflow-hidden border-b border-yellow-400 select-none shadow-sm print:hidden">
         <div class="relative w-full overflow-hidden flex items-center">
             <div class="animate-marquee whitespace-nowrap flex items-center gap-8 tracking-wide">
-                <span>• &nbsp; Consultation Packages Starting from ৳800 to ৳1,500 with Senior Industry Pharmacists</span>
-                <span>• &nbsp; Join the PHARMA CAREER LAUNCHPAD Cohort</span>
-                <span>• &nbsp; Discover Your Direction in Quality Assurance, QC, Production & Regulatory Affairs</span>
-                <span>• &nbsp; Consultation Packages Starting from ৳800 to ৳1,500 with Senior Industry Pharmacists</span>
-                <span>• &nbsp; Join the PHARMA CAREER LAUNCHPAD Cohort</span>
-                <span>• &nbsp; Discover Your Direction in Quality Assurance, QC, Production & Regulatory Affairs</span>
+                <span>• &nbsp; Registration Open: Pharmaceutical Career Development Program</span>
+                <span>• &nbsp; Module 1: Industrial Operations & Module 2: Pharmaceutical Marketing</span>
+                <span>• &nbsp; Online Sessions Every Friday & Saturday (BDT 1,000 / Session)</span>
+                <span>• &nbsp; Registration Open: Pharmaceutical Career Development Program</span>
+                <span>• &nbsp; Module 1: Industrial Operations & Module 2: Pharmaceutical Marketing</span>
+                <span>• &nbsp; Online Sessions Every Friday & Saturday (BDT 1,000 / Session)</span>
             </div>
         </div>
     </div>
@@ -163,8 +163,8 @@
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                                 </div>
                                 <div>
-                                    <div class="font-semibold text-slate-800 text-sm">Pharma Career Launchpad</div>
-                                    <div class="text-xs text-slate-500">Comprehensive flagship preparation program</div>
+                                    <div class="font-semibold text-slate-800 text-sm">Career Development Program</div>
+                                    <div class="text-xs text-slate-500">Building Your Future in Pharma • 2 Core Modules</div>
                                 </div>
                             </a>
                             <a href="{{ route('career-paths.index') }}" class="flex items-start gap-3 p-2.5 rounded-lg hover:bg-[#EAF4FF] transition-colors group">
@@ -383,7 +383,7 @@
 
             <div class="grid grid-cols-2 gap-2 text-sm pt-2">
                 <a href="{{ route('home') }}" class="p-2.5 rounded-lg bg-slate-50 font-medium text-slate-800 hover:bg-[#EAF4FF] hover:text-[#0085FF]">Home</a>
-                <a href="{{ route('programs') }}" class="p-2.5 rounded-lg bg-slate-50 font-medium text-slate-800 hover:bg-[#EAF4FF] hover:text-[#0085FF]">Career Launchpad</a>
+                <a href="{{ route('programs') }}" class="p-2.5 rounded-lg bg-slate-50 font-medium text-slate-800 hover:bg-[#EAF4FF] hover:text-[#0085FF]">Career Development Program</a>
                 <a href="{{ route('services.index') }}" class="p-2.5 rounded-lg bg-slate-50 font-medium text-slate-800 hover:bg-[#EAF4FF] hover:text-[#0085FF]">Our Services</a>
                 <a href="{{ route('career-paths.index') }}" class="p-2.5 rounded-lg bg-slate-50 font-medium text-slate-800 hover:bg-[#EAF4FF] hover:text-[#0085FF]">11 Career Paths</a>
                 <a href="{{ route('quiz.index') }}" class="p-2.5 rounded-lg bg-blue-50 font-bold text-[#0085FF]">Career Quiz (Free)</a>
@@ -511,15 +511,15 @@
                     </div>
                 </div>
 
-                <!-- Col 2: Program Pillars -->
+                <!-- Col 2: Program Modules -->
                 <div>
-                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4">5 Launchpad Pillars</h4>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Program Modules</h4>
                     <ul class="space-y-2.5 text-xs sm:text-sm text-slate-400">
-                        <li><a href="{{ route('services.show', 'career-planning-consultation') }}" class="hover:text-white transition-colors">Career Planning</a></li>
-                        <li><a href="{{ route('services.show', 'written-exam-preparation') }}" class="hover:text-white transition-colors">Written Exam Preparation</a></li>
-                        <li><a href="{{ route('services.show', 'viva-oral-examination-preparation') }}" class="hover:text-white transition-colors">Viva Skills Coaching</a></li>
-                        <li><a href="{{ route('services.show', 'job-interview-preparation') }}" class="hover:text-white transition-colors">Interview Readiness</a></li>
-                        <li><a href="{{ route('services.show', 'pharmaceutical-industry-insights') }}" class="hover:text-white transition-colors">Industry Insights</a></li>
+                        <li><a href="{{ route('seminars.show', 'module-1-career-in-pharmaceutical-industrial-operations') }}" class="hover:text-white transition-colors">Module 1: Industrial Operations</a></li>
+                        <li><a href="{{ route('seminars.show', 'module-2-career-in-pharmaceutical-marketing') }}" class="hover:text-white transition-colors">Module 2: Pharmaceutical Marketing</a></li>
+                        <li><a href="{{ route('programs') }}" class="hover:text-white transition-colors font-semibold text-[#FFCD00]">→ View Complete Curriculum</a></li>
+                        <li><a href="{{ route('services.show', 'career-planning-consultation') }}" class="hover:text-white transition-colors">1-on-1 Career Planning</a></li>
+                        <li><a href="{{ route('booking.create') }}" class="hover:text-white transition-colors">Book Mentor Consultation</a></li>
                     </ul>
                 </div>
 
