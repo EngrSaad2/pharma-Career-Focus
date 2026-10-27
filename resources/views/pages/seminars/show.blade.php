@@ -106,8 +106,8 @@
                         @endif
 
                         {{-- Full Description Content --}}
-                        <div class="prose prose-slate max-w-none text-sm sm:text-base text-slate-700 leading-relaxed space-y-4">
-                            {!! nl2br(e($seminar->full_description ?: $seminar->short_description)) !!}
+                        <div class="text-sm sm:text-base text-slate-700 leading-relaxed space-y-4">
+                            {!! (str_contains($seminar->full_description ?? '', '<') ? $seminar->full_description : nl2br(e($seminar->full_description))) ?: nl2br(e($seminar->short_description)) !!}
                         </div>
                     </div>
                 </div>

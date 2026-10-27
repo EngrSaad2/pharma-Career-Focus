@@ -11,42 +11,42 @@
     <div class="absolute top-1/2 -right-24 w-96 h-96 bg-[#FFCD00]/15 rounded-full blur-3xl pointer-events-none"></div>
 
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-6">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#FFCD00] text-xs font-bold uppercase tracking-widest shadow-sm">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFCD00] text-[#00245A] text-xs font-black uppercase tracking-widest shadow-md">
             <span>Career-Oriented Professional Development</span>
         </div>
         
         <h1 class="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-tight">
             Pharmaceutical Career<br class="hidden sm:inline" />
-            <span class="bg-gradient-to-r from-blue-300 via-white to-[#FFCD00] bg-clip-text text-transparent">
+            <span class="text-[#FFCD00]">
                 Development Program
             </span>
         </h1>
         
-        <p class="text-xl sm:text-2xl font-bold text-blue-200 tracking-wide">
+        <p class="text-xl sm:text-2xl font-black text-white tracking-wide">
             Building Your Future in the Pharmaceutical Industry
         </p>
         
-        <p class="text-sm sm:text-base md:text-lg text-blue-100/90 max-w-3xl mx-auto leading-relaxed font-normal">
+        <p class="text-sm sm:text-base md:text-lg text-white max-w-3xl mx-auto leading-relaxed font-medium">
             A career-oriented professional development program designed for final-year pharmacy students and graduate pharmacists who want to build a successful career in the pharmaceutical industry.
         </p>
 
         <!-- Quick Summary Metrics Bar -->
         <div class="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl mx-auto">
-            <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-3.5 text-center">
-                <div class="text-xs text-blue-200 uppercase font-semibold">Format</div>
-                <div class="text-sm sm:text-base font-extrabold text-white mt-0.5">🌐 Online Live</div>
+            <div class="bg-[#002855] border-2 border-blue-400/40 rounded-2xl p-4 text-center shadow-md">
+                <div class="text-xs text-blue-200 uppercase font-black tracking-wider">Format</div>
+                <div class="text-sm sm:text-base font-black text-white mt-1">🌐 Online Live</div>
             </div>
-            <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-3.5 text-center">
-                <div class="text-xs text-blue-200 uppercase font-semibold">Schedule</div>
-                <div class="text-sm sm:text-base font-extrabold text-white mt-0.5">Fri & Sat</div>
+            <div class="bg-[#002855] border-2 border-blue-400/40 rounded-2xl p-4 text-center shadow-md">
+                <div class="text-xs text-blue-200 uppercase font-black tracking-wider">Schedule</div>
+                <div class="text-sm sm:text-base font-black text-white mt-1">Fri & Sat</div>
             </div>
-            <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-3.5 text-center">
-                <div class="text-xs text-blue-200 uppercase font-semibold">Duration</div>
-                <div class="text-sm sm:text-base font-extrabold text-white mt-0.5">2–3 Hours / Session</div>
+            <div class="bg-[#002855] border-2 border-blue-400/40 rounded-2xl p-4 text-center shadow-md">
+                <div class="text-xs text-blue-200 uppercase font-black tracking-wider">Duration</div>
+                <div class="text-sm sm:text-base font-black text-white mt-1">2–3 Hours / Session</div>
             </div>
-            <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-3.5 text-center">
-                <div class="text-xs text-blue-200 uppercase font-semibold">Fee</div>
-                <div class="text-sm sm:text-base font-extrabold text-[#FFCD00] mt-0.5">৳1,000 / Session</div>
+            <div class="bg-[#002855] border-2 border-blue-400/40 rounded-2xl p-4 text-center shadow-md">
+                <div class="text-xs text-blue-200 uppercase font-black tracking-wider">Fee</div>
+                <div class="text-sm sm:text-base font-black text-[#FFCD00] mt-1">৳1,000 / Session</div>
             </div>
         </div>
 
@@ -67,11 +67,14 @@
         
         <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
             <span class="text-xs font-bold uppercase tracking-widest text-[#0085FF] bg-blue-50 px-3.5 py-1.5 rounded-full border border-blue-200/60">
-                Core Curriculum
+                Flagship Preparation Curriculum
             </span>
             <h2 class="text-3xl sm:text-4xl font-black text-[#00245A]">
-                Program Modules
+                Structured Career Guidance & Preparation Services
             </h2>
+            <p class="text-lg font-bold text-[#0085FF]">
+                Pharmaceutical Career Development Program Modules
+            </p>
             <p class="text-sm sm:text-base text-slate-600">
                 Two comprehensive, department-targeted modules structured to equip aspiring pharmacists with technical command, regulatory awareness, and commercial competence.
             </p>
