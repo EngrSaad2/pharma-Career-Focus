@@ -176,7 +176,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
-            <span class="text-xs font-bold uppercase tracking-widest text-[#0085FF] bg-blue-50 px-3.5 py-1.5 rounded-full border border-blue-200/60">
+            <span class="inline-block text-xs font-bold uppercase tracking-widest text-[#0085FF] bg-blue-50 px-3.5 py-1.5 rounded-full border border-blue-200/60 mb-4" style="margin-bottom: 18px;">
                 Flagship Career Preparation
             </span>
             <h2 class="text-3xl sm:text-4xl font-black text-[#00245A]">
