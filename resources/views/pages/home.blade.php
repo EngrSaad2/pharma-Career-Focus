@@ -90,89 +90,8 @@
 
 
 
-<!-- Career Path Exploration Section (11 Pharmaceutical Sectors) -->
-<section id="career-paths" class="py-20 bg-slate-50/70 border-b border-slate-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
-            <div class="max-w-2xl text-left">
-                <span class="text-xs font-bold uppercase tracking-widest text-[#0085FF] bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
-                    Pharmaceutical Career Sectors
-                </span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-[#00245A] mt-3">
-                    Explore Pharmaceutical Career Paths
-                </h2>
-                <p class="text-sm sm:text-base text-slate-600 mt-2">
-                    Every pharmaceutical department requires distinct technical skills and qualifications. Explore where your talents fit best.
-                </p>
-            </div>
-            <div class="mt-4 md:mt-0">
-                <a href="{{ route('career-paths.index') }}" class="btn-secondary text-sm">
-                    View All 11 Paths &rarr;
-                </a>
-            </div>
-        </div>
-
-        <!-- Career Path Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            @foreach($featuredPaths->take(6) as $path)
-                <div class="card-classic p-6 flex flex-col justify-between text-left">
-                    <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700">
-                                {{ $path->category->name ?? 'Industrial' }}
-                            </span>
-                            @if($path->badge)
-                                <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-[#0085FF] border border-blue-200">
-                                    {{ $path->badge }}
-                                </span>
-                            @endif
-                        </div>
-
-                        <h3 class="text-xl font-bold text-[#00245A] mb-2">
-                            <a href="{{ route('career-paths.show', $path->slug) }}" class="hover:text-[#0085FF] transition-colors">
-                                {{ $path->title }}
-                            </a>
-                        </h3>
-
-                        <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed mb-4">
-                            {{ $path->summary }}
-                        </p>
-
-                        <!-- Key skills pills -->
-                        @if(!empty($path->required_skills))
-                            <div class="flex flex-wrap gap-1.5 mb-4">
-                                @foreach(array_slice($path->required_skills, 0, 3) as $skill)
-                                    <span class="text-[11px] bg-slate-50 text-slate-600 border border-slate-200 px-2 py-0.5 rounded-md">
-                                        {{ $skill }}
-                                    </span>
-                                @endforeach
-                            </div>
-                        @endif
-                    </div>
-
-                    <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
-                        <span class="text-slate-500 font-medium">{{ $path->experience_level }}</span>
-                        <a href="{{ route('career-paths.show', $path->slug) }}" class="font-bold text-[#0085FF] hover:underline flex items-center gap-1">
-                            Explore Role &rarr;
-                        </a>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-
-        <div class="mt-10 text-center">
-            <a href="{{ route('quiz.index') }}" class="inline-flex items-center gap-2 text-sm font-semibold text-[#00245A] hover:text-[#0085FF] transition-colors">
-                <span>Not sure which path aligns with your background?</span>
-                <span class="underline text-[#0085FF] font-bold">Take our 3-minute Career Quiz &rarr;</span>
-            </a>
-        </div>
-
-    </div>
-</section>
-
 <!-- Structured Career Guidance & Preparation Services Section -->
-<section id="services" class="py-20 bg-white border-b border-slate-100">
+<section id="services" class="py-20 bg-slate-50/80 border-b border-slate-200/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
@@ -363,7 +282,7 @@
         </div>
 
         <!-- Schedule & Summary Strip -->
-        <div class="bg-slate-50 rounded-2xl p-5 sm:p-6 border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-slate-700">
+        <div class="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-xs flex flex-col md:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-slate-700">
             <div class="flex flex-wrap items-center gap-4 sm:gap-6 font-medium">
                 <div>📅 <strong>Session Days:</strong> Every Friday and Saturday</div>
                 <div>⏱️ <strong>Duration:</strong> 2–3 hours per session</div>
@@ -372,6 +291,87 @@
             </div>
             <a href="{{ route('programs') }}" class="btn-secondary text-xs py-2.5 px-5 font-bold whitespace-nowrap shrink-0">
                 View Full Curriculum &rarr;
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<!-- Career Path Exploration Section (11 Pharmaceutical Sectors) -->
+<section id="career-paths" class="py-20 bg-white border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+            <div class="max-w-2xl text-left">
+                <span class="text-xs font-bold uppercase tracking-widest text-[#0085FF] bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
+                    Pharmaceutical Career Sectors
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-[#00245A] mt-3">
+                    Explore Pharmaceutical Career Paths
+                </h2>
+                <p class="text-sm sm:text-base text-slate-600 mt-2">
+                    Every pharmaceutical department requires distinct technical skills and qualifications. Explore where your talents fit best.
+                </p>
+            </div>
+            <div class="mt-4 md:mt-0">
+                <a href="{{ route('career-paths.index') }}" class="btn-secondary text-sm">
+                    View All 11 Paths &rarr;
+                </a>
+            </div>
+        </div>
+
+        <!-- Career Path Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            @foreach($featuredPaths->take(6) as $path)
+                <div class="card-classic p-6 flex flex-col justify-between text-left">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700">
+                                {{ $path->category->name ?? 'Industrial' }}
+                            </span>
+                            @if($path->badge)
+                                <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-[#0085FF] border border-blue-200">
+                                    {{ $path->badge }}
+                                </span>
+                            @endif
+                        </div>
+
+                        <h3 class="text-xl font-bold text-[#00245A] mb-2">
+                            <a href="{{ route('career-paths.show', $path->slug) }}" class="hover:text-[#0085FF] transition-colors">
+                                {{ $path->title }}
+                            </a>
+                        </h3>
+
+                        <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed mb-4">
+                            {{ $path->summary }}
+                        </p>
+
+                        <!-- Key skills pills -->
+                        @if(!empty($path->required_skills))
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                @foreach(array_slice($path->required_skills, 0, 3) as $skill)
+                                    <span class="text-[11px] bg-slate-50 text-slate-600 border border-slate-200 px-2 py-0.5 rounded-md">
+                                        {{ $skill }}
+                                    </span>
+                                @endforeach
+                            </div>
+                        @endif
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+                        <span class="text-slate-500 font-medium">{{ $path->experience_level }}</span>
+                        <a href="{{ route('career-paths.show', $path->slug) }}" class="font-bold text-[#0085FF] hover:underline flex items-center gap-1">
+                            Explore Role &rarr;
+                        </a>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+
+        <div class="mt-10 text-center">
+            <a href="{{ route('quiz.index') }}" class="inline-flex items-center gap-2 text-sm font-semibold text-[#00245A] hover:text-[#0085FF] transition-colors">
+                <span>Not sure which path aligns with your background?</span>
+                <span class="underline text-[#0085FF] font-bold">Take our 3-minute Career Quiz &rarr;</span>
             </a>
         </div>
 
