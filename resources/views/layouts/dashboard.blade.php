@@ -34,7 +34,7 @@
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
                 </button>
 
-                <a href="{{ route('home') }}" class="flex items-center gap-2">
+                <a href="{{ route('home') }}" class="brand-logo-link flex items-center gap-2 focus:outline-none focus:ring-0 outline-none" style="outline: none !important; box-shadow: none !important; -webkit-tap-highlight-color: transparent;">
                     @include('components.logo', ['size' => 'sm'])
                 </a>
 

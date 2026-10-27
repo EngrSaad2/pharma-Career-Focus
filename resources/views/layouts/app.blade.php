@@ -120,6 +120,16 @@
                 print-color-adjust: exact !important;
             }
         }
+        .brand-logo-link,
+        .brand-logo-link:hover,
+        .brand-logo-link:focus,
+        .brand-logo-link:focus-visible,
+        .brand-logo-link:active {
+            outline: none !important;
+            box-shadow: none !important;
+            border: none !important;
+            -webkit-tap-highlight-color: transparent !important;
+        }
     </style>
 </head>
 <body class="font-sans antialiased text-slate-900 bg-white min-h-screen flex flex-col overflow-x-hidden w-full" x-data="{ mobileMenuOpen: false }">
@@ -143,7 +153,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <!-- Brand Logo -->
-                <a href="{{ route('home') }}" class="focus:outline-none focus:ring-2 focus:ring-[#0085FF] rounded-lg">
+                <a href="{{ route('home') }}" class="brand-logo-link inline-block focus:outline-none focus:ring-0 focus:border-0 outline-none select-none" style="outline: none !important; box-shadow: none !important; border: none !important; -webkit-tap-highlight-color: transparent;">
                     @include('components.logo')
                 </a>
 
