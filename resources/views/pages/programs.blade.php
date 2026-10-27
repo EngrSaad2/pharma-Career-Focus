@@ -2,6 +2,7 @@
 
 @section('title', 'Pharmaceutical Career Development Program | Building Your Future in the Pharmaceutical Industry')
 @section('meta_description', 'A career-oriented professional development program designed for final-year pharmacy students and graduate pharmacists who want to build a successful career in the pharmaceutical industry.')
+@section('og_image', asset('images/og-programs.jpg'))
 
 @section('content')
 <!-- Hero Section -->

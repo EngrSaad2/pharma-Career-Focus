@@ -2,6 +2,7 @@
 
 @section('title', 'Pharma Career Assessment Quiz | Pharma Career Compass')
 @section('meta_description', 'Take our 3-minute Pharma Career Assessment Quiz with Pharma Career Compass to find your ideal pharmaceutical department match in QA, QC, Production, or Regulatory.')
+@section('og_image', asset('images/og-quiz.jpg'))
 
 @section('content')
 <section class="py-12 md:py-16 bg-white border-b border-slate-100 min-h-[85vh] flex items-center">

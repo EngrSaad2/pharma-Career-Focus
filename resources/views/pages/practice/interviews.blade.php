@@ -2,6 +2,7 @@
 
 @section('title', 'Pharmaceutical Job Interview Readiness Hub | Pharma Career Compass')
 @section('meta_description', 'Role-specific pharmaceutical interview questions and sample answers using the STAR method (Situation, Task, Action, Result) for QA, QC, and Production.')
+@section('og_image', asset('images/og-practice.jpg'))
 
 @section('content')
 <section class="py-12 md:py-16 bg-white">

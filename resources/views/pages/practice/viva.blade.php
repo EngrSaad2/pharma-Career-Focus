@@ -2,6 +2,7 @@
 
 @section('title', 'Pharma Career Technical Viva Practice Hub | Pharma Career Compass')
 @section('meta_description', 'Excel in your pharma career technical oral viva interviews with Pharma Career Compass. Model answers, examiner tips, and high-yield prompts.')
+@section('og_image', asset('images/og-practice.jpg'))
 
 @section('content')
 <section class="py-12 md:py-16 bg-white">

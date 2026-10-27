@@ -2,6 +2,7 @@
 
 @section('title', 'Pharma Career Services & Mentorship | Pharma Career Compass')
 @section('meta_description', 'Advance your pharma career with Pharma Career Compass consultation packages, written exam prep, viva coaching, and 1-on-1 industry mentorship.')
+@section('og_image', asset('images/og-services.jpg'))
 
 @section('content')
 <section class="py-12 md:py-16 bg-white">

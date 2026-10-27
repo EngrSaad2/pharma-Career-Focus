@@ -2,6 +2,7 @@
 
 @section('title', 'Pharma Career Paths & Specializations | Pharma Career Compass')
 @section('meta_description', 'Explore 11 high-demand pharma career paths in Quality Assurance, QC, Production, and Regulatory Affairs with Pharma Career Compass.')
+@section('og_image', asset('images/og-career-paths.jpg'))
 
 @section('content')
 <section class="py-12 md:py-16 bg-white">

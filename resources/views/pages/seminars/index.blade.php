@@ -2,6 +2,7 @@
 
 @section('title', 'Pharmaceutical Seminars & Training Masterclasses | Pharma Career Compass')
 @section('meta_description', 'Register for cutting-edge pharmaceutical seminars, QA/QC masterclasses, regulatory affairs workshops, and professional career training sessions in Bangladesh.')
+@section('og_image', asset('images/og-seminars.jpg'))
 
 @section('content')
 <div class="bg-gradient-to-b from-[#00245A]/5 via-white to-slate-50 min-h-screen py-10 md:py-16">

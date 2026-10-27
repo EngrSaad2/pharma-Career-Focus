@@ -2,6 +2,7 @@
 
 @section('title', 'Pharma Career Consultants & Mentors | Pharma Career Compass')
 @section('meta_description', 'Meet senior pharma career consultants and industry mentors at Pharma Career Compass for Quality Assurance, QC, Production, and Regulatory Affairs.')
+@section('og_image', asset('images/og-services.jpg'))
 
 @section('content')
 <section class="py-12 md:py-16 bg-white">

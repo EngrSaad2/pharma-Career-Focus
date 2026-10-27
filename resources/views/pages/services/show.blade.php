@@ -2,6 +2,7 @@
 
 @section('title', $service->title . ' | Pharma Career Compass')
 @section('meta_description', $service->summary)
+@section('og_image', asset('images/og-services.jpg'))
 
 @section('content')
 <section class="py-12 md:py-16 bg-white">

@@ -2,6 +2,7 @@
 
 @section('title', 'Pharma Career Roadmap Builder | Pharma Career Compass')
 @section('meta_description', 'Build a milestone-based Pharma Career Roadmap with Pharma Career Compass for Quality Assurance, QC, Production, or Regulatory Affairs.')
+@section('og_image', asset('images/og-roadmap.jpg'))
 
 @section('content')
 <section class="py-12 md:py-16 bg-white">

@@ -2,6 +2,7 @@
 
 @section('title', $post->meta_title ?? ($post->title . ' - Pharma Career Compass'))
 @section('meta_description', $post->meta_description ?? $post->excerpt)
+@section('og_image', !empty($post->featured_image) ? asset($post->featured_image) : asset('images/og-pharma-compass.jpg'))
 
 @section('content')
 <!-- Article Header -->

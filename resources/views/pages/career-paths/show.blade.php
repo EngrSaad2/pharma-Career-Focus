@@ -2,6 +2,7 @@
 
 @section('title', $path->title . ' Career Guide | Pharma Career Compass')
 @section('meta_description', $path->summary)
+@section('og_image', asset('images/og-career-paths.jpg'))
 
 @section('content')
 <section class="py-12 md:py-16 bg-white">

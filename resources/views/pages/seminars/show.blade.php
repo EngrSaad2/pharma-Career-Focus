@@ -2,6 +2,14 @@
 
 @section('title', ($seminar->seo_title ?: $seminar->title) . ' | Pharma Career Compass')
 @section('meta_description', $seminar->seo_meta_description ?: ($seminar->short_description ?: 'Join this specialized pharmaceutical workshop and professional training session by Pharma Career Compass.'))
+@php
+    $seminarOgImage = $seminar->slug === 'module-1-career-in-pharmaceutical-industrial-operations' 
+        ? asset('images/og-module-1.jpg') 
+        : ($seminar->slug === 'module-2-career-in-pharmaceutical-marketing' 
+            ? asset('images/og-module-2.jpg') 
+            : ($seminar->banner_image ? asset($seminar->banner_image) : ($seminar->featured_image ? asset($seminar->featured_image) : asset('images/og-programs.jpg'))));
+@endphp
+@section('og_image', $seminarOgImage)
 
 @section('content')
 <div class="bg-gradient-to-b from-[#00245A]/5 via-white to-slate-50 min-h-screen py-10 sm:py-14">

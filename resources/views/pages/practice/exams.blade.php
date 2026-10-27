@@ -2,6 +2,7 @@
 
 @section('title', 'Pharma Career Written Exam Practice Hub | Pharma Career Compass')
 @section('meta_description', 'Prepare for your pharma career recruitment tests with Pharma Career Compass. Practice timed MCQ mock exams in Pharmacology, Pharmaceutics, and cGMP compliance.')
+@section('og_image', asset('images/og-practice.jpg'))
 
 @section('content')
 <section class="py-12 md:py-16 bg-white">

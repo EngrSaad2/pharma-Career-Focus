@@ -18,26 +18,35 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}?v=2">
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}?v=2">
 
-    <!-- Open Graph / Facebook Debugger Metadata -->
+    @php
+        $defaultOgTitle = 'Pharma Career Compass | Premier Pharma Career Guidance & Exam Prep';
+        $resolvedOgTitle = trim($__env->yieldContent('og_title')) ?: (trim($__env->yieldContent('title')) ?: $defaultOgTitle);
+        $defaultOgDesc = 'Discover your pharma career trajectory with Pharma Career Compass. Master recruitment exams, viva interviews, and industrial GMP standards with senior pharmaceutical mentors.';
+        $resolvedOgDesc = trim($__env->yieldContent('og_description')) ?: (trim($__env->yieldContent('meta_description')) ?: $defaultOgDesc);
+        $resolvedOgImage = trim($__env->yieldContent('og_image')) ?: asset('images/og-pharma-compass.jpg');
+        $resolvedOgImageAlt = trim($__env->yieldContent('og_image_alt')) ?: $resolvedOgTitle;
+    @endphp
+
+    <!-- Open Graph / Facebook / LinkedIn / WhatsApp Debugger Metadata -->
     <meta property="og:site_name" content="Pharma Career Compass">
-    <meta property="og:title" content="@yield('og_title', 'Pharma Career Compass | Pharma Career Guidance & Exam Prep')">
-    <meta property="og:description" content="@yield('og_description', 'Discover your pharma career trajectory with Pharma Career Compass. Master recruitment exams, viva interviews, and industrial GMP standards with senior pharmaceutical mentors.')">
+    <meta property="og:title" content="{{ $resolvedOgTitle }}">
+    <meta property="og:description" content="{{ $resolvedOgDesc }}">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="@yield('og_type', 'website')">
     <meta property="og:locale" content="en_US">
-    <meta property="og:image" content="@yield('og_image', asset('images/og-pharma-compass.jpg'))">
-    <meta property="og:image:secure_url" content="@yield('og_image', asset('images/og-pharma-compass.jpg'))">
+    <meta property="og:image" content="{{ $resolvedOgImage }}">
+    <meta property="og:image:secure_url" content="{{ $resolvedOgImage }}">
     <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Pharma Career Compass - Discover Your Direction. Build Your Future.">
+    <meta property="og:image:alt" content="{{ $resolvedOgImageAlt }}">
 
     <!-- Twitter Card Metadata -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="@yield('og_title', 'Pharma Career Compass | Pharma Career Guidance & Exam Prep')">
-    <meta name="twitter:description" content="@yield('og_description', 'Discover your pharma career trajectory with Pharma Career Compass. Master recruitment exams, viva interviews, and industrial GMP standards with senior pharmaceutical mentors.')">
-    <meta name="twitter:image" content="@yield('og_image', asset('images/og-pharma-compass.jpg'))">
-    <meta name="twitter:image:alt" content="Pharma Career Compass - Discover Your Direction. Build Your Future.">
+    <meta name="twitter:title" content="{{ $resolvedOgTitle }}">
+    <meta name="twitter:description" content="{{ $resolvedOgDesc }}">
+    <meta name="twitter:image" content="{{ $resolvedOgImage }}">
+    <meta name="twitter:image:alt" content="{{ $resolvedOgImageAlt }}">
 
     <!-- Google Fonts: Plus Jakarta Sans (Modern Classic Editorial Sans) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
