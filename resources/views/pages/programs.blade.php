@@ -184,11 +184,11 @@
                         <div class="text-xs text-slate-500 font-medium">Session Fee</div>
                         <div class="text-xl font-black text-[#00245A]">BDT 1,000 <span class="text-xs font-normal text-slate-500">/ session</span></div>
                     </div>
-                    <div class="flex items-center gap-2 w-full sm:w-auto">
-                        <a href="{{ route('seminars.show', 'module-1-career-in-pharmaceutical-industrial-operations') }}" class="flex-1 sm:flex-none text-center px-4 py-2.5 rounded-xl border border-slate-300 text-xs font-bold text-slate-700 hover:bg-white transition-colors">
+                    <div class="flex items-stretch gap-2 w-full sm:w-auto">
+                        <a href="{{ route('seminars.show', 'module-1-career-in-pharmaceutical-industrial-operations') }}" class="flex-1 sm:flex-none text-center px-4 py-2.5 rounded-xl border border-slate-300 text-xs font-bold text-slate-700 hover:bg-white transition-colors flex items-center justify-center" style="min-height: 48px;">
                             Details
                         </a>
-                        <a href="{{ route('seminars.register', 'module-1-career-in-pharmaceutical-industrial-operations') }}" class="flex-1 sm:flex-none text-center px-6 py-2.5 rounded-xl bg-[#0085FF] hover:bg-[#0070d9] text-white text-xs font-bold shadow-md hover:shadow-lg transition-all">
+                        <a href="{{ route('seminars.register', 'module-1-career-in-pharmaceutical-industrial-operations') }}" class="flex-1 sm:flex-none text-center px-6 py-2.5 rounded-xl bg-[#0085FF] hover:bg-[#0070d9] text-white text-xs font-bold shadow-md hover:shadow-lg transition-all flex items-center justify-center leading-snug" style="min-height: 48px;">
                             Register for Module 1 →
                         </a>
                     </div>
@@ -291,11 +291,11 @@
                         <div class="text-xs text-slate-500 font-medium">Session Fee</div>
                         <div class="text-xl font-black text-[#00245A]">BDT 1,000 <span class="text-xs font-normal text-slate-500">/ session</span></div>
                     </div>
-                    <div class="flex items-center gap-2 w-full sm:w-auto">
-                        <a href="{{ route('seminars.show', 'module-2-career-in-pharmaceutical-marketing') }}" class="flex-1 sm:flex-none text-center px-4 py-2.5 rounded-xl border border-slate-300 text-xs font-bold text-slate-700 hover:bg-white transition-colors">
+                    <div class="flex items-stretch gap-2 w-full sm:w-auto">
+                        <a href="{{ route('seminars.show', 'module-2-career-in-pharmaceutical-marketing') }}" class="flex-1 sm:flex-none text-center px-4 py-2.5 rounded-xl border border-slate-300 text-xs font-bold text-slate-700 hover:bg-white transition-colors flex items-center justify-center" style="min-height: 48px;">
                             Details
                         </a>
-                        <a href="{{ route('seminars.register', 'module-2-career-in-pharmaceutical-marketing') }}" class="flex-1 sm:flex-none text-center px-6 py-2.5 rounded-xl bg-[#0085FF] hover:bg-[#0070d9] text-white text-xs font-bold shadow-md hover:shadow-lg transition-all">
+                        <a href="{{ route('seminars.register', 'module-2-career-in-pharmaceutical-marketing') }}" class="flex-1 sm:flex-none text-center px-6 py-2.5 rounded-xl bg-[#0085FF] hover:bg-[#0070d9] text-white text-xs font-bold shadow-md hover:shadow-lg transition-all flex items-center justify-center leading-snug" style="min-height: 48px;">
                             Register for Module 2 →
                         </a>
                     </div>

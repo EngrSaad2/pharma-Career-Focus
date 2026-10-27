@@ -268,11 +268,11 @@
                         <span class="text-[11px] text-slate-400 block font-medium">Session Fee</span>
                         <span class="text-xl font-black text-[#00245A]">BDT 1,000 <span class="text-xs font-normal text-slate-500">/ session</span></span>
                     </div>
-                    <div class="flex items-center gap-2 w-full sm:w-auto">
-                        <a href="{{ route('seminars.show', 'module-1-career-in-pharmaceutical-industrial-operations') }}" class="btn-secondary text-xs py-2.5 px-4 font-bold whitespace-nowrap flex-1 sm:flex-none text-center">
+                    <div class="flex items-stretch gap-2 w-full sm:w-auto">
+                        <a href="{{ route('seminars.show', 'module-1-career-in-pharmaceutical-industrial-operations') }}" class="btn-secondary text-xs px-4 py-2.5 font-bold flex-1 sm:flex-none text-center flex items-center justify-center" style="min-height: 48px;">
                             Details
                         </a>
-                        <a href="{{ route('seminars.register', 'module-1-career-in-pharmaceutical-industrial-operations') }}" class="btn-accent text-xs py-2.5 px-5 font-bold shadow-sm whitespace-nowrap flex-1 sm:flex-none text-center">
+                        <a href="{{ route('seminars.register', 'module-1-career-in-pharmaceutical-industrial-operations') }}" class="btn-accent text-xs px-5 py-2.5 font-bold shadow-sm flex-1 sm:flex-none text-center flex items-center justify-center leading-snug" style="min-height: 48px;">
                             Register Module 1 →
                         </a>
                     </div>
@@ -349,11 +349,11 @@
                         <span class="text-[11px] text-slate-400 block font-medium">Session Fee</span>
                         <span class="text-xl font-black text-[#00245A]">BDT 1,000 <span class="text-xs font-normal text-slate-500">/ session</span></span>
                     </div>
-                    <div class="flex items-center gap-2 w-full sm:w-auto">
-                        <a href="{{ route('seminars.show', 'module-2-career-in-pharmaceutical-marketing') }}" class="btn-secondary text-xs py-2.5 px-4 font-bold whitespace-nowrap flex-1 sm:flex-none text-center">
+                    <div class="flex items-stretch gap-2 w-full sm:w-auto">
+                        <a href="{{ route('seminars.show', 'module-2-career-in-pharmaceutical-marketing') }}" class="btn-secondary text-xs px-4 py-2.5 font-bold flex-1 sm:flex-none text-center flex items-center justify-center" style="min-height: 48px;">
                             Details
                         </a>
-                        <a href="{{ route('seminars.register', 'module-2-career-in-pharmaceutical-marketing') }}" class="btn-accent text-xs py-2.5 px-5 font-bold shadow-sm whitespace-nowrap flex-1 sm:flex-none text-center">
+                        <a href="{{ route('seminars.register', 'module-2-career-in-pharmaceutical-marketing') }}" class="btn-accent text-xs px-5 py-2.5 font-bold shadow-sm flex-1 sm:flex-none text-center flex items-center justify-center leading-snug" style="min-height: 48px;">
                             Register Module 2 →
                         </a>
                     </div>
