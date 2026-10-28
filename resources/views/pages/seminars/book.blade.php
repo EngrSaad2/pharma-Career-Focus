@@ -4,7 +4,8 @@
 @section('meta_description', 'Reserve your seat for the Pharmaceutical Career Development Program (PCDP). Live interactive cohort sessions every Friday and Saturday for Industrial Operations and Pharma Marketing.')
 
 @section('content')
-<div class="bg-gradient-to-b from-[#00245A]/5 via-white to-slate-50 min-h-screen py-10 sm:py-14"
+<div class="min-h-screen py-10 sm:py-14"
+     style="background-color: #f8fafc !important;"
      x-data="{
         selectedModules: {{ $preselected === '1' ? "['1']" : ($preselected === '2' ? "['2']" : "['1', '2']") }},
         pricePerModule: 1000,
@@ -53,9 +54,9 @@
         </nav>
 
         {{-- Header / Hero Card --}}
-        <div class="bg-gradient-to-r from-[#00245A] to-[#004B99] rounded-3xl p-6 sm:p-10 text-white shadow-xl mb-8 relative overflow-hidden">
+        <div class="rounded-3xl p-6 sm:p-10 text-white shadow-xl mb-8 relative overflow-hidden" style="background-color: #00245A !important; color: #ffffff !important;">
             <div class="relative z-10 max-w-2xl">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFCD00] text-[#00245A] text-xs font-black uppercase tracking-wider mb-4 shadow-xs">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider mb-4 shadow-xs" style="background-color: #FFCD00 !important; color: #00245A !important;">
                     <span>Pharmaceutical Career Development Program</span>
                 </div>
                 <h1 class="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight leading-tight">
@@ -66,13 +67,13 @@
                 </p>
 
                 <div class="flex flex-wrap items-center gap-4 mt-5 text-xs text-blue-200">
-                    <span class="inline-flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-lg backdrop-blur-md">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg" style="background-color: #003882 !important; color: #ffffff !important;">
                         📅 <strong>Session Days:</strong> Friday & Saturday
                     </span>
-                    <span class="inline-flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-lg backdrop-blur-md">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg" style="background-color: #003882 !important; color: #ffffff !important;">
                         ⏱️ <strong>Time:</strong> 7:30 PM – 10:00 PM (BST)
                     </span>
-                    <span class="inline-flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-lg backdrop-blur-md">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg" style="background-color: #003882 !important; color: #ffffff !important;">
                         🌐 <strong>Mode:</strong> Online Live (Google Meet)
                     </span>
                 </div>
@@ -136,8 +137,8 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
 
                     {{-- MODULE 1 CARD: Industrial Operations (Friday) --}}
-                    <div class="relative rounded-2xl border-2 transition-all duration-200 p-5 sm:p-6 cursor-pointer flex flex-col justify-between"
-                         :class="isModuleSelected('1') ? 'border-[#0085FF] bg-blue-50/40 shadow-md ring-2 ring-[#0085FF]/20' : 'border-slate-200 bg-white hover:border-slate-300 shadow-2xs'"
+                    <div class="relative rounded-2xl border-2 transition-all duration-200 p-5 sm:p-6 cursor-pointer flex flex-col justify-between shadow-xs"
+                         :style="isModuleSelected('1') ? 'background-color: #eff6ff !important; border-color: #0085FF !important;' : 'background-color: #ffffff !important; border-color: #e2e8f0 !important;'"
                          @click="toggleModule('1')">
                         
                         <div>
@@ -185,8 +186,8 @@
                     </div>
 
                     {{-- MODULE 2 CARD: Pharmaceutical Marketing (Saturday) --}}
-                    <div class="relative rounded-2xl border-2 transition-all duration-200 p-5 sm:p-6 cursor-pointer flex flex-col justify-between"
-                         :class="isModuleSelected('2') ? 'border-[#0085FF] bg-blue-50/40 shadow-md ring-2 ring-[#0085FF]/20' : 'border-slate-200 bg-white hover:border-slate-300 shadow-2xs'"
+                    <div class="relative rounded-2xl border-2 transition-all duration-200 p-5 sm:p-6 cursor-pointer flex flex-col justify-between shadow-xs"
+                         :style="isModuleSelected('2') ? 'background-color: #eff6ff !important; border-color: #0085FF !important;' : 'background-color: #ffffff !important; border-color: #e2e8f0 !important;'"
                          @click="toggleModule('2')">
                         
                         <div>
@@ -235,17 +236,18 @@
 
                 </div>
 
-                {{-- Live Selection & Pricing Bar --}}
-                <div class="bg-gradient-to-r from-slate-900 to-[#00245A] rounded-2xl p-4 sm:p-5 text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0 text-lg">
+                {{-- Live Selection & Pricing Bar (Solid Background) --}}
+                <div class="rounded-2xl p-5 sm:p-6 text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-md"
+                     style="background-color: #00245A !important; color: #ffffff !important;">
+                    <div class="flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 text-xl shadow-xs" style="background-color: #003882 !important;">
                             🎟️
                         </div>
                         <div>
-                            <div class="text-xs text-slate-300">
-                                Currently Selected: <strong class="text-white" x-text="selectedModules.length + ' Module(s)'"></strong>
+                            <div class="text-xs font-semibold" style="color: #cbd5e1 !important;">
+                                Currently Selected: <strong class="font-black text-white" x-text="selectedModules.length + ' Module(s)'"></strong>
                             </div>
-                            <div class="text-[11px] text-[#FFCD00] font-semibold mt-0.5">
+                            <div class="text-xs font-bold mt-1" style="color: #FFCD00 !important;">
                                 <span x-show="selectedModules.length === 2">Full 2-Day Track (Friday & Saturday sessions)</span>
                                 <span x-show="selectedModules.length === 1 && selectedModules.includes('1')">Module 1 only (Friday Industrial Operations session)</span>
                                 <span x-show="selectedModules.length === 1 && selectedModules.includes('2')">Module 2 only (Saturday Marketing session)</span>
@@ -253,9 +255,9 @@
                         </div>
                     </div>
 
-                    <div class="text-center sm:text-right">
-                        <span class="text-[10px] font-bold uppercase tracking-wider text-slate-300 block">Total Investment</span>
-                        <div class="text-2xl font-black text-[#FFCD00]">
+                    <div class="text-center sm:text-right shrink-0">
+                        <span class="text-[10px] font-bold uppercase tracking-wider block" style="color: #94a3b8 !important;">Total Investment</span>
+                        <div class="text-2xl sm:text-3xl font-black" style="color: #FFCD00 !important;">
                             ৳<span x-text="totalAmount.toLocaleString()"></span> <span class="text-xs font-normal text-white">BDT</span>
                         </div>
                     </div>
@@ -359,42 +361,42 @@
                     </div>
                 </div>
 
-                {{-- bKash Instruction Card --}}
-                <div class="bg-gradient-to-tr from-pink-500/10 via-purple-500/5 to-pink-500/10 rounded-2xl p-5 sm:p-6 border border-pink-200/90 space-y-4">
+                {{-- bKash Instruction Card (Solid Background & Solid Colors) --}}
+                <div class="rounded-2xl p-5 sm:p-6 space-y-4 shadow-xs" style="background-color: #fff1f2 !important; border: 2px solid #fecdd3 !important;">
                     <div class="flex items-center justify-between gap-3">
-                        <div class="flex items-center gap-2">
-                            <span class="w-8 h-8 rounded-lg bg-[#E2136E] text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-xs">
+                        <div class="flex items-center gap-2.5">
+                            <span class="w-9 h-9 rounded-xl flex items-center justify-center font-black text-base shrink-0 shadow-xs" style="background-color: #E2136E !important; color: #ffffff !important;">
                                 ৳
                             </span>
                             <div>
-                                <span class="font-extrabold text-sm text-pink-950 block">Official bKash Account</span>
-                                <span class="text-[11px] text-pink-700 font-medium">Personal (Send Money)</span>
+                                <span class="font-extrabold text-sm block" style="color: #881337 !important;">Official bKash Account</span>
+                                <span class="text-xs font-bold" style="color: #be123c !important;">Personal (Send Money)</span>
                             </div>
                         </div>
                         <div class="text-right">
                             <span class="text-[10px] uppercase font-bold text-slate-500 block">Amount to Send</span>
-                            <span class="text-lg font-black text-[#E2136E]">৳<span x-text="totalAmount.toLocaleString()"></span> BDT</span>
+                            <span class="text-xl font-black" style="color: #E2136E !important;">৳<span x-text="totalAmount.toLocaleString()"></span> BDT</span>
                         </div>
                     </div>
 
-                    {{-- Step list --}}
-                    <div class="text-xs text-slate-700 space-y-1.5 bg-white/70 backdrop-blur-xs p-3.5 rounded-xl border border-pink-100">
+                    {{-- Step list (Solid white) --}}
+                    <div class="text-xs text-slate-800 space-y-2 p-4 rounded-xl shadow-2xs" style="background-color: #ffffff !important; border: 1px solid #fecdd3 !important;">
                         <p>1. Open your <strong>bKash App</strong> or dial <strong>*247#</strong>.</p>
                         <p>2. Select <strong>Send Money</strong>.</p>
                         <p>3. Enter the account number below and send exactly <strong>৳<span x-text="totalAmount.toLocaleString()"></span> BDT</strong>.</p>
                         <p>4. After sending, enter your <strong>Sender Number</strong> and <strong>TrxID</strong> in the fields below.</p>
                     </div>
 
-                    {{-- Number Copy Strip --}}
-                    <div class="flex items-center justify-between bg-white px-4 py-3 rounded-xl border border-pink-200 shadow-2xs">
+                    {{-- Number Copy Strip (Solid white with solid border & solid button) --}}
+                    <div class="flex items-center justify-between px-4 py-3.5 rounded-xl shadow-xs" style="background-color: #ffffff !important; border: 2px solid #f43f5e !important;">
                         <div>
                             <span class="text-[10px] uppercase font-bold text-slate-400 block">bKash Personal Account Number</span>
-                            <span class="font-mono font-black text-lg text-[#00245A] tracking-wider">{{ $defaultBkashNumber }}</span>
+                            <span class="font-mono font-black text-lg sm:text-xl tracking-wider" style="color: #00245A !important;">{{ $defaultBkashNumber }}</span>
                         </div>
                         <button type="button" 
                                 @click="copyBkash('{{ $defaultBkashNumber }}')" 
-                                class="px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer"
-                                :class="copiedNumber ? 'bg-emerald-600 text-white' : 'bg-[#E2136E] hover:bg-[#c90d5f] text-white shadow-xs'">
+                                class="px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer shadow-xs"
+                                :style="copiedNumber ? 'background-color: #059669 !important; color: #ffffff !important;' : 'background-color: #E2136E !important; color: #ffffff !important;'">
                             <span x-text="copiedNumber ? '✓ Copied!' : 'Copy Number'"></span>
                         </button>
                     </div>
