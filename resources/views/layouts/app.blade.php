@@ -395,9 +395,9 @@
              style="display: none;">
             
             <!-- Quick CTA Button in Drawer -->
-            <a href="{{ route('booking.create') }}" class="btn-primary w-full py-2.5 text-center text-sm shadow-sm flex items-center justify-center gap-2">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                <span>Book a Consultation</span>
+            <a href="{{ route('seminars.book') }}" class="btn-primary w-full py-2.5 text-center text-sm shadow-sm flex items-center justify-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"></path></svg>
+                <span>Book Seminars Seat</span>
             </a>
 
             <div class="grid grid-cols-2 gap-2 text-sm pt-2">
@@ -538,7 +538,7 @@
                         <li><a href="{{ route('seminars.show', 'module-2-career-in-pharmaceutical-marketing') }}" class="hover:text-white transition-colors">Module 2: Pharmaceutical Marketing</a></li>
                         <li><a href="{{ route('programs') }}" class="hover:text-white transition-colors font-semibold text-[#FFCD00]">→ View Complete Curriculum</a></li>
                         <li><a href="{{ route('services.show', 'career-planning-consultation') }}" class="hover:text-white transition-colors">1-on-1 Career Planning</a></li>
-                        <li><a href="{{ route('booking.create') }}" class="hover:text-white transition-colors">Book Mentor Consultation</a></li>
+                        <li><a href="{{ route('seminars.book') }}" class="hover:text-white transition-colors">Book Seminars Seat</a></li>
                     </ul>
                 </div>
 
@@ -569,8 +569,8 @@
                         </button>
                     </form>
                     <div class="mt-4 pt-3 border-t border-slate-800">
-                        <a href="{{ route('booking.create') }}" class="text-xs text-[#FFCD00] hover:underline font-semibold block">
-                            &rarr; Book a 1-on-1 Consultation
+                        <a href="{{ route('seminars.book') }}" class="text-xs text-[#FFCD00] hover:underline font-semibold block">
+                            &rarr; Book Seminars Seat
                         </a>
                     </div>
                 </div>

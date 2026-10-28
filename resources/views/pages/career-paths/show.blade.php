@@ -46,8 +46,8 @@
                             Build My Roadmap for This Role &rarr;
                         </button>
                     </form>
-                    <a href="{{ route('booking.create') }}" class="btn-secondary text-xs py-2 px-4 shadow-sm hover:shadow text-center font-bold">
-                        Book a Consultation
+                    <a href="{{ route('seminars.book') }}" class="btn-secondary text-xs py-2 px-4 shadow-sm hover:shadow text-center font-bold">
+                        Book Seminars Seat
                     </a>
                 </div>
             </div>
@@ -163,10 +163,10 @@
                 <div class="bg-gradient-to-br from-[#00245A] to-[#00173B] text-white rounded-2xl p-6 shadow-md text-left">
                     <h3 class="font-bold text-lg text-white mb-2">Want to Enter {{ $path->title }}?</h3>
                     <p class="text-xs text-blue-100 leading-relaxed mb-4">
-                        Schedule a 1-on-1 session with a mentor currently leading this department.
+                        Join interactive live cohorts with industry leaders preparing candidates for this department.
                     </p>
-                    <a href="{{ route('booking.create') }}" class="btn-accent w-full text-xs py-2.5 shadow-sm hover:shadow font-bold text-center block">
-                        Book a Consultation
+                    <a href="{{ route('seminars.book') }}" class="btn-accent w-full text-xs py-2.5 shadow-sm hover:shadow font-bold text-center block">
+                        Book Seminars Seat
                     </a>
                 </div>
 

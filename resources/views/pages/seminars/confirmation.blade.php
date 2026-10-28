@@ -68,6 +68,34 @@
             </div>
         @endif
 
+        {{-- Sibling / Dual Module Enrollment Banner --}}
+        @if(isset($siblingRegistrations) && $siblingRegistrations->isNotEmpty())
+            <div class="mb-6 p-5 rounded-2xl bg-blue-50 border border-blue-200 text-[#00245A] shadow-xs no-print print:hidden">
+                <div class="flex items-center gap-2 font-black text-sm mb-2 text-[#0085FF]">
+                    <span>✨</span>
+                    <span>2-Module Track Enrollment Detected</span>
+                </div>
+                <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+                    You have reserved seats for both modules in this session series! Click below to access your companion admission pass:
+                </p>
+                <div class="space-y-2">
+                    @foreach($siblingRegistrations as $sibling)
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3 bg-white rounded-xl border border-blue-100 shadow-2xs">
+                            <div>
+                                <span class="text-xs font-bold text-[#00245A] block">{{ $sibling->seminar->title }}</span>
+                                <span class="text-[11px] text-slate-500 font-medium">
+                                    {{ $sibling->seminar->event_date ? $sibling->seminar->event_date->format('l, F j, Y') : '' }} • Ref: <span class="font-mono font-bold text-slate-700">{{ $sibling->registration_reference }}</span>
+                                </span>
+                            </div>
+                            <a href="{{ route('seminars.confirmation', $sibling->registration_reference) }}" class="btn-primary text-xs py-1.5 px-3 whitespace-nowrap self-start sm:self-auto font-bold">
+                                View Module Ticket &rarr;
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        @endif
+
         {{-- ========================================================================= --}}
         {{-- OFFICIAL SEMINAR TICKET / ADMISSION PASS (PRINTABLE & SCREEN) --}}
         {{-- ========================================================================= --}}

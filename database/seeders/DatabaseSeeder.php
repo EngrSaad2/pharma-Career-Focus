@@ -1194,8 +1194,8 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'category' => 'Booking',
-                'question' => 'How can someone book a consultation session?',
-                'answer' => 'Simply click "Book a Consultation", choose your desired service (or select from our expert consultants), choose a date and time slot from the live availability calendar, fill in your details, and submit. You will receive immediate booking confirmation and instructions.',
+                'question' => 'How can someone book a seminar session?',
+                'answer' => 'Simply click "Book Seminars Seat", choose your desired module (Module 1, Module 2, or both), complete the participant information, and submit your bKash payment verification. You will receive an immediate official admission ticket and joining details.',
                 'sort_order' => 6,
             ],
             [

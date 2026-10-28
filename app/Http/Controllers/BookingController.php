@@ -15,13 +15,7 @@ class BookingController extends Controller
 {
     public function create(Request $request)
     {
-        $consultants = Consultant::with('availabilities')->where('is_active', true)->orderBy('sort_order')->get();
-        $services = Service::where('is_active', true)->orderBy('sort_order')->get();
-
-        $selectedConsultantId = $request->query('consultant_id', $consultants->first()?->id);
-        $selectedServiceId = $request->query('service_id', $services->first()?->id);
-
-        return view('pages.consultation.book', compact('consultants', 'services', 'selectedConsultantId', 'selectedServiceId'));
+        return redirect()->route('seminars.book');
     }
 
     public function getAvailableSlots(Request $request)

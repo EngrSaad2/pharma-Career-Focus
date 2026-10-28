@@ -72,8 +72,8 @@
             <p class="text-xs text-slate-500 leading-relaxed mb-6">
                 Consult with experienced pharmaceutical quality managers, production heads, and regulatory specialists.
             </p>
-            <a href="{{ route('consultation.book') }}" class="px-6 py-3 rounded-lg bg-[#0085FF] text-white font-bold text-xs uppercase tracking-wider shadow-sm hover:bg-blue-600">
-                Book a Consultation
+            <a href="{{ route('seminars.book') }}" class="px-6 py-3 rounded-lg bg-[#0085FF] text-white font-bold text-xs uppercase tracking-wider shadow-sm hover:bg-blue-600">
+                Book Seminars Seat
             </a>
         </div>
     @endif

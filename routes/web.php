@@ -91,6 +91,8 @@ Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
 
 // Seminars & Workshops
 Route::get('/seminars', [SeminarController::class, 'index'])->name('seminars.index');
+Route::get('/seminars/book', [SeminarController::class, 'bookForm'])->name('seminars.book');
+Route::post('/seminars/book', [SeminarController::class, 'bookSubmit'])->name('seminars.book.submit');
 Route::get('/seminars/{slug}', [SeminarController::class, 'show'])->name('seminars.show');
 Route::get('/seminars/{slug}/register', [SeminarController::class, 'registerForm'])->name('seminars.register');
 Route::post('/seminars/{slug}/register', [SeminarController::class, 'registerSubmit'])->name('seminars.register.submit');

@@ -147,17 +147,17 @@
                     </div>
                 </div>
 
-                <!-- 1-on-1 Consultation CTA -->
+                <!-- PCDP Seminars CTA -->
                 <div class="bg-gradient-to-br from-[#00245A] to-[#00173B] text-white rounded-2xl p-6 shadow-md text-left">
                     <div class="w-10 h-10 rounded-xl bg-blue-500/20 text-[#FFCD00] flex items-center justify-center font-bold text-lg mb-3">
                         💬
                     </div>
-                    <h3 class="font-bold text-lg text-white mb-2">Discuss Your Results With an Industry Mentor</h3>
+                    <h3 class="font-bold text-lg text-white mb-2">Join Interactive Industry Masterclasses</h3>
                     <p class="text-xs text-blue-100 leading-relaxed mb-4">
-                        Schedule a 1-on-1 session to review your resume, explore salary expectations, and prepare for upcoming recruitment tests.
+                        Join our live cohorts every Friday and Saturday to master written exam questions, technical viva, and departmental expectations.
                     </p>
-                    <a href="{{ route('booking.create') }}" class="btn-accent w-full text-xs py-2.5 font-bold text-center">
-                        Book a Consultation Session
+                    <a href="{{ route('seminars.book') }}" class="btn-accent w-full text-xs py-2.5 font-bold text-center">
+                        Book Seminars Seat
                     </a>
                 </div>
 

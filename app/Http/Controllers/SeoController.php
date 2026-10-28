@@ -75,6 +75,18 @@ class SeoController extends Controller
             'priority' => '0.85',
         ];
         $items[] = [
+            'loc' => $baseUrl . '/seminars',
+            'lastmod' => date('Y-m-d'),
+            'changefreq' => 'daily',
+            'priority' => '0.9',
+        ];
+        $items[] = [
+            'loc' => $baseUrl . '/seminars/book',
+            'lastmod' => date('Y-m-d'),
+            'changefreq' => 'daily',
+            'priority' => '0.9',
+        ];
+        $items[] = [
             'loc' => $baseUrl . '/consultation/book',
             'lastmod' => date('Y-m-d'),
             'changefreq' => 'weekly',
