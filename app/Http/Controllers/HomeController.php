@@ -23,7 +23,7 @@ class HomeController extends Controller
         $allPaths = CareerPath::with('category')->where('is_active', true)->orderBy('sort_order')->get();
         $categories = CareerCategory::withCount('careerPaths')->orderBy('sort_order')->get();
         $services = Service::where('is_active', true)->orderBy('sort_order')->get();
-        $consultants = Consultant::where('is_active', true)->orderBy('sort_order')->take(4)->get();
+        $consultants = Consultant::where('is_active', true)->orderBy('sort_order')->get();
         $testimonials = Testimonial::where('is_featured', true)->orderBy('sort_order')->take(6)->get();
         $faqs = Faq::where('is_active', true)->orderBy('sort_order')->take(8)->get();
         $latestPosts = BlogPost::with('category')->where('is_published', true)->orderBy('published_at', 'desc')->take(3)->get();
