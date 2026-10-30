@@ -31,7 +31,12 @@ class SeminarSeatBookingTest extends TestCase
         $response->assertSee('Saturday');
         $response->assertSee('৳1,000');
         $response->assertSee('bKash');
+        $response->assertSee('Nagad');
         $response->assertSee('01722531335');
+        $response->assertSee('Md. Abul Bashar');
+        $response->assertSee('1221030213784');
+        $response->assertSee('DEPZ Branch');
+        $response->assertSee('DBBL');
     }
 
     public function test_booking_create_redirects_to_seminars_book(): void
@@ -97,6 +102,35 @@ class SeminarSeatBookingTest extends TestCase
             $this->assertEquals('01811223344', $reg->sender_number);
             $this->assertEquals('pending_verification', $reg->registration_status);
         }
+    }
+
+    public function test_can_book_module_with_dbbl_bank_transfer(): void
+    {
+        $slipRef = 'DBBL-DEPZ-' . strtoupper(substr(md5(uniqid()), 0, 8));
+        $email = 'bank.' . uniqid() . '@example.com';
+
+        $response = $this->post('/seminars/book', [
+            'modules' => ['1'],
+            'full_name' => 'Md. Tariqul Islam',
+            'email' => $email,
+            'phone' => '01799887766',
+            'organization' => 'Incepta Pharmaceuticals',
+            'designation' => 'Officer, Production',
+            'payment_method' => 'Bank Transfer (DBBL)',
+            'sender_number' => 'Md. Tariqul Islam (DBBL A/C: 110.120.9876)',
+            'transaction_id' => $slipRef,
+            'terms_agreed' => '1',
+        ]);
+
+        $response->assertRedirect();
+
+        $registration = SeminarRegistration::where('transaction_id', $slipRef)->first();
+        $this->assertNotNull($registration);
+        $this->assertEquals(1, $registration->seminar_id);
+        $this->assertEquals('1000.00', $registration->amount_payable);
+        $this->assertEquals('Bank Transfer (DBBL)', $registration->payment_method);
+        $this->assertEquals('Md. Tariqul Islam (DBBL A/C: 110.120.9876)', $registration->sender_number);
+        $this->assertEquals('pending_verification', $registration->registration_status);
     }
 }
 

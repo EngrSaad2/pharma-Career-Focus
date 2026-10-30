@@ -427,16 +427,37 @@
                 @endif
             @else
                 {{-- Payment / Transaction Submission Guidance --}}
-                <div class="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm text-xs text-slate-600 space-y-3">
+                <div class="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm text-xs text-slate-600 space-y-4">
                     <div class="flex items-center gap-2 text-sm font-bold text-[#00245A]">
                         <span class="text-base">💳</span>
                         <span>Need to complete or update your registration payment?</span>
                     </div>
                     <p class="leading-relaxed">
-                        If you haven't completed the registration fee payment of <strong>৳{{ number_format($registration->registration_fee, 0) }} BDT</strong> yet, please Send Money to bKash Personal Number: <strong class="text-slate-900 font-mono text-sm px-2 py-0.5 rounded bg-slate-100">{{ $defaultBkashNumber }}</strong>.
+                        If you haven't completed the registration fee payment of <strong>৳{{ number_format($registration->registration_fee, 0) }} BDT</strong> yet, you can pay using either method below:
                     </p>
-                    <p class="leading-relaxed">
-                        Once sent, message your <strong>Transaction ID</strong> and Pass Reference <strong class="text-[#0085FF] font-mono">{{ $registration->registration_reference }}</strong> to <a href="mailto:hello@pharmacareercompass.com" class="text-[#0085FF] font-semibold underline">hello@pharmacareercompass.com</a> or WhatsApp <strong>+880 1722 531335</strong>.
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                        {{-- bKash / Nagad --}}
+                        <div class="p-3.5 bg-pink-50/70 border border-pink-200 rounded-2xl space-y-1">
+                            <div class="flex items-center justify-between">
+                                <strong class="text-pink-900 font-bold text-xs">📱 bKash / Nagad</strong>
+                                <span class="text-[10px] bg-pink-100 text-pink-700 px-2 py-0.5 rounded-full font-bold">Personal</span>
+                            </div>
+                            <div class="font-mono text-sm text-[#00245A] font-extrabold">{{ $defaultBkashNumber }}</div>
+                            <span class="text-[10px] text-pink-700 block">Send Money exactly ৳{{ number_format($registration->registration_fee, 0) }} BDT</span>
+                        </div>
+
+                        {{-- Bank Transfer --}}
+                        <div class="p-3.5 bg-blue-50/70 border border-blue-200 rounded-2xl space-y-1">
+                            <div class="flex items-center justify-between">
+                                <strong class="text-[#00245A] font-bold text-xs">🏦 Dutch-Bangla Bank (DBBL)</strong>
+                                <span class="text-[10px] bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full font-bold">Bank Transfer</span>
+                            </div>
+                            <div class="font-mono text-sm text-[#00245A] font-extrabold">1221030213784</div>
+                            <span class="text-[10px] text-slate-600 block"><strong>A/C:</strong> Md. Abul Bashar • DEPZ Branch</span>
+                        </div>
+                    </div>
+                    <p class="leading-relaxed pt-1">
+                        Once sent, message your <strong>Transaction ID / Bank Ref</strong> and Pass Reference <strong class="text-[#0085FF] font-mono">{{ $registration->registration_reference }}</strong> to <a href="mailto:hello@pharmacareercompass.com" class="text-[#0085FF] font-semibold underline">hello@pharmacareercompass.com</a> or WhatsApp <strong>+880 1722 531335</strong>.
                     </p>
                 </div>
             @endif

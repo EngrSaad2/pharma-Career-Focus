@@ -9,7 +9,9 @@
      x-data="{
         selectedModules: {{ $preselected === '1' ? "['1']" : ($preselected === '2' ? "['2']" : "['1', '2']") }},
         pricePerModule: 1000,
+        paymentChannel: 'bkash_nagad',
         copiedNumber: false,
+        copiedBankAcc: false,
         get totalAmount() {
             return this.selectedModules.length * this.pricePerModule;
         },
@@ -39,6 +41,11 @@
             navigator.clipboard.writeText(num);
             this.copiedNumber = true;
             setTimeout(() => this.copiedNumber = false, 2500);
+        },
+        copyBankAcc(acc) {
+            navigator.clipboard.writeText(acc);
+            this.copiedBankAcc = true;
+            setTimeout(() => this.copiedBankAcc = false, 2500);
         }
      }">
 
@@ -348,28 +355,52 @@
             </div>
 
             {{-- ========================================================================= --}}
-            {{-- STEP 3: MANUAL BKASH PAYMENT & VERIFICATION --}}
+            {{-- STEP 3: PAYMENT & VERIFICATION (BKASH / NAGAD / BANK TRANSFER) --}}
             {{-- ========================================================================= --}}
             <div class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8 space-y-6">
-                <div class="pb-4 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div class="pb-4 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div>
                         <span class="text-[11px] font-bold uppercase tracking-wider text-[#0085FF] block">Step 3</span>
-                        <h2 class="text-lg sm:text-xl font-black text-[#00245A]">bKash Manual Payment & Verification</h2>
+                        <h2 class="text-lg sm:text-xl font-black text-[#00245A]">Payment & Verification</h2>
                     </div>
-                    <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-pink-50 border border-pink-200 text-pink-700 text-xs font-bold">
-                        <span>📱 bKash Send Money</span>
+
+                    {{-- Payment Channel Switcher Tabs --}}
+                    <div class="inline-flex p-1 rounded-2xl bg-slate-100 border border-slate-200 text-xs font-bold self-start sm:self-auto">
+                        <button type="button" 
+                                @click="paymentChannel = 'bkash_nagad'" 
+                                :class="paymentChannel === 'bkash_nagad' ? 'bg-[#00245A] text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'"
+                                class="px-3.5 py-1.5 rounded-xl transition-all flex items-center gap-1.5 cursor-pointer">
+                            <span>📱 bKash / Nagad</span>
+                        </button>
+                        <button type="button" 
+                                @click="paymentChannel = 'bank'" 
+                                :class="paymentChannel === 'bank' ? 'bg-[#00245A] text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'"
+                                class="px-3.5 py-1.5 rounded-xl transition-all flex items-center gap-1.5 cursor-pointer">
+                            <span>🏦 DBBL Bank Transfer</span>
+                        </button>
                     </div>
                 </div>
 
-                {{-- bKash Instruction Card (Solid Background & Solid Colors) --}}
-                <div class="rounded-2xl p-5 sm:p-6 space-y-4 shadow-xs" style="background-color: #fff1f2 !important; border: 2px solid #fecdd3 !important;">
+                {{-- Hidden input for selected payment method --}}
+                <input type="hidden" name="payment_method" :value="paymentChannel === 'bank' ? 'Bank Transfer (DBBL)' : 'bKash / Nagad'">
+
+                {{-- ------------------------------------------------------------------------- --}}
+                {{-- CHANNEL 1: BKASH / NAGAD INSTRUCTION CARD --}}
+                {{-- ------------------------------------------------------------------------- --}}
+                <div x-show="paymentChannel === 'bkash_nagad'"
+                     x-transition:enter="transition ease-out duration-150"
+                     x-transition:enter-start="opacity-0 translate-y-1"
+                     x-transition:enter-end="opacity-100 translate-y-0"
+                     class="rounded-2xl p-5 sm:p-6 space-y-4 shadow-xs" 
+                     style="background-color: #fff1f2 !important; border: 2px solid #fecdd3 !important;">
+                    
                     <div class="flex items-center justify-between gap-3">
                         <div class="flex items-center gap-2.5">
-                            <span class="w-9 h-9 rounded-xl flex items-center justify-center font-black text-base shrink-0 shadow-xs" style="background-color: #E2136E !important; color: #ffffff !important;">
+                            <span class="w-10 h-10 rounded-xl flex items-center justify-center font-black text-base shrink-0 shadow-xs" style="background-color: #E2136E !important; color: #ffffff !important;">
                                 ৳
                             </span>
                             <div>
-                                <span class="font-extrabold text-sm block" style="color: #881337 !important;">Official bKash Account</span>
+                                <span class="font-extrabold text-sm block" style="color: #881337 !important;">Official bKash / Nagad Account</span>
                                 <span class="text-xs font-bold" style="color: #be123c !important;">Personal (Send Money)</span>
                             </div>
                         </div>
@@ -379,18 +410,18 @@
                         </div>
                     </div>
 
-                    {{-- Step list (Solid white) --}}
+                    {{-- Step list --}}
                     <div class="text-xs text-slate-800 space-y-2 p-4 rounded-xl shadow-2xs" style="background-color: #ffffff !important; border: 1px solid #fecdd3 !important;">
-                        <p>1. Open your <strong>bKash App</strong> or dial <strong>*247#</strong>.</p>
+                        <p>1. Open your <strong>bKash App</strong> (*247#) or <strong>Nagad App</strong> (*167#).</p>
                         <p>2. Select <strong>Send Money</strong>.</p>
                         <p>3. Enter the account number below and send exactly <strong>৳<span x-text="totalAmount.toLocaleString()"></span> BDT</strong>.</p>
-                        <p>4. After sending, enter your <strong>Sender Number</strong> and <strong>TrxID</strong> in the fields below.</p>
+                        <p>4. After sending, enter your <strong>bKash / Nagad Sender Mobile Number</strong> and <strong>TrxID</strong> in the fields below.</p>
                     </div>
 
-                    {{-- Number Copy Strip (Solid white with solid border & solid button) --}}
+                    {{-- Number Copy Strip --}}
                     <div class="flex items-center justify-between px-4 py-3.5 rounded-xl shadow-xs" style="background-color: #ffffff !important; border: 2px solid #f43f5e !important;">
                         <div>
-                            <span class="text-[10px] uppercase font-bold text-slate-400 block">bKash Personal Account Number</span>
+                            <span class="text-[10px] uppercase font-bold text-slate-400 block">bKash / Nagad Personal Number</span>
                             <span class="font-mono font-black text-lg sm:text-xl tracking-wider" style="color: #00245A !important;">{{ $defaultBkashNumber }}</span>
                         </div>
                         <button type="button" 
@@ -402,47 +433,135 @@
                     </div>
                 </div>
 
-                {{-- Manual Payment Input Fields --}}
+                {{-- ------------------------------------------------------------------------- --}}
+                {{-- CHANNEL 2: DBBL BANK TRANSFER INSTRUCTION CARD --}}
+                {{-- ------------------------------------------------------------------------- --}}
+                <div x-show="paymentChannel === 'bank'"
+                     x-transition:enter="transition ease-out duration-150"
+                     x-transition:enter-start="opacity-0 translate-y-1"
+                     x-transition:enter-end="opacity-100 translate-y-0"
+                     class="rounded-2xl p-5 sm:p-6 space-y-4 shadow-xs" 
+                     style="background-color: #eff6ff !important; border: 2px solid #bfdbfe !important;">
+                    
+                    <div class="flex items-center justify-between gap-3">
+                        <div class="flex items-center gap-2.5">
+                            <span class="w-10 h-10 rounded-xl flex items-center justify-center font-black text-lg shrink-0 shadow-xs" style="background-color: #00245A !important; color: #ffffff !important;">
+                                🏦
+                            </span>
+                            <div>
+                                <span class="font-extrabold text-sm block" style="color: #00245A !important;">Dutch-Bangla Bank PLC (DBBL)</span>
+                                <span class="text-xs font-bold text-[#0085FF]">Official Bank Account</span>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-[10px] uppercase font-bold text-slate-500 block">Amount to Transfer</span>
+                            <span class="text-xl font-black text-[#00245A]">৳<span x-text="totalAmount.toLocaleString()"></span> BDT</span>
+                        </div>
+                    </div>
+
+                    {{-- DBBL Bank Information Breakdown --}}
+                    <div class="p-4 rounded-xl bg-white border border-blue-200 text-xs text-slate-800 space-y-2 shadow-2xs">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pb-2 border-b border-slate-100">
+                            <div>
+                                <span class="text-[10px] uppercase font-bold text-slate-400 block">Account Name</span>
+                                <strong class="text-sm font-extrabold text-slate-900">Md. Abul Bashar</strong>
+                            </div>
+                            <div>
+                                <span class="text-[10px] uppercase font-bold text-slate-400 block">Branch Name</span>
+                                <strong class="text-sm font-extrabold text-slate-900">DEPZ Branch</strong>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                            <div>
+                                <span class="text-[10px] uppercase font-bold text-slate-400 block">Bank Name</span>
+                                <strong class="text-slate-900 font-bold">Dutch-Bangla Bank PLC (DBBL)</strong>
+                            </div>
+                            <div>
+                                <span class="text-[10px] uppercase font-bold text-slate-400 block">Accepted Channels</span>
+                                <span class="text-slate-700 font-medium">DBBL NexusPay, BEFTN, NPSB, Internet Banking, Branch Deposit</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- Account Number Copy Strip --}}
+                    <div class="flex items-center justify-between px-4 py-3.5 rounded-xl bg-white shadow-xs" style="border: 2px solid #00245A !important;">
+                        <div>
+                            <span class="text-[10px] uppercase font-bold text-slate-400 block">DBBL Account Number (A/C)</span>
+                            <span class="font-mono font-black text-lg sm:text-xl tracking-wider text-[#00245A]">1221030213784</span>
+                        </div>
+                        <button type="button" 
+                                @click="copyBankAcc('1221030213784')" 
+                                class="px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer shadow-xs"
+                                :style="copiedBankAcc ? 'background-color: #059669 !important; color: #ffffff !important;' : 'background-color: #00245A !important; color: #ffffff !important;'">
+                            <span x-text="copiedBankAcc ? '✓ Copied!' : 'Copy Account No.'"></span>
+                        </button>
+                    </div>
+
+                    <div class="text-[11px] text-slate-600 space-y-1">
+                        <p>• Transfer <strong>৳<span x-text="totalAmount.toLocaleString()"></span> BDT</strong> from any banking app or bank counter deposit.</p>
+                        <p>• After transferring, enter your <strong>Depositor Name / Bank Account</strong> and <strong>Reference / Slip Number</strong> below.</p>
+                    </div>
+                </div>
+
+                {{-- ------------------------------------------------------------------------- --}}
+                {{-- DYNAMIC FORM INPUT FIELDS (ADAPTIVE TO BKASH/NAGAD OR BANK TRANSFER) --}}
+                {{-- ------------------------------------------------------------------------- --}}
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {{-- bKash Sender Number --}}
+                    {{-- Sender Mobile or Bank Account --}}
                     <div>
                         <label class="block text-xs font-bold text-slate-700 mb-1.5">
-                            bKash Sender Mobile Number <span class="text-red-500">*</span>
+                            <span x-show="paymentChannel === 'bkash_nagad'">bKash / Nagad Sender Mobile Number</span>
+                            <span x-show="paymentChannel === 'bank'">Sender Account / Depositor Name</span>
+                            <span class="text-red-500">*</span>
                         </label>
                         <input type="text" 
                                name="sender_number" 
                                value="{{ old('sender_number') }}" 
                                required 
-                               placeholder="e.g. 017XXXXXXXX" 
+                               :placeholder="paymentChannel === 'bkash_nagad' ? 'e.g. 017XXXXXXXX or 018XXXXXXXX' : 'e.g. Md. Kamal / DBBL A/C 123... / DEPZ Counter'" 
                                class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm font-mono focus:ring-2 focus:ring-[#0085FF] focus:border-transparent">
-                        <span class="text-[11px] text-slate-400 mt-1 block">The mobile number from which you initiated Send Money.</span>
+                        <span class="text-[11px] text-slate-400 mt-1 block" x-show="paymentChannel === 'bkash_nagad'">
+                            The mobile number from which you initiated bKash or Nagad Send Money.
+                        </span>
+                        <span class="text-[11px] text-slate-400 mt-1 block" x-show="paymentChannel === 'bank'">
+                            Name of the depositor or bank account number used for transfer.
+                        </span>
                     </div>
 
-                    {{-- Transaction ID --}}
+                    {{-- Transaction ID / Bank Reference --}}
                     <div>
                         <label class="block text-xs font-bold text-slate-700 mb-1.5">
-                            bKash Transaction ID (TrxID) <span class="text-red-500">*</span>
+                            <span x-show="paymentChannel === 'bkash_nagad'">bKash / Nagad Transaction ID (TrxID)</span>
+                            <span x-show="paymentChannel === 'bank'">Bank Reference / Transaction / Slip No.</span>
+                            <span class="text-red-500">*</span>
                         </label>
                         <input type="text" 
                                name="transaction_id" 
                                value="{{ old('transaction_id') }}" 
                                required 
-                               placeholder="e.g. BL459XK78Q" 
+                               :placeholder="paymentChannel === 'bkash_nagad' ? 'e.g. BL459XK78Q / 9J283XXXXX' : 'e.g. FT2610... / Deposit Slip #'" 
                                class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm font-mono uppercase focus:ring-2 focus:ring-[#0085FF] focus:border-transparent">
-                        <span class="text-[11px] text-slate-400 mt-1 block">Found in your bKash SMS confirmation or app statement.</span>
+                        <span class="text-[11px] text-slate-400 mt-1 block" x-show="paymentChannel === 'bkash_nagad'">
+                            Found in your bKash or Nagad SMS confirmation or app statement.
+                        </span>
+                        <span class="text-[11px] text-slate-400 mt-1 block" x-show="paymentChannel === 'bank'">
+                            Found on your bank app transaction receipt or deposit counterfoil.
+                        </span>
                     </div>
                 </div>
 
-                {{-- Payment Screenshot Upload --}}
+                {{-- Payment Screenshot / Deposit Slip Upload --}}
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1.5">
-                        Payment Screenshot / Receipt <span class="text-slate-400 font-normal">(Optional, recommended)</span>
+                        <span x-show="paymentChannel === 'bkash_nagad'">Payment Screenshot / Receipt</span>
+                        <span x-show="paymentChannel === 'bank'">Bank Deposit Slip / Transfer Screenshot</span>
+                        <span class="text-slate-400 font-normal">(Optional, recommended)</span>
                     </label>
                     <input type="file" 
                            name="payment_screenshot" 
                            accept="image/jpeg,image/png,image/webp" 
                            class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs text-slate-600 file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-[#0085FF] file:text-white hover:file:bg-[#0070d9]">
-                    <span class="text-[11px] text-slate-400 mt-1 block">JPG, PNG, WebP (Max 5MB). Accelerates administrative verification of your seat.</span>
+                    <span class="text-[11px] text-slate-400 mt-1 block">JPG, PNG, WebP (Max 5MB). Accelerates administrative verification of your seat reservation.</span>
                 </div>
 
                 {{-- Terms Checkbox --}}
@@ -455,7 +574,7 @@
                                required 
                                class="w-4 h-4 mt-0.5 rounded text-[#0085FF] focus:ring-[#0085FF]">
                         <span class="text-xs text-slate-600 leading-relaxed">
-                            I confirm that I have sent <strong>৳<span x-text="totalAmount.toLocaleString()"></span> BDT</strong> via bKash and that the submitted TrxID is genuine. I understand my seat will be reserved and verified by the Pharma Career Compass admin team.
+                            I confirm that I have sent <strong>৳<span x-text="totalAmount.toLocaleString()"></span> BDT</strong> via <strong x-text="paymentChannel === 'bank' ? 'DBBL Bank Transfer' : 'bKash / Nagad'"></strong> and that the submitted details are genuine. I understand my seat will be reserved and verified by the Pharma Career Compass admin team.
                         </span>
                     </label>
                 </div>

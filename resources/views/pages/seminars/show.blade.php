@@ -266,23 +266,38 @@
                         @endif
                     </div>
 
-                    {{-- Quick bKash Snippet --}}
+                    {{-- Quick Payment Snippet --}}
                     <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-xs text-slate-700">
-                        <div class="font-bold text-[#00245A] mb-1 flex items-center justify-between">
-                            <span>Payment Instructions (bKash)</span>
-                            <span class="text-[10px] bg-pink-100 text-pink-700 px-2 py-0.5 rounded-full font-bold">bKash</span>
+                        <div class="font-bold text-[#00245A] mb-1.5 flex items-center justify-between">
+                            <span>Payment Options</span>
+                            <div class="flex gap-1">
+                                <span class="text-[10px] bg-pink-100 text-pink-700 px-2 py-0.5 rounded-full font-bold">bKash / Nagad</span>
+                                <span class="text-[10px] bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full font-bold">DBBL</span>
+                            </div>
                         </div>
                         <div class="text-[11px] text-slate-600 mb-2">
-                            Send Money <strong>৳{{ number_format($seminar->registration_fee, 0) }} BDT</strong> to:
+                            Fee: <strong>৳{{ number_format($seminar->registration_fee, 0) }} BDT</strong> via:
                         </div>
-                        <div class="flex items-center justify-between bg-white px-3 py-2 rounded-lg border border-slate-200 mb-2">
-                            <span class="font-mono font-bold text-sm text-[#00245A]" id="bkashNum">{{ $defaultBkashNumber }}</span>
-                            <button type="button" onclick="navigator.clipboard.writeText('{{ $defaultBkashNumber }}'); alert('bKash Number Copied!');" class="text-[10px] text-[#0085FF] hover:underline font-bold">
-                                Copy
-                            </button>
+                        <div class="space-y-1.5 mb-2">
+                            {{-- bKash / Nagad --}}
+                            <div class="flex items-center justify-between bg-white px-3 py-2 rounded-lg border border-slate-200">
+                                <div>
+                                    <span class="text-[9px] uppercase font-bold text-slate-400 block">bKash / Nagad Personal</span>
+                                    <span class="font-mono font-bold text-xs sm:text-sm text-[#00245A]" id="bkashNum">{{ $defaultBkashNumber }}</span>
+                                </div>
+                                <button type="button" onclick="navigator.clipboard.writeText('{{ $defaultBkashNumber }}'); alert('bKash / Nagad Number Copied!');" class="text-[10px] text-[#0085FF] hover:underline font-bold">
+                                    Copy
+                                </button>
+                            </div>
+                            {{-- DBBL Bank --}}
+                            <div class="bg-white px-3 py-2 rounded-lg border border-slate-200 text-[11px]">
+                                <span class="text-[9px] uppercase font-bold text-slate-400 block">DBBL Bank Transfer</span>
+                                <strong class="text-[#00245A]">Md. Abul Bashar</strong> • A/C: <span class="font-mono font-bold">1221030213784</span>
+                                <span class="text-[10px] text-slate-500 block">DEPZ Branch, Dutch-Bangla Bank</span>
+                            </div>
                         </div>
                         <p class="text-[10px] text-slate-500">
-                            Submit your Transaction ID during registration to verify your seat reservation.
+                            Submit your Transaction ID or Bank Ref during booking to verify your seat reservation.
                         </p>
                     </div>
 

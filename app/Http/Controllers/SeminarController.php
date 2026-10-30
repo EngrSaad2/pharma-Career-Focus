@@ -91,14 +91,29 @@ class SeminarController extends Controller
             $module2->update(['start_date' => $nextSaturday->toDateString(), 'status' => 'registration_open']);
         }
 
-        $defaultPaymentMethod = SiteSetting::get('seminar_payment_method', 'bKash');
+        $defaultPaymentMethod = SiteSetting::get('seminar_payment_method', 'bKash / Nagad / Bank Transfer');
         $defaultBkashNumber = SiteSetting::get('seminar_bkash_number', '01722531335');
         $defaultBkashType = SiteSetting::get('seminar_bkash_type', 'Personal (Send Money)');
+        $bankAccountName = SiteSetting::get('seminar_bank_account_name', 'Md. Abul Bashar');
+        $bankAccountNumber = SiteSetting::get('seminar_bank_account_number', '1221030213784');
+        $bankBranch = SiteSetting::get('seminar_bank_branch', 'DEPZ Branch');
+        $bankName = SiteSetting::get('seminar_bank_name', 'Dutch-Bangla Bank PLC (DBBL)');
 
         // Preselected module if requested via query param (?module=1, ?module=2, or ?module=both)
         $preselected = $request->query('module', 'both');
 
-        return view('pages.seminars.book', compact('module1', 'module2', 'defaultPaymentMethod', 'defaultBkashNumber', 'defaultBkashType', 'preselected'));
+        return view('pages.seminars.book', compact(
+            'module1', 
+            'module2', 
+            'defaultPaymentMethod', 
+            'defaultBkashNumber', 
+            'defaultBkashType', 
+            'bankAccountName', 
+            'bankAccountNumber', 
+            'bankBranch', 
+            'bankName', 
+            'preselected'
+        ));
     }
 
     /**
@@ -119,14 +134,15 @@ class SeminarController extends Controller
             'phone' => 'required|string|max:30',
             'organization' => 'nullable|string|max:150',
             'designation' => 'nullable|string|max:150',
-            'sender_number' => 'required|string|max:30',
+            'payment_method' => 'nullable|string|max:100',
+            'sender_number' => 'required|string|max:100',
             'transaction_id' => 'required|string|max:100',
             'payment_screenshot' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
             'terms_agreed' => 'required|accepted',
         ], [
             'modules.required' => 'Please select at least one module (Module 1, Module 2, or Both).',
-            'sender_number.required' => 'Please provide the bKash sender number you sent money from.',
-            'transaction_id.required' => 'Please enter the bKash Transaction ID (TrxID).',
+            'sender_number.required' => 'Please provide your bKash / Nagad mobile number or depositing bank account.',
+            'transaction_id.required' => 'Please enter the bKash / Nagad Transaction ID (TrxID) or Bank Reference Number.',
             'terms_agreed.required' => 'You must agree to the terms to reserve your seat.',
         ]);
 
@@ -169,6 +185,8 @@ class SeminarController extends Controller
             $isFull = $seminar->isFull();
             $regStatus = $isFull ? 'waitlisted' : 'pending_verification';
 
+            $paymentMethod = $validated['payment_method'] ?? SiteSetting::get('seminar_payment_method', 'bKash / Nagad');
+
             $registration = SeminarRegistration::create([
                 'registration_reference' => $reference,
                 'seminar_id' => $seminar->id,
@@ -179,15 +197,15 @@ class SeminarController extends Controller
                 'designation' => $validated['designation'] ?? null,
                 'participation_type' => 'online',
                 'amount_payable' => 1000.00,
-                'payment_method' => SiteSetting::get('seminar_payment_method', 'bKash'),
+                'payment_method' => $paymentMethod,
                 'transaction_id' => $trxId,
                 'sender_number' => $senderNumber,
                 'payment_proof' => $screenshotPath,
                 'payment_status' => 'pending',
                 'registration_status' => $regStatus,
                 'admin_notes' => count($validated['modules']) > 1 
-                    ? "2-Module Enrollment (Module {$seminar->id} of 2). Sender: {$senderNumber}, TrxID: {$trxId}" 
-                    : "Single Module {$seminar->id} Enrollment. Sender: {$senderNumber}, TrxID: {$trxId}",
+                    ? "2-Module Enrollment (Module {$seminar->id} of 2). Method: {$paymentMethod}. Sender: {$senderNumber}, TrxID/Ref: {$trxId}" 
+                    : "Single Module {$seminar->id} Enrollment. Method: {$paymentMethod}. Sender: {$senderNumber}, TrxID/Ref: {$trxId}",
             ]);
 
             // Email acknowledgement
@@ -383,6 +401,10 @@ class SeminarController extends Controller
 
         $seminar = $registration->seminar;
         $defaultBkashNumber = SiteSetting::get('seminar_bkash_number', '01722531335');
+        $bankAccountName = SiteSetting::get('seminar_bank_account_name', 'Md. Abul Bashar');
+        $bankAccountNumber = SiteSetting::get('seminar_bank_account_number', '1221030213784');
+        $bankBranch = SiteSetting::get('seminar_bank_branch', 'DEPZ Branch');
+        $bankName = SiteSetting::get('seminar_bank_name', 'Dutch-Bangla Bank PLC (DBBL)');
 
         $siblingRegistrations = SeminarRegistration::with('seminar')
             ->where('email', $registration->email)
@@ -391,7 +413,16 @@ class SeminarController extends Controller
             ->where('transaction_id', $registration->transaction_id)
             ->get();
 
-        return view('pages.seminars.confirmation', compact('registration', 'seminar', 'defaultBkashNumber', 'siblingRegistrations'));
+        return view('pages.seminars.confirmation', compact(
+            'registration', 
+            'seminar', 
+            'defaultBkashNumber', 
+            'bankAccountName', 
+            'bankAccountNumber', 
+            'bankBranch', 
+            'bankName', 
+            'siblingRegistrations'
+        ));
     }
 
     /**

@@ -88,11 +88,11 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-4">
                     <div>
                         <label class="block text-xs font-bold uppercase text-[#00245A] mb-1">Primary Payment Method</label>
-                        <input type="text" name="seminar_payment_method" value="{{ $settings['seminar_payment_method'] ?? 'bKash' }}"
+                        <input type="text" name="seminar_payment_method" value="{{ $settings['seminar_payment_method'] ?? 'bKash / Nagad / Bank Transfer' }}"
                                class="w-full px-3.5 py-2.5 border-2 border-[#00245A] rounded-lg text-sm">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold uppercase text-[#00245A] mb-1">Official bKash / Payment Number</label>
+                        <label class="block text-xs font-bold uppercase text-[#00245A] mb-1">bKash / Nagad Official Number</label>
                         <input type="text" name="seminar_bkash_number" value="{{ $settings['seminar_bkash_number'] ?? '01722531335' }}"
                                class="w-full px-3.5 py-2.5 border-2 border-[#0085FF] bg-blue-50/40 rounded-lg text-sm font-bold text-[#00245A]">
                     </div>
@@ -100,6 +100,33 @@
                         <label class="block text-xs font-bold uppercase text-[#00245A] mb-1">Account Type / Channel</label>
                         <input type="text" name="seminar_bkash_type" value="{{ $settings['seminar_bkash_type'] ?? 'Personal (Send Money)' }}"
                                class="w-full px-3.5 py-2.5 border-2 border-[#00245A] rounded-lg text-sm">
+                    </div>
+                </div>
+
+                {{-- Bank Transfer Settings --}}
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 mb-4 space-y-3">
+                    <span class="text-xs font-black uppercase text-[#00245A] tracking-wider block">Official Bank Account Information</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                        <div>
+                            <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Bank Name</label>
+                            <input type="text" name="seminar_bank_name" value="{{ $settings['seminar_bank_name'] ?? 'Dutch-Bangla Bank PLC (DBBL)' }}"
+                                   class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs font-semibold">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Account Name</label>
+                            <input type="text" name="seminar_bank_account_name" value="{{ $settings['seminar_bank_account_name'] ?? 'Md. Abul Bashar' }}"
+                                   class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs font-semibold">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Account Number (A/C)</label>
+                            <input type="text" name="seminar_bank_account_number" value="{{ $settings['seminar_bank_account_number'] ?? '1221030213784' }}"
+                                   class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs font-mono font-bold text-[#00245A]">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Branch Name</label>
+                            <input type="text" name="seminar_bank_branch" value="{{ $settings['seminar_bank_branch'] ?? 'DEPZ Branch' }}"
+                                   class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs font-semibold">
+                        </div>
                     </div>
                 </div>
 
