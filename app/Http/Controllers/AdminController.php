@@ -269,50 +269,66 @@ class AdminController extends Controller
         return array_values(array_unique($items));
     }
 
-    // --- Consultants ---
+    // --- Consultants / Career Leaders ---
     public function consultants()
     {
-        $consultants = Consultant::with('availabilities')->orderBy('sort_order')->paginate(15);
+        $consultants = Consultant::orderBy('sort_order')->paginate(15);
         return view('admin.consultants.index', compact('consultants'));
     }
 
     public function storeConsultant(Request $request)
     {
+        if ($request->has('years_of_experience') && !$request->has('experience_years')) {
+            $request->merge(['experience_years' => $request->years_of_experience]);
+        }
+        if ($request->has('hourly_rate_bdt') && !$request->has('hourly_rate')) {
+            $request->merge(['hourly_rate' => $request->hourly_rate_bdt]);
+        }
+
         $validated = $request->validate([
             'name' => 'required|string|max:150',
             'title' => 'required|string|max:150',
             'specialization' => 'required|string|max:150',
+            'current_company' => 'nullable|string|max:150',
             'qualifications' => 'nullable|string|max:200',
             'experience_years' => 'required|integer|min:0|max:50',
             'bio' => 'nullable|string',
             'hourly_rate' => 'nullable|numeric|min:0',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
             'is_featured' => 'boolean',
         ]);
 
         $validated['slug'] = Str::slug($validated['name']);
+        if (Consultant::where('slug', $validated['slug'])->exists()) {
+            $validated['slug'] .= '-' . time();
+        }
+
+        if ($request->hasFile('avatar')) {
+            $file = $request->file('avatar');
+            $filename = 'consultant_' . time() . '_' . Str::random(6) . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('images/consultants'), $filename);
+            $validated['avatar'] = '/images/consultants/' . $filename;
+        }
+
+        $validated['hourly_rate'] = $validated['hourly_rate'] ?? 1000.00;
         $validated['is_featured'] = $request->boolean('is_featured');
         $validated['is_active'] = true;
 
-        $consultant = Consultant::create($validated);
+        Consultant::create($validated);
 
-        // Add standard availability
-        foreach ([0, 2, 4] as $day) {
-            ConsultantAvailability::create([
-                'consultant_id' => $consultant->id,
-                'day_of_week' => $day,
-                'start_time' => '17:00:00',
-                'end_time' => '21:00:00',
-                'slot_duration_minutes' => 30,
-                'is_active' => true,
-            ]);
-        }
-
-        return back()->with('success', 'Consultant added successfully!');
+        return back()->with('success', 'Career leader added successfully!');
     }
 
     public function updateConsultant(Request $request, $id)
     {
         $consultant = Consultant::findOrFail($id);
+
+        if ($request->has('years_of_experience') && !$request->has('experience_years')) {
+            $request->merge(['experience_years' => $request->years_of_experience]);
+        }
+        if ($request->has('hourly_rate_bdt') && !$request->has('hourly_rate')) {
+            $request->merge(['hourly_rate' => $request->hourly_rate_bdt]);
+        }
 
         $validated = $request->validate([
             'name' => 'required|string|max:150',
@@ -325,6 +341,7 @@ class AdminController extends Controller
             'hourly_rate' => 'nullable|numeric|min:0',
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
             'is_featured' => 'boolean',
+            'is_active' => 'nullable|boolean',
         ]);
 
         if ($request->hasFile('avatar')) {
@@ -335,10 +352,23 @@ class AdminController extends Controller
         }
 
         $validated['is_featured'] = $request->boolean('is_featured');
+        if ($request->has('is_active')) {
+            $validated['is_active'] = $request->boolean('is_active');
+        }
 
         $consultant->update(array_filter($validated, fn($val) => !is_null($val)));
 
-        return back()->with('success', 'Consultant profile and photo updated successfully!');
+        return back()->with('success', 'Career leader profile updated successfully!');
+    }
+
+    public function deleteConsultant($id)
+    {
+        $consultant = Consultant::findOrFail($id);
+        $name = $consultant->name;
+        $consultant->availabilities()->delete();
+        $consultant->delete();
+
+        return back()->with('success', "Career leader '{$name}' deleted successfully.");
     }
 
     // --- Exam Questions ---

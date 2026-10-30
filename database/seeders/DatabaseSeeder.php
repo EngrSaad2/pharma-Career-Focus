@@ -528,7 +528,7 @@ class DatabaseSeeder extends Seeder
                 'avatar' => null,
                 'bio' => 'MD Abul Bashar is the Founder and Lead Consultant of Pharma Career Compass. A licensed pharmacist registered with the Pharmacy Council of Bangladesh, he brings over 15 years of industrial experience across plant operations, cGMP compliance, validation, and professional development in Bangladesh\'s top pharmaceutical companies. He founded Pharma Career Compass to bridge the gap between academic pharmacy education and industrial recruitment benchmarks, guiding hundreds of graduates into rewarding roles at Square, Incepta, Beximco, Renata, and multinational manufacturers.',
                 'areas_of_expertise' => ['GMP & Plant Regulatory Compliance', 'Recruitment Written Exam Prep', 'Technical Viva & Interview Coaching', 'Career Ladder Strategy'],
-                'hourly_rate' => 1500.00,
+                'hourly_rate' => 1000.00,
                 'rating' => 5.00,
                 'reviews_count' => 186,
                 'consultation_types' => ['Career Planning Consultation', 'Job Interview Preparation', 'One to One Mentorship', 'Written Exam Preparation'],
@@ -536,82 +536,28 @@ class DatabaseSeeder extends Seeder
                 'sort_order' => 1,
             ],
             [
-                'user_id' => $consultantUser->id,
-                'name' => 'Prof. Dr. Farhana Chowdhury',
-                'slug' => 'prof-dr-farhana-chowdhury',
-                'title' => 'Head of Regulatory Affairs & Global Dossier Expert',
-                'current_company' => 'Senior Regulatory Affairs Consultant, Ex-Incepta & Square',
-                'specialization' => 'Regulatory Affairs, CTD/eCTD & Pharmacovigilance',
-                'qualifications' => 'B.Pharm, M.Pharm, Certified Regulatory Affairs Professional (RAC)',
-                'experience_years' => 20,
+                'user_id' => null,
+                'name' => 'Shah Sharfin',
+                'slug' => 'shah-sharfin',
+                'title' => 'AGM and Head of QA',
+                'current_company' => 'Leading Pharmaceutical Industry',
+                'specialization' => 'Quality Assurance & cGMP Operations',
+                'qualifications' => 'B.Pharm (Hons), M.Pharm, Registered Pharmacist',
+                'experience_years' => 15,
                 'avatar' => null,
-                'bio' => 'With 20 years guiding regulatory filings in over 45 countries, Dr. Farhana specializes in grooming pharmacists for global regulatory strategy, clinical dossier preparation, and DGDA liaison roles.',
-                'areas_of_expertise' => ['CTD & eCTD Dossiers', 'ICH Guidelines', 'CV & LinkedIn Strategy', 'Technical Viva Coaching'],
-                'hourly_rate' => 1200.00,
-                'rating' => 4.95,
-                'reviews_count' => 112,
-                'consultation_types' => ['Career Planning Consultation', 'CV and LinkedIn Review', 'Viva and Oral Examination Preparation'],
+                'bio' => 'Shah Sharfin is an Assistant General Manager (AGM) and Head of Quality Assurance with over 15 years of proven pharmaceutical industry leadership. Expert in Quality Management Systems (QMS), cGMP compliance, regulatory audits, deviation management, CAPA, and mentoring pharmacy graduates for technical excellence.',
+                'areas_of_expertise' => ['Quality Management Systems (QMS)', 'cGMP Compliance & Audits', 'Deviation & CAPA Investigation', 'Technical Viva Mentorship'],
+                'hourly_rate' => 1000.00,
+                'rating' => 5.00,
+                'reviews_count' => 142,
+                'consultation_types' => ['Quality Assurance Consultation', 'Technical Viva Coaching', 'Career Ladder Strategy'],
                 'is_featured' => true,
                 'sort_order' => 2,
-            ],
-            [
-                'user_id' => null,
-                'name' => 'Kazi Ahsanul Karim, M.Pharm',
-                'slug' => 'kazi-ahsanul-karim',
-                'title' => 'Senior QC & Analytical Instrumentation Specialist',
-                'current_company' => 'Senior Analytical QC Specialist, Ex-Beximco & Renata',
-                'specialization' => 'Quality Control, HPLC/GC Troubleshooting & Method Validation',
-                'qualifications' => 'B.Pharm (Hons), M.Pharm in Pharmaceutical Chemistry (JU)',
-                'experience_years' => 12,
-                'avatar' => null,
-                'bio' => 'Specializing in analytical QC, stability testing, and laboratory compliance. Kazi Ahsanul has trained dozens of fresh graduates in mastering HPLC operation, method validation, and written exam tests.',
-                'areas_of_expertise' => ['HPLC & GC Analysis', 'Written Exam Prep', 'GLP & Data Integrity', 'QC Technical Vivas'],
-                'hourly_rate' => 1000.00,
-                'rating' => 4.92,
-                'reviews_count' => 89,
-                'consultation_types' => ['Written Exam Preparation', 'Viva and Oral Examination Preparation', 'Job Interview Preparation'],
-                'is_featured' => true,
-                'sort_order' => 3,
-            ],
-            [
-                'user_id' => null,
-                'name' => 'Tahmina Akhter, RPh',
-                'slug' => 'tahmina-akhter',
-                'title' => 'Senior Brand Manager (PMD) & Medical Marketing Consultant',
-                'current_company' => 'Senior Product Management (PMD) Lead, Ex-Healthcare & ACI',
-                'specialization' => 'Product Management (PMD), Medical Affairs & Commercial Strategy',
-                'qualifications' => 'B.Pharm (DU), MBA in Marketing (IBA)',
-                'experience_years' => 10,
-                'avatar' => null,
-                'bio' => 'Tahmina combines deep pharmaceutical science with commercial brand building. She coaches pharmacy graduates on breaking into Product Management (PMD), medical marketing, and communication leadership.',
-                'areas_of_expertise' => ['Product Management (PMD)', 'Medical Science Liaison (MSL)', 'Presentation & Communication', 'Brand Strategy Vivas'],
-                'hourly_rate' => 800.00,
-                'rating' => 4.98,
-                'reviews_count' => 76,
-                'consultation_types' => ['Career Planning Consultation', 'Job Interview Preparation', 'Pharmaceutical Industry Insights'],
-                'is_featured' => true,
-                'sort_order' => 4,
             ],
         ];
 
         foreach ($consultantsData as $cData) {
-            $consultant = Consultant::updateOrCreate(['slug' => $cData['slug']], $cData);
-
-            // Add Availabilities for Sunday (0), Tuesday (2), Thursday (4), Saturday (6)
-            foreach ([0, 2, 4, 6] as $day) {
-                ConsultantAvailability::firstOrCreate(
-                    [
-                        'consultant_id' => $consultant->id,
-                        'day_of_week' => $day,
-                    ],
-                    [
-                        'start_time' => '17:00:00',
-                        'end_time' => '21:00:00',
-                        'slot_duration_minutes' => 30,
-                        'is_active' => true,
-                    ]
-                );
-            }
+            Consultant::updateOrCreate(['slug' => $cData['slug']], $cData);
         }
 
         // 6. Career Assessment Questions

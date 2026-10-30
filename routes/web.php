@@ -161,6 +161,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/consultants', [AdminController::class, 'consultants'])->name('consultants');
     Route::post('/consultants', [AdminController::class, 'storeConsultant'])->name('consultants.store');
     Route::post('/consultants/{id}', [AdminController::class, 'updateConsultant'])->name('consultants.update');
+    Route::delete('/consultants/{id}', [AdminController::class, 'deleteConsultant'])->name('consultants.delete');
+    Route::delete('/consultants/{id}/destroy', [AdminController::class, 'deleteConsultant'])->name('consultants.destroy');
 
     // Exams
     Route::get('/exams', [AdminController::class, 'exams'])->name('exams');
