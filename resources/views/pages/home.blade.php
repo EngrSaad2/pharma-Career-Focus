@@ -716,15 +716,11 @@
                         @endif
                     </div>
 
-                    <!-- Bottom Price and Actions -->
+                    <!-- Bottom Actions -->
                     <div class="pt-6 mt-6 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                        <div>
-                            <span class="text-[10px] text-slate-400 uppercase tracking-wider block font-medium">Session Fee</span>
-                            <div class="flex items-baseline gap-1">
-                                <span class="text-xl font-extrabold text-slate-900 tabular-nums">৳{{ number_format($consultant->hourly_rate, 0) }}</span>
-                                <span class="text-xs text-slate-500 font-normal">BDT / session</span>
-                            </div>
-                        </div>
+                        <span class="text-xs font-semibold text-slate-500">
+                            1-on-1 Advisory & Mentorship
+                        </span>
 
                         <div class="flex items-center gap-2.5">
                             <a href="{{ route('consultants.show', $consultant->slug) }}" class="btn-secondary text-xs py-2.5 px-3.5 font-semibold rounded-xl">
