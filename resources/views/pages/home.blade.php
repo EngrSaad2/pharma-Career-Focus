@@ -360,10 +360,10 @@
                         </div>
 
                         <!-- Avatar + Header Info -->
-                        <div class="flex items-start gap-4 sm:gap-5 mb-5">
+                        <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 mb-5">
                             <div class="relative shrink-0">
                                 @if($consultant->avatar)
-                                    <img src="{{ asset($consultant->avatar) }}" alt="{{ $consultant->name }}" class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover object-top border-2 border-white shadow-md ring-1 ring-slate-200">
+                                    <img src="{{ asset($consultant->avatar) }}" alt="{{ $consultant->name }}" class="w-40 h-40 sm:w-48 sm:h-48 rounded-2xl object-cover object-top border-2 border-white shadow-md ring-1 ring-slate-200">
                                 @else
                                     @php
                                         $words = explode(' ', preg_replace('/[^a-zA-Z\s]/', '', $consultant->name));
@@ -377,12 +377,12 @@
                                             $initials = strtoupper(substr($consultant->name, 0, 2));
                                         }
                                     @endphp
-                                    <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-br from-slate-50 to-slate-100 border border-slate-200 text-slate-800 flex flex-col items-center justify-center shadow-xs">
-                                        <span class="font-extrabold text-2xl sm:text-3xl tracking-tight text-slate-700">{{ $initials }}</span>
-                                        <span class="text-[9px] uppercase tracking-wider text-slate-400 font-medium mt-0.5">Leader</span>
+                                    <div class="w-40 h-40 sm:w-48 sm:h-48 rounded-2xl bg-gradient-to-br from-slate-50 to-slate-100 border border-slate-200 text-slate-800 flex flex-col items-center justify-center shadow-xs">
+                                        <span class="font-extrabold text-3xl sm:text-4xl tracking-tight text-slate-700">{{ $initials }}</span>
+                                        <span class="text-[10px] uppercase tracking-wider text-slate-400 font-medium mt-1">Leader</span>
                                     </div>
                                 @endif
-                                <div class="absolute -bottom-2 -right-1 bg-emerald-600 text-white text-[9px] font-bold px-2 py-0.5 rounded-full shadow-xs flex items-center gap-1">
+                                <div class="absolute -bottom-2 -right-1 bg-emerald-600 text-white text-[9px] font-bold px-2.5 py-1 rounded-full shadow-xs flex items-center gap-1">
                                     <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
                                     <span>Verified</span>
                                 </div>

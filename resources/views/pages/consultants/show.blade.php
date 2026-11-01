@@ -21,11 +21,11 @@
             <div class="lg:col-span-8 space-y-8">
                 <!-- Profile Header Card -->
                 <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-2xs space-y-4">
-                    <div class="flex flex-col sm:flex-row sm:items-center gap-5">
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-6">
                         @if($consultant->avatar)
-                            <img src="{{ asset($consultant->avatar) }}" alt="{{ $consultant->name }}" class="w-24 h-24 rounded-2xl object-cover object-top border border-slate-200 shadow-2xs shrink-0">
+                            <img src="{{ asset($consultant->avatar) }}" alt="{{ $consultant->name }}" class="w-40 h-40 sm:w-48 sm:h-48 rounded-2xl object-cover object-top border-2 border-white shadow-md ring-1 ring-slate-200 shrink-0">
                         @else
-                            <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-slate-100 border border-slate-200 text-slate-800 flex items-center justify-center font-semibold text-xl sm:text-2xl shrink-0 tracking-wider">
+                            <div class="w-40 h-40 sm:w-48 sm:h-48 rounded-2xl bg-slate-100 border border-slate-200 text-slate-800 flex items-center justify-center font-bold text-3xl sm:text-4xl shrink-0 tracking-wider">
                                 {{ substr($consultant->name, 0, 2) }}
                             </div>
                         @endif

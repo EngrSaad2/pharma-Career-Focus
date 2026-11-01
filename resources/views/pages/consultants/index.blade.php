@@ -57,9 +57,9 @@
                     <div>
                         <div class="flex items-start justify-between gap-4 mb-4">
                             @if($consultant->avatar)
-                                <img src="{{ asset($consultant->avatar) }}" alt="{{ $consultant->name }}" class="w-14 h-14 rounded-xl object-cover shrink-0 shadow-2xs border border-slate-200">
+                                <img src="{{ asset($consultant->avatar) }}" alt="{{ $consultant->name }}" class="w-20 h-20 rounded-xl object-cover object-top shrink-0 shadow-2xs border border-slate-200">
                             @else
-                                <div class="w-12 h-12 rounded-xl bg-slate-100 border border-slate-200 text-slate-800 flex items-center justify-center font-semibold text-sm shrink-0 tracking-wider">
+                                <div class="w-20 h-20 rounded-xl bg-slate-100 border border-slate-200 text-slate-800 flex items-center justify-center font-bold text-lg shrink-0 tracking-wider">
                                     {{ substr($consultant->name, 0, 2) }}
                                 </div>
                             @endif
