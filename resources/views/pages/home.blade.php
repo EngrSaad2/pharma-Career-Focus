@@ -311,8 +311,152 @@
     </div>
 </section>
 
+<!-- Mentors & Consultants Directory (All Leaders Side by Side) -->
+<section id="consultants" class="py-20 bg-white border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+            <div class="max-w-2xl text-left">
+                <span class="text-xs font-bold uppercase tracking-widest text-[#0085FF] bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
+                    Expert Advisory Panel
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-[#00245A] mt-3">
+                    Consult with Pharmaceutical Industry Leaders
+                </h2>
+                <p class="text-sm sm:text-base text-slate-600 mt-2">
+                    Our advisors bring decades of verified experience across Quality Assurance, Regulatory Affairs, Analytical QC, and Plant Operations.
+                </p>
+            </div>
+            <div class="mt-4 md:mt-0 flex items-center gap-2">
+                <span class="inline-flex items-center gap-2 text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-3.5 py-1.5 rounded-full">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span>{{ $consultants->count() }} Senior Industry Leaders</span>
+                </span>
+            </div>
+        </div>
+
+        <!-- Career Leaders Side by Side Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+            @foreach($consultants as $consultant)
+                <div class="bg-white rounded-3xl border border-slate-200 hover:border-slate-300 shadow-2xs hover:shadow-md transition-all p-6 sm:p-8 flex flex-col justify-between text-left relative overflow-hidden">
+                    <div>
+                        <!-- Top Badge Row -->
+                        <div class="flex items-center justify-between gap-3 mb-6">
+                            @if(str_contains(strtolower($consultant->title), 'founder') || str_contains(strtolower($consultant->name), 'bashar'))
+                                <span class="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
+                                    Founder & Lead Advisor
+                                </span>
+                            @else
+                                <span class="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+                                    {{ $consultant->title }}
+                                </span>
+                            @endif
+
+                            <span class="text-xs font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full border border-slate-200">
+                                {{ $consultant->experience_years }}+ Years Exp.
+                            </span>
+                        </div>
+
+                        <!-- Avatar + Header Info -->
+                        <div class="flex items-start gap-4 sm:gap-5 mb-5">
+                            <div class="relative shrink-0">
+                                @if($consultant->avatar)
+                                    <img src="{{ asset($consultant->avatar) }}" alt="{{ $consultant->name }}" class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover object-top border-2 border-white shadow-md ring-1 ring-slate-200">
+                                @else
+                                    @php
+                                        $words = explode(' ', preg_replace('/[^a-zA-Z\s]/', '', $consultant->name));
+                                        $initials = '';
+                                        foreach (array_filter($words) as $w) {
+                                            if (in_array(strtoupper($w), ['MD', 'RPH', 'DR', 'PROF'])) continue;
+                                            $initials .= strtoupper(substr($w, 0, 1));
+                                            if (strlen($initials) >= 2) break;
+                                        }
+                                        if (empty($initials)) {
+                                            $initials = strtoupper(substr($consultant->name, 0, 2));
+                                        }
+                                    @endphp
+                                    <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-br from-slate-50 to-slate-100 border border-slate-200 text-slate-800 flex flex-col items-center justify-center shadow-xs">
+                                        <span class="font-extrabold text-2xl sm:text-3xl tracking-tight text-slate-700">{{ $initials }}</span>
+                                        <span class="text-[9px] uppercase tracking-wider text-slate-400 font-medium mt-0.5">Leader</span>
+                                    </div>
+                                @endif
+                                <div class="absolute -bottom-2 -right-1 bg-emerald-600 text-white text-[9px] font-bold px-2 py-0.5 rounded-full shadow-xs flex items-center gap-1">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
+                                    <span>Verified</span>
+                                </div>
+                            </div>
+
+                            <div class="min-w-0 flex-1">
+                                <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight leading-snug">
+                                    {{ $consultant->name }}
+                                </h3>
+                                <div class="text-xs sm:text-sm font-semibold text-[#0085FF] mt-0.5">
+                                    {{ $consultant->title }}
+                                </div>
+                                <div class="text-xs text-slate-500 mt-1 font-medium">
+                                    {{ $consultant->current_company ?? 'Leading Pharmaceutical Industry' }}
+                                </div>
+                                @if($consultant->qualifications)
+                                    <div class="text-[11px] text-slate-400 mt-0.5 font-normal truncate">
+                                        {{ $consultant->qualifications }}
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+
+                        <!-- Specialization Badge -->
+                        @if($consultant->specialization)
+                            <div class="mb-4">
+                                <span class="text-[11px] font-semibold text-slate-700 bg-slate-100 border border-slate-200 px-2.5 py-1 rounded-lg inline-block">
+                                    {{ $consultant->specialization }}
+                                </span>
+                            </div>
+                        @endif
+
+                        <!-- Bio -->
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4 line-clamp-4">
+                            “{{ $consultant->bio }}”
+                        </p>
+
+                        <!-- Areas of Expertise Tags -->
+                        @if(!empty($consultant->areas_of_expertise))
+                            <div class="flex flex-wrap gap-1.5 mb-2">
+                                @foreach(array_slice($consultant->areas_of_expertise, 0, 4) as $area)
+                                    <span class="text-[11px] bg-blue-50/70 text-blue-900 border border-blue-100 px-2.5 py-0.5 rounded-md font-medium">
+                                        {{ $area }}
+                                    </span>
+                                @endforeach
+                            </div>
+                        @endif
+                    </div>
+
+                    <!-- Bottom Actions -->
+                    <div class="pt-6 mt-6 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <span class="text-xs font-semibold text-slate-500">
+                            1-on-1 Advisory & Mentorship
+                        </span>
+
+                        <div class="flex items-center gap-2.5">
+                            <a href="{{ route('consultants.show', $consultant->slug) }}" class="btn-secondary text-xs py-2.5 px-3.5 font-semibold rounded-xl">
+                                View Full Profile
+                            </a>
+                            <a href="{{ route('booking.create', ['consultant_id' => $consultant->id]) }}" class="bg-slate-900 hover:bg-black text-white text-xs font-semibold py-2.5 px-4 rounded-xl shadow-2xs transition-colors flex items-center gap-1.5">
+                                <span>Book Consultation</span>
+                                <span>&rarr;</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+
+    </div>
+</section>
+
 <!-- Career Path Exploration Section (11 Pharmaceutical Sectors) -->
-<section id="career-paths" class="py-20 bg-white border-b border-slate-100">
+<section id="career-paths" class="py-20 bg-slate-50/60 border-b border-slate-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
@@ -590,150 +734,6 @@
                     </a>
                 </div>
             </div>
-        </div>
-
-    </div>
-</section>
-
-<!-- Mentors & Consultants Directory (All Leaders Side by Side) -->
-<section id="consultants" class="py-20 bg-slate-50/60 border-b border-slate-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
-            <div class="max-w-2xl text-left">
-                <span class="text-xs font-bold uppercase tracking-widest text-[#0085FF] bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
-                    Expert Advisory Panel
-                </span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-[#00245A] mt-3">
-                    Consult with Pharmaceutical Industry Leaders
-                </h2>
-                <p class="text-sm sm:text-base text-slate-600 mt-2">
-                    Our advisors bring decades of verified experience across Quality Assurance, Regulatory Affairs, Analytical QC, and Plant Operations.
-                </p>
-            </div>
-            <div class="mt-4 md:mt-0 flex items-center gap-2">
-                <span class="inline-flex items-center gap-2 text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-3.5 py-1.5 rounded-full">
-                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <span>{{ $consultants->count() }} Senior Industry Leaders</span>
-                </span>
-            </div>
-        </div>
-
-        <!-- Career Leaders Side by Side Grid -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-            @foreach($consultants as $consultant)
-                <div class="bg-white rounded-3xl border border-slate-200 hover:border-slate-300 shadow-2xs hover:shadow-md transition-all p-6 sm:p-8 flex flex-col justify-between text-left relative overflow-hidden">
-                    <div>
-                        <!-- Top Badge Row -->
-                        <div class="flex items-center justify-between gap-3 mb-6">
-                            @if(str_contains(strtolower($consultant->title), 'founder') || str_contains(strtolower($consultant->name), 'bashar'))
-                                <span class="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
-                                    Founder & Lead Advisor
-                                </span>
-                            @else
-                                <span class="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
-                                    {{ $consultant->title }}
-                                </span>
-                            @endif
-
-                            <span class="text-xs font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full border border-slate-200">
-                                {{ $consultant->experience_years }}+ Years Exp.
-                            </span>
-                        </div>
-
-                        <!-- Avatar + Header Info -->
-                        <div class="flex items-start gap-4 sm:gap-5 mb-5">
-                            <div class="relative shrink-0">
-                                @if($consultant->avatar)
-                                    <img src="{{ asset($consultant->avatar) }}" alt="{{ $consultant->name }}" class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover object-top border-2 border-white shadow-md ring-1 ring-slate-200">
-                                @else
-                                    @php
-                                        $words = explode(' ', preg_replace('/[^a-zA-Z\s]/', '', $consultant->name));
-                                        $initials = '';
-                                        foreach (array_filter($words) as $w) {
-                                            if (in_array(strtoupper($w), ['MD', 'RPH', 'DR', 'PROF'])) continue;
-                                            $initials .= strtoupper(substr($w, 0, 1));
-                                            if (strlen($initials) >= 2) break;
-                                        }
-                                        if (empty($initials)) {
-                                            $initials = strtoupper(substr($consultant->name, 0, 2));
-                                        }
-                                    @endphp
-                                    <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-br from-slate-50 to-slate-100 border border-slate-200 text-slate-800 flex flex-col items-center justify-center shadow-xs">
-                                        <span class="font-extrabold text-2xl sm:text-3xl tracking-tight text-slate-700">{{ $initials }}</span>
-                                        <span class="text-[9px] uppercase tracking-wider text-slate-400 font-medium mt-0.5">Leader</span>
-                                    </div>
-                                @endif
-                                <div class="absolute -bottom-2 -right-1 bg-emerald-600 text-white text-[9px] font-bold px-2 py-0.5 rounded-full shadow-xs flex items-center gap-1">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
-                                    <span>Verified</span>
-                                </div>
-                            </div>
-
-                            <div class="min-w-0 flex-1">
-                                <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight leading-snug">
-                                    {{ $consultant->name }}
-                                </h3>
-                                <div class="text-xs sm:text-sm font-semibold text-[#0085FF] mt-0.5">
-                                    {{ $consultant->title }}
-                                </div>
-                                <div class="text-xs text-slate-500 mt-1 font-medium">
-                                    {{ $consultant->current_company ?? 'Leading Pharmaceutical Industry' }}
-                                </div>
-                                @if($consultant->qualifications)
-                                    <div class="text-[11px] text-slate-400 mt-0.5 font-normal truncate">
-                                        {{ $consultant->qualifications }}
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
-
-                        <!-- Specialization Badge -->
-                        @if($consultant->specialization)
-                            <div class="mb-4">
-                                <span class="text-[11px] font-semibold text-slate-700 bg-slate-100 border border-slate-200 px-2.5 py-1 rounded-lg inline-block">
-                                    {{ $consultant->specialization }}
-                                </span>
-                            </div>
-                        @endif
-
-                        <!-- Bio -->
-                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4 line-clamp-4">
-                            “{{ $consultant->bio }}”
-                        </p>
-
-                        <!-- Areas of Expertise Tags -->
-                        @if(!empty($consultant->areas_of_expertise))
-                            <div class="flex flex-wrap gap-1.5 mb-2">
-                                @foreach(array_slice($consultant->areas_of_expertise, 0, 4) as $area)
-                                    <span class="text-[11px] bg-blue-50/70 text-blue-900 border border-blue-100 px-2.5 py-0.5 rounded-md font-medium">
-                                        {{ $area }}
-                                    </span>
-                                @endforeach
-                            </div>
-                        @endif
-                    </div>
-
-                    <!-- Bottom Actions -->
-                    <div class="pt-6 mt-6 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                        <span class="text-xs font-semibold text-slate-500">
-                            1-on-1 Advisory & Mentorship
-                        </span>
-
-                        <div class="flex items-center gap-2.5">
-                            <a href="{{ route('consultants.show', $consultant->slug) }}" class="btn-secondary text-xs py-2.5 px-3.5 font-semibold rounded-xl">
-                                View Full Profile
-                            </a>
-                            <a href="{{ route('booking.create', ['consultant_id' => $consultant->id]) }}" class="bg-slate-900 hover:bg-black text-white text-xs font-semibold py-2.5 px-4 rounded-xl shadow-2xs transition-colors flex items-center gap-1.5">
-                                <span>Book Consultation</span>
-                                <span>&rarr;</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
         </div>
 
     </div>
