@@ -655,4 +655,20 @@ class AdminSeminarController extends Controller
 
         return response()->stream($callback, 200, $headers);
     }
+
+    /**
+     * Toggle module price visibility & payment gateway on public booking.
+     */
+    public function togglePricing()
+    {
+        $current = SiteSetting::get('module_price_enabled', '0') === '1';
+        $newState = $current ? '0' : '1';
+        SiteSetting::set('module_price_enabled', $newState);
+
+        $statusText = $newState === '1'
+            ? 'Module pricing enabled! ৳1,000 fee and payment options are now active on checkout.'
+            : 'Free mode enabled! Price is now crossed out with "Free" and payment options are hidden.';
+
+        return back()->with('success', $statusText);
+    }
 }

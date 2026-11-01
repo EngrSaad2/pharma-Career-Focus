@@ -37,6 +37,51 @@
         </div>
     @endif
 
+    {{-- Module Pricing & Payment Gateway Toggle Card --}}
+    <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-2xs flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="flex items-start sm:items-center gap-3.5">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center font-black text-xl shrink-0 {{ $modulePriceEnabled ? 'bg-blue-50 text-[#0085FF]' : 'bg-emerald-50 text-emerald-600' }}">
+                {{ $modulePriceEnabled ? '💳' : '🎁' }}
+            </div>
+            <div>
+                <div class="flex items-center gap-2 flex-wrap">
+                    <h3 class="text-sm font-extrabold text-[#00245A]">Module Pricing & Checkout Mode:</h3>
+                    @if($modulePriceEnabled)
+                        <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-blue-100 text-blue-800 border border-blue-200">
+                            <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
+                            Price 1000 ON (Payment Active)
+                        </span>
+                    @else
+                        <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-emerald-100 text-emerald-800 border border-emerald-200">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+                            Price OFF (Crossed with "Free" & Payment Hidden)
+                        </span>
+                    @endif
+                </div>
+                <p class="text-xs text-slate-500 mt-1">
+                    @if($modulePriceEnabled)
+                        Current state: <strong>Toggle is ON</strong>. Public booking displays <strong>৳1,000 BDT</strong> fee and requests bKash, Nagad, or DBBL payment verification.
+                    @else
+                        Current state: <strong>Toggle is OFF (Default)</strong>. Public booking displays price crossed out with <strong>"Free"</strong> (<span class="line-through text-slate-400">৳1,000</span> <strong class="text-emerald-600">Free</strong>) and payment options are completely hidden.
+                    @endif
+                </p>
+            </div>
+        </div>
+
+        {{-- Toggle Action Form --}}
+        <form action="{{ route('admin.seminars.toggle-pricing') }}" method="POST" class="shrink-0">
+            @csrf
+            <button type="submit" 
+                    class="px-4 py-2.5 rounded-xl font-bold text-xs shadow-xs transition flex items-center gap-2 cursor-pointer {{ $modulePriceEnabled ? 'bg-slate-900 hover:bg-black text-white' : 'bg-emerald-600 hover:bg-emerald-700 text-white' }}">
+                @if($modulePriceEnabled)
+                    <span>Turn OFF &rarr; Hide Payment (Show "Free")</span>
+                @else
+                    <span>Turn ON &rarr; Show Price 1000 & Payment</span>
+                @endif
+            </button>
+        </form>
+    </div>
+
     {{-- Key Metrics Cards --}}
     <div class="grid grid-cols-2 lg:grid-cols-6 gap-3 sm:gap-4">
         {{-- Total Seminars --}}

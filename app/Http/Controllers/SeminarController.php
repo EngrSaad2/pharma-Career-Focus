@@ -126,7 +126,9 @@ class SeminarController extends Controller
             return back()->with('error', 'Spam submission detected.');
         }
 
-        $validated = $request->validate([
+        $isPriceEnabled = SiteSetting::get('module_price_enabled', '0') === '1';
+
+        $rules = [
             'modules' => 'required|array|min:1',
             'modules.*' => 'in:1,2',
             'full_name' => 'required|string|max:150',
@@ -135,11 +137,20 @@ class SeminarController extends Controller
             'organization' => 'nullable|string|max:150',
             'designation' => 'nullable|string|max:150',
             'payment_method' => 'nullable|string|max:100',
-            'sender_number' => 'required|string|max:100',
-            'transaction_id' => 'required|string|max:100',
-            'payment_screenshot' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
             'terms_agreed' => 'required|accepted',
-        ], [
+        ];
+
+        if ($isPriceEnabled) {
+            $rules['sender_number'] = 'required|string|max:100';
+            $rules['transaction_id'] = 'required|string|max:100';
+            $rules['payment_screenshot'] = 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120';
+        } else {
+            $rules['sender_number'] = 'nullable|string|max:100';
+            $rules['transaction_id'] = 'nullable|string|max:100';
+            $rules['payment_screenshot'] = 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120';
+        }
+
+        $validated = $request->validate($rules, [
             'modules.required' => 'Please select at least one module (Module 1, Module 2, or Both).',
             'sender_number.required' => 'Please provide your bKash / Nagad mobile number or depositing bank account.',
             'transaction_id.required' => 'Please enter the bKash / Nagad Transaction ID (TrxID) or Bank Reference Number.',
@@ -160,8 +171,12 @@ class SeminarController extends Controller
         }
 
         $email = strtolower(trim($validated['email']));
-        $trxId = strtoupper(trim($validated['transaction_id']));
-        $senderNumber = trim($validated['sender_number']);
+        $trxId = !empty($validated['transaction_id']) 
+            ? strtoupper(trim($validated['transaction_id'])) 
+            : ($isPriceEnabled ? null : 'FREE-' . strtoupper(Str::random(6)));
+        $senderNumber = !empty($validated['sender_number']) 
+            ? trim($validated['sender_number']) 
+            : ($isPriceEnabled ? null : 'Free Registration');
         $createdRegistrations = [];
 
         foreach ($validated['modules'] as $moduleId) {
@@ -183,9 +198,22 @@ class SeminarController extends Controller
             } while (SeminarRegistration::where('registration_reference', $reference)->exists());
 
             $isFull = $seminar->isFull();
-            $regStatus = $isFull ? 'waitlisted' : 'pending_verification';
+            $regStatus = $isFull ? 'waitlisted' : ($isPriceEnabled ? 'pending_verification' : 'confirmed');
+            $amountPayable = $isPriceEnabled ? 1000.00 : 0.00;
+            $paymentMethod = $isPriceEnabled 
+                ? ($validated['payment_method'] ?? SiteSetting::get('seminar_payment_method', 'bKash / Nagad'))
+                : 'Free Admission';
+            $paymentStatus = $isPriceEnabled ? 'pending' : 'verified';
 
-            $paymentMethod = $validated['payment_method'] ?? SiteSetting::get('seminar_payment_method', 'bKash / Nagad');
+            if ($isPriceEnabled) {
+                $adminNotes = count($validated['modules']) > 1 
+                    ? "2-Module Enrollment (Module {$seminar->id} of 2). Method: {$paymentMethod}. Sender: {$senderNumber}, TrxID/Ref: {$trxId}" 
+                    : "Single Module {$seminar->id} Enrollment. Method: {$paymentMethod}. Sender: {$senderNumber}, TrxID/Ref: {$trxId}";
+            } else {
+                $adminNotes = count($validated['modules']) > 1 
+                    ? "Free Admission Enrollment (Module {$seminar->id} of 2). Fee Waived (Free Mode Active)." 
+                    : "Free Admission Enrollment (Module {$seminar->id}). Fee Waived (Free Mode Active).";
+            }
 
             $registration = SeminarRegistration::create([
                 'registration_reference' => $reference,
@@ -196,16 +224,14 @@ class SeminarController extends Controller
                 'organization' => $validated['organization'] ?? null,
                 'designation' => $validated['designation'] ?? null,
                 'participation_type' => 'online',
-                'amount_payable' => 1000.00,
+                'amount_payable' => $amountPayable,
                 'payment_method' => $paymentMethod,
                 'transaction_id' => $trxId,
                 'sender_number' => $senderNumber,
                 'payment_proof' => $screenshotPath,
-                'payment_status' => 'pending',
+                'payment_status' => $paymentStatus,
                 'registration_status' => $regStatus,
-                'admin_notes' => count($validated['modules']) > 1 
-                    ? "2-Module Enrollment (Module {$seminar->id} of 2). Method: {$paymentMethod}. Sender: {$senderNumber}, TrxID/Ref: {$trxId}" 
-                    : "Single Module {$seminar->id} Enrollment. Method: {$paymentMethod}. Sender: {$senderNumber}, TrxID/Ref: {$trxId}",
+                'admin_notes' => $adminNotes,
             ]);
 
             // Email acknowledgement
@@ -228,9 +254,15 @@ class SeminarController extends Controller
         }
 
         $firstReg = $createdRegistrations[0];
-        $message = count($createdRegistrations) > 1 
-            ? "Seat reservation submitted successfully for both Module 1 and Module 2! Reference codes: {$createdRegistrations[0]->registration_reference} and {$createdRegistrations[1]->registration_reference}."
-            : "Seat reservation submitted successfully for {$firstReg->seminar->title}! Reference code: {$firstReg->registration_reference}.";
+        if ($isPriceEnabled) {
+            $message = count($createdRegistrations) > 1 
+                ? "Seat reservation submitted successfully for both Module 1 and Module 2! Reference codes: {$createdRegistrations[0]->registration_reference} and {$createdRegistrations[1]->registration_reference}."
+                : "Seat reservation submitted successfully for {$firstReg->seminar->title}! Reference code: {$firstReg->registration_reference}.";
+        } else {
+            $message = count($createdRegistrations) > 1 
+                ? "🎉 Free seat reserved successfully for both Module 1 and Module 2! Admission passes: {$createdRegistrations[0]->registration_reference} and {$createdRegistrations[1]->registration_reference}."
+                : "🎉 Free seat reserved successfully for {$firstReg->seminar->title}! Admission pass: {$firstReg->registration_reference}.";
+        }
 
         return redirect()->route('seminars.confirmation', $firstReg->registration_reference)
             ->with('success', $message);

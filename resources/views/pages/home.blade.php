@@ -185,7 +185,14 @@
                 <div class="p-6 sm:p-8 bg-slate-50/80 border-t border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                     <div>
                         <span class="text-[11px] text-slate-400 block font-medium">Session Fee</span>
-                        <span class="text-xl font-black text-[#00245A]">BDT 1,000 <span class="text-xs font-normal text-slate-500">/ session</span></span>
+                        @if($modulePriceEnabled)
+                            <span class="text-xl font-black text-[#00245A]">BDT 1,000 <span class="text-xs font-normal text-slate-500">/ session</span></span>
+                        @else
+                            <span class="text-xl font-black text-[#00245A] flex items-baseline gap-1.5">
+                                <span class="line-through text-slate-400 text-sm font-semibold">BDT 1,000</span>
+                                <span class="text-emerald-600 font-black">Free</span>
+                            </span>
+                        @endif
                     </div>
                     <div class="flex items-stretch gap-2 w-full sm:w-auto">
                         <a href="{{ route('seminars.show', 'module-1-career-in-pharmaceutical-industrial-operations') }}" class="btn-secondary text-xs px-4 py-2.5 font-bold flex-1 sm:flex-none text-center flex items-center justify-center" style="min-height: 48px;">
@@ -266,7 +273,14 @@
                 <div class="p-6 sm:p-8 bg-slate-50/80 border-t border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                     <div>
                         <span class="text-[11px] text-slate-400 block font-medium">Session Fee</span>
-                        <span class="text-xl font-black text-[#00245A]">BDT 1,000 <span class="text-xs font-normal text-slate-500">/ session</span></span>
+                        @if($modulePriceEnabled)
+                            <span class="text-xl font-black text-[#00245A]">BDT 1,000 <span class="text-xs font-normal text-slate-500">/ session</span></span>
+                        @else
+                            <span class="text-xl font-black text-[#00245A] flex items-baseline gap-1.5">
+                                <span class="line-through text-slate-400 text-sm font-semibold">BDT 1,000</span>
+                                <span class="text-emerald-600 font-black">Free</span>
+                            </span>
+                        @endif
                     </div>
                     <div class="flex items-stretch gap-2 w-full sm:w-auto">
                         <a href="{{ route('seminars.show', 'module-2-career-in-pharmaceutical-marketing') }}" class="btn-secondary text-xs px-4 py-2.5 font-bold flex-1 sm:flex-none text-center flex items-center justify-center" style="min-height: 48px;">

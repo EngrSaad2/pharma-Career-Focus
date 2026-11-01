@@ -8,12 +8,17 @@
      style="background-color: #f8fafc !important;"
      x-data="{
         selectedModules: {{ $preselected === '1' ? "['1']" : ($preselected === '2' ? "['2']" : "['1', '2']") }},
-        pricePerModule: 1000,
+        pricePerModule: {{ $modulePriceEnabled ? 1000 : 0 }},
+        originalPrice: 1000,
+        isPriceEnabled: {{ $modulePriceEnabled ? 'true' : 'false' }},
         paymentChannel: 'bkash_nagad',
         copiedNumber: false,
         copiedBankAcc: false,
         get totalAmount() {
             return this.selectedModules.length * this.pricePerModule;
+        },
+        get totalOriginalAmount() {
+            return this.selectedModules.length * this.originalPrice;
         },
         isModuleSelected(id) {
             return this.selectedModules.includes(String(id));
@@ -70,7 +75,12 @@
                     Book Seminars Seat
                 </h1>
                 <p class="text-sm sm:text-base text-blue-100/90 mt-2.5 leading-relaxed font-normal">
-                    Building Your Future in the Pharmaceutical Industry. Live interactive cohorts conducted every <strong>Friday and Saturday</strong>. Select one or both modules to reserve your seat (BDT 1,000 per module).
+                    Building Your Future in the Pharmaceutical Industry. Live interactive cohorts conducted every <strong>Friday and Saturday</strong>. 
+                    @if($modulePriceEnabled)
+                        Select one or both modules to reserve your seat (BDT 1,000 per module).
+                    @else
+                        Select one or both modules to reserve your seat (<span class="line-through opacity-75">BDT 1,000</span> <strong class="text-[#FFCD00]">Free Registration</strong>).
+                    @endif
                 </p>
 
                 <div class="flex flex-wrap items-center gap-4 mt-5 text-xs text-blue-200">
@@ -184,7 +194,14 @@
                         <div class="pt-3 border-t border-slate-200/80 flex items-center justify-between">
                             <div>
                                 <span class="text-[10px] uppercase font-bold text-slate-400 block">Registration Fee</span>
-                                <span class="text-lg font-black text-[#00245A]">৳1,000 <span class="text-xs font-normal text-slate-500">BDT</span></span>
+                                @if($modulePriceEnabled)
+                                    <span class="text-lg font-black text-[#00245A]">৳1,000 <span class="text-xs font-normal text-slate-500">BDT</span></span>
+                                @else
+                                    <span class="text-lg font-black text-[#00245A] flex items-baseline gap-1.5">
+                                        <span class="line-through text-slate-400 text-sm font-semibold">৳1,000</span>
+                                        <span class="text-emerald-600 font-black">Free</span>
+                                    </span>
+                                @endif
                             </div>
                             <span class="text-xs font-bold" :class="isModuleSelected('1') ? 'text-[#0085FF]' : 'text-slate-400'">
                                 <span x-text="isModuleSelected('1') ? '✓ Selected' : '+ Click to Select'"></span>
@@ -233,7 +250,14 @@
                         <div class="pt-3 border-t border-slate-200/80 flex items-center justify-between">
                             <div>
                                 <span class="text-[10px] uppercase font-bold text-slate-400 block">Registration Fee</span>
-                                <span class="text-lg font-black text-[#00245A]">৳1,000 <span class="text-xs font-normal text-slate-500">BDT</span></span>
+                                @if($modulePriceEnabled)
+                                    <span class="text-lg font-black text-[#00245A]">৳1,000 <span class="text-xs font-normal text-slate-500">BDT</span></span>
+                                @else
+                                    <span class="text-lg font-black text-[#00245A] flex items-baseline gap-1.5">
+                                        <span class="line-through text-slate-400 text-sm font-semibold">৳1,000</span>
+                                        <span class="text-emerald-600 font-black">Free</span>
+                                    </span>
+                                @endif
                             </div>
                             <span class="text-xs font-bold" :class="isModuleSelected('2') ? 'text-[#0085FF]' : 'text-slate-400'">
                                 <span x-text="isModuleSelected('2') ? '✓ Selected' : '+ Click to Select'"></span>
@@ -264,9 +288,16 @@
 
                     <div class="text-center sm:text-right shrink-0">
                         <span class="text-[10px] font-bold uppercase tracking-wider block" style="color: #94a3b8 !important;">Total Investment</span>
-                        <div class="text-2xl sm:text-3xl font-black" style="color: #FFCD00 !important;">
-                            ৳<span x-text="totalAmount.toLocaleString()"></span> <span class="text-xs font-normal text-white">BDT</span>
-                        </div>
+                        @if($modulePriceEnabled)
+                            <div class="text-2xl sm:text-3xl font-black" style="color: #FFCD00 !important;">
+                                ৳<span x-text="totalAmount.toLocaleString()"></span> <span class="text-xs font-normal text-white">BDT</span>
+                            </div>
+                        @else
+                            <div class="text-2xl sm:text-3xl font-black flex items-baseline justify-center sm:justify-end gap-2" style="color: #FFCD00 !important;">
+                                <span class="line-through text-blue-200 text-sm sm:text-base font-semibold">৳<span x-text="totalOriginalAmount.toLocaleString()"></span></span>
+                                <span class="text-emerald-400 font-black">Free</span>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -350,10 +381,15 @@
                 {{-- Mode Notice --}}
                 <div class="p-3.5 rounded-xl bg-sky-50 border border-sky-200 text-sky-900 text-xs font-semibold flex items-center gap-2.5">
                     <span class="text-base">🌐</span>
-                    <span>These sessions are conducted <strong>Online (Live Interactive via Google Meet)</strong>. You will receive joining coordinates automatically upon bKash payment verification.</span>
+                    @if($modulePriceEnabled)
+                        <span>These sessions are conducted <strong>Online (Live Interactive via Google Meet)</strong>. You will receive joining coordinates automatically upon payment verification.</span>
+                    @else
+                        <span>These sessions are conducted <strong>Online (Live Interactive via Google Meet)</strong>. You will receive joining coordinates automatically upon instant seat reservation.</span>
+                    @endif
                 </div>
             </div>
 
+            @if($modulePriceEnabled)
             {{-- ========================================================================= --}}
             {{-- STEP 3: PAYMENT & VERIFICATION (BKASH / NAGAD / BANK TRANSFER) --}}
             {{-- ========================================================================= --}}
@@ -595,6 +631,67 @@
                 </div>
 
             </div>
+            @else
+            {{-- ========================================================================= --}}
+            {{-- STEP 3: FREE SEAT CONFIRMATION (PAYMENT OPTIONS COMPLETELY HIDDEN) --}}
+            {{-- ========================================================================= --}}
+            <div class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8 space-y-6">
+                <div class="pb-4 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div>
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-600 block">Step 3</span>
+                        <h2 class="text-lg sm:text-xl font-black text-[#00245A]">Seat Reservation & Confirmation</h2>
+                    </div>
+                    <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-bold">
+                        <span>🎁 Complimentary Free Admission</span>
+                    </div>
+                </div>
+
+                {{-- Free Registration Announcement Box --}}
+                <div class="rounded-2xl p-5 sm:p-6 space-y-2 shadow-xs" style="background-color: #ecfdf5 !important; border: 2px solid #a7f3d0 !important;">
+                    <div class="flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-black text-xl shrink-0 shadow-xs">
+                            ✓
+                        </span>
+                        <div>
+                            <h3 class="text-base font-black text-emerald-950">Free Admission Promo Active — No Payment Required!</h3>
+                            <p class="text-xs text-emerald-800/90 leading-relaxed mt-0.5">
+                                For this cohort, module fees (<span class="line-through opacity-70">৳1,000 / Module</span>) are 100% waived. Payment options are disabled. Simply agree to attend and confirm your seat below.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Terms Checkbox --}}
+                <div class="pt-2">
+                    <label class="flex items-start gap-3 cursor-pointer">
+                        <input type="checkbox" 
+                               name="terms_agreed" 
+                               value="1" 
+                               {{ old('terms_agreed') ? 'checked' : '' }} 
+                               required 
+                               class="w-4 h-4 mt-0.5 rounded text-emerald-600 focus:ring-emerald-500">
+                        <span class="text-xs text-slate-600 leading-relaxed">
+                            I confirm that I will attend the live interactive online seminar sessions and agree to Pharma Career Compass code of conduct.
+                        </span>
+                    </label>
+                </div>
+
+                {{-- Submit Button --}}
+                <div class="pt-2">
+                    <button type="submit" 
+                            style="white-space: nowrap !important;" 
+                            class="w-full py-4 px-6 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-base shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer">
+                        <span style="white-space: nowrap;">
+                            Book Seminars Seat • Free Registration (<span class="line-through text-emerald-200 text-xs font-semibold mr-1">৳<span x-text="totalOriginalAmount.toLocaleString()"></span></span> Free)
+                        </span>
+                        <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </button>
+                    <p class="text-center text-[11px] text-slate-400 mt-3">
+                        🔒 Instant Confirmation. Your official admission pass will be displayed immediately upon submission.
+                    </p>
+                </div>
+            </div>
+            @endif
 
         </form>
 

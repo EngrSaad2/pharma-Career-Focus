@@ -85,6 +85,29 @@
             <!-- Seminar & Payment Management Configuration -->
             <div class="border-b border-[#00245A]/10 pb-6">
                 <h3 class="text-base font-black text-[#00245A] mb-4">Seminar & Payment Gateway Configuration</h3>
+
+                {{-- Module Pricing & Checkout Mode Toggle --}}
+                <div class="p-4 rounded-xl {{ ($settings['module_price_enabled'] ?? '0') === '1' ? 'bg-blue-50/70 border-blue-200' : 'bg-emerald-50/70 border-emerald-200' }} border mb-5 shadow-2xs">
+                    <label class="flex items-start gap-3 cursor-pointer">
+                        <input type="hidden" name="module_price_enabled" value="0">
+                        <input type="checkbox" name="module_price_enabled" value="1" 
+                               {{ ($settings['module_price_enabled'] ?? '0') === '1' ? 'checked' : '' }} 
+                               class="w-5 h-5 mt-0.5 rounded text-[#0085FF] focus:ring-[#0085FF]">
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <strong class="text-xs sm:text-sm font-bold text-[#00245A]">Enable Module Price 1000 & Payment Gateway</strong>
+                                <span class="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full {{ ($settings['module_price_enabled'] ?? '0') === '1' ? 'bg-blue-200 text-blue-900' : 'bg-emerald-200 text-emerald-900' }}">
+                                    {{ ($settings['module_price_enabled'] ?? '0') === '1' ? 'Currently ON (৳1,000)' : 'Currently OFF (Free Mode - Default)' }}
+                                </span>
+                            </div>
+                            <p class="text-[11px] text-slate-600 mt-1 leading-relaxed">
+                                • When <strong>ON</strong>: Price 1000 will show with payment options (bKash / Nagad / Bank Transfer).<br>
+                                • When <strong>OFF (Default)</strong>: Price will show as crossed out with "Free" (<span class="line-through text-slate-400">৳1,000</span> <strong class="text-emerald-700">Free</strong>) and payment options will be completely hidden.
+                            </p>
+                        </div>
+                    </label>
+                </div>
+
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-4">
                     <div>
                         <label class="block text-xs font-bold uppercase text-[#00245A] mb-1">Primary Payment Method</label>

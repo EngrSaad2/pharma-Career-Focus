@@ -96,7 +96,14 @@
                             </div>
                             <div>
                                 <span class="text-slate-400 block mb-0.5">Registration Fee</span>
-                                <strong class="text-emerald-700 font-bold block">৳{{ number_format($seminar->registration_fee, 0) }} BDT</strong>
+                                @if($modulePriceEnabled)
+                                    <strong class="text-emerald-700 font-bold block">৳{{ number_format($seminar->registration_fee, 0) }} BDT</strong>
+                                @else
+                                    <div class="flex items-baseline gap-1">
+                                        <span class="line-through text-slate-400 text-xs font-semibold">৳{{ number_format($seminar->registration_fee, 0) }}</span>
+                                        <strong class="text-emerald-700 font-bold">Free</strong>
+                                    </div>
+                                @endif
                             </div>
                             <div>
                                 <span class="text-slate-400 block mb-0.5">Seat Availability</span>
@@ -212,11 +219,19 @@
                     {{-- Price Tag --}}
                     <div class="mb-5 pb-5 border-b border-slate-100">
                         <span class="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">Registration Fee</span>
-                        <div class="flex items-baseline gap-2">
-                            <span class="text-3xl sm:text-4xl font-extrabold text-[#00245A]">৳{{ number_format($seminar->registration_fee, 0) }}</span>
-                            <span class="text-sm font-bold text-slate-500">BDT</span>
-                        </div>
-                        <span class="text-[11px] text-slate-400 mt-1 block">Payable via bKash Personal / Send Money</span>
+                        @if($modulePriceEnabled)
+                            <div class="flex items-baseline gap-2">
+                                <span class="text-3xl sm:text-4xl font-extrabold text-[#00245A]">৳{{ number_format($seminar->registration_fee, 0) }}</span>
+                                <span class="text-sm font-bold text-slate-500">BDT</span>
+                            </div>
+                            <span class="text-[11px] text-slate-400 mt-1 block">Payable via bKash / Nagad / DBBL Bank</span>
+                        @else
+                            <div class="flex items-baseline gap-2">
+                                <span class="line-through text-slate-400 text-xl font-bold">৳{{ number_format($seminar->registration_fee, 0) }}</span>
+                                <span class="text-3xl sm:text-4xl font-extrabold text-emerald-600">Free</span>
+                            </div>
+                            <span class="text-[11px] text-emerald-700 font-semibold mt-1 block">Complimentary Free Admission</span>
+                        @endif
                     </div>
 
                     {{-- Available Seats Status --}}
@@ -266,7 +281,8 @@
                         @endif
                     </div>
 
-                    {{-- Quick Payment Snippet --}}
+                    {{-- Quick Payment Snippet (Only when Module Pricing is enabled) --}}
+                    @if($modulePriceEnabled)
                     <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-xs text-slate-700">
                         <div class="font-bold text-[#00245A] mb-1.5 flex items-center justify-between">
                             <span>Payment Options</span>
@@ -300,6 +316,7 @@
                             Submit your Transaction ID or Bank Ref during booking to verify your seat reservation.
                         </p>
                     </div>
+                    @endif
 
                     {{-- Facebook Post/Event Link --}}
                     @if($seminar->facebook_url)

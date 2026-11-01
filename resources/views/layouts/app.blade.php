@@ -140,10 +140,18 @@
             <div class="animate-marquee whitespace-nowrap flex items-center gap-8 tracking-wide">
                 <span>• &nbsp; Registration Open: Pharmaceutical Career Development Program</span>
                 <span>• &nbsp; Module 1: Industrial Operations & Module 2: Pharmaceutical Marketing</span>
-                <span>• &nbsp; Online Sessions Every Friday & Saturday (BDT 1,000 / Session)</span>
+                @if($modulePriceEnabled)
+                    <span>• &nbsp; Online Sessions Every Friday & Saturday (BDT 1,000 / Session)</span>
+                @else
+                    <span>• &nbsp; Online Sessions Every Friday & Saturday (Free Registration)</span>
+                @endif
                 <span>• &nbsp; Registration Open: Pharmaceutical Career Development Program</span>
                 <span>• &nbsp; Module 1: Industrial Operations & Module 2: Pharmaceutical Marketing</span>
-                <span>• &nbsp; Online Sessions Every Friday & Saturday (BDT 1,000 / Session)</span>
+                @if($modulePriceEnabled)
+                    <span>• &nbsp; Online Sessions Every Friday & Saturday (BDT 1,000 / Session)</span>
+                @else
+                    <span>• &nbsp; Online Sessions Every Friday & Saturday (Free Registration)</span>
+                @endif
             </div>
         </div>
     </div>

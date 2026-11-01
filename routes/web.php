@@ -198,6 +198,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
     // Seminars & Workshops Management
     Route::get('/seminars', [AdminSeminarController::class, 'index'])->name('seminars.index');
+    Route::post('/seminars/toggle-pricing', [AdminSeminarController::class, 'togglePricing'])->name('seminars.toggle-pricing');
     Route::get('/seminars/create', [AdminSeminarController::class, 'create'])->name('seminars.create');
     Route::post('/seminars', [AdminSeminarController::class, 'store'])->name('seminars.store');
     Route::get('/seminars/{id}/edit', [AdminSeminarController::class, 'edit'])->name('seminars.edit');

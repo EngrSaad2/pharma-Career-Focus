@@ -4,8 +4,9 @@ namespace Tests\Feature;
 
 use App\Models\Seminar;
 use App\Models\SeminarRegistration;
+use App\Models\SiteSetting;
+use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class SeminarSeatBookingTest extends TestCase
@@ -20,8 +21,55 @@ class SeminarSeatBookingTest extends TestCase
         $response->assertDontSee('Book a Consultation');
     }
 
-    public function test_seminars_book_page_displays_two_modules_with_friday_and_saturday_dates(): void
+    public function test_default_mode_is_off_and_shows_free_with_crossed_price_and_hidden_payment(): void
     {
+        SiteSetting::set('module_price_enabled', '0');
+
+        $response = $this->get('/seminars/book');
+        $response->assertStatus(200);
+        $response->assertSee('Book Seminars Seat');
+        $response->assertSee('Module 1: Career in Pharmaceutical Industrial Operations');
+        $response->assertSee('Module 2: Career in Pharmaceutical Marketing');
+        $response->assertSee('line-through', false);
+        $response->assertSee('Free');
+        // Payment options must be completely hidden
+        $response->assertDontSee('Official bKash / Nagad Account');
+        $response->assertDontSee('bKash / Nagad Sender Mobile Number');
+        $response->assertDontSee('DBBL Account Number (A/C)');
+        $response->assertSee('Complimentary Free Admission');
+    }
+
+    public function test_can_register_for_free_when_toggle_is_off(): void
+    {
+        SiteSetting::set('module_price_enabled', '0');
+
+        $email = 'free.' . uniqid() . '@example.com';
+
+        $response = $this->post('/seminars/book', [
+            'modules' => ['1'],
+            'full_name' => 'Tasnim Ahmed',
+            'email' => $email,
+            'phone' => '01711223344',
+            'organization' => 'University of Dhaka',
+            'designation' => '4th Year B.Pharm',
+            'terms_agreed' => '1',
+        ]);
+
+        $response->assertRedirect();
+
+        $registration = SeminarRegistration::where('email', $email)->first();
+        $this->assertNotNull($registration);
+        $this->assertEquals(1, $registration->seminar_id);
+        $this->assertEquals('0.00', $registration->amount_payable);
+        $this->assertEquals('Free Admission', $registration->payment_method);
+        $this->assertEquals('verified', $registration->payment_status);
+        $this->assertEquals('confirmed', $registration->registration_status);
+    }
+
+    public function test_seminars_book_page_displays_price_and_payment_options_when_toggle_is_on(): void
+    {
+        SiteSetting::set('module_price_enabled', '1');
+
         $response = $this->get('/seminars/book');
         $response->assertStatus(200);
         $response->assertSee('Book Seminars Seat');
@@ -45,8 +93,9 @@ class SeminarSeatBookingTest extends TestCase
         $response->assertRedirect('/seminars/book');
     }
 
-    public function test_can_book_single_module_with_bkash_payment(): void
+    public function test_can_book_single_module_with_bkash_payment_when_on(): void
     {
+        SiteSetting::set('module_price_enabled', '1');
         $trxId = 'TEST' . strtoupper(substr(md5(uniqid()), 0, 6));
 
         $response = $this->post('/seminars/book', [
@@ -71,8 +120,9 @@ class SeminarSeatBookingTest extends TestCase
         $this->assertEquals('pending_verification', $registration->registration_status);
     }
 
-    public function test_can_book_both_modules_with_bkash_payment(): void
+    public function test_can_book_both_modules_with_bkash_payment_when_on(): void
     {
+        SiteSetting::set('module_price_enabled', '1');
         $trxId = 'DUAL' . strtoupper(substr(md5(uniqid()), 0, 6));
         $email = 'dual.' . uniqid() . '@example.com';
 
@@ -104,8 +154,9 @@ class SeminarSeatBookingTest extends TestCase
         }
     }
 
-    public function test_can_book_module_with_dbbl_bank_transfer(): void
+    public function test_can_book_module_with_dbbl_bank_transfer_when_on(): void
     {
+        SiteSetting::set('module_price_enabled', '1');
         $slipRef = 'DBBL-DEPZ-' . strtoupper(substr(md5(uniqid()), 0, 8));
         $email = 'bank.' . uniqid() . '@example.com';
 
@@ -131,6 +182,18 @@ class SeminarSeatBookingTest extends TestCase
         $this->assertEquals('Bank Transfer (DBBL)', $registration->payment_method);
         $this->assertEquals('Md. Tariqul Islam (DBBL A/C: 110.120.9876)', $registration->sender_number);
         $this->assertEquals('pending_verification', $registration->registration_status);
+    }
+
+    public function test_admin_can_toggle_module_pricing(): void
+    {
+        $admin = User::where('role', 'admin')->first() ?? User::factory()->create(['role' => 'admin']);
+
+        SiteSetting::set('module_price_enabled', '0');
+        $this->actingAs($admin)->post('/admin/seminars/toggle-pricing');
+        $this->assertEquals('1', SiteSetting::get('module_price_enabled'));
+
+        $this->actingAs($admin)->post('/admin/seminars/toggle-pricing');
+        $this->assertEquals('0', SiteSetting::get('module_price_enabled'));
     }
 }
 

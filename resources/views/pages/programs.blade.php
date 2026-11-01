@@ -43,7 +43,14 @@
             </div>
             <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-center shadow-xs">
                 <div class="text-xs text-slate-500 uppercase font-bold tracking-wider">Fee</div>
-                <div class="text-sm sm:text-base font-black text-[#0085FF] mt-1">৳1,000 / Session</div>
+                @if($modulePriceEnabled)
+                    <div class="text-sm sm:text-base font-black text-[#0085FF] mt-1">৳1,000 / Session</div>
+                @else
+                    <div class="text-sm sm:text-base font-black text-[#0085FF] mt-1 flex items-baseline justify-center gap-1.5">
+                        <span class="line-through text-slate-400 text-xs font-semibold">৳1,000</span>
+                        <span class="text-emerald-600 font-black">Free</span>
+                    </div>
+                @endif
             </div>
         </div>
 
@@ -183,7 +190,14 @@
                 <div class="p-6 sm:p-8 bg-slate-50/80 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
                     <div>
                         <div class="text-xs text-slate-500 font-medium">Session Fee</div>
-                        <div class="text-xl font-black text-[#00245A]">BDT 1,000 <span class="text-xs font-normal text-slate-500">/ session</span></div>
+                        @if($modulePriceEnabled)
+                            <div class="text-xl font-black text-[#00245A]">BDT 1,000 <span class="text-xs font-normal text-slate-500">/ session</span></div>
+                        @else
+                            <div class="text-xl font-black text-[#00245A] flex items-baseline gap-1.5">
+                                <span class="line-through text-slate-400 text-sm font-semibold">BDT 1,000</span>
+                                <span class="text-emerald-600 font-black">Free</span>
+                            </div>
+                        @endif
                     </div>
                     <div class="flex items-stretch gap-2 w-full sm:w-auto">
                         <a href="{{ route('seminars.show', 'module-1-career-in-pharmaceutical-industrial-operations') }}" class="flex-1 sm:flex-none text-center px-4 py-2.5 rounded-xl border border-slate-300 text-xs font-bold text-slate-700 hover:bg-white transition-colors flex items-center justify-center" style="min-height: 48px;">
@@ -290,7 +304,14 @@
                 <div class="p-6 sm:p-8 bg-slate-50/80 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
                     <div>
                         <div class="text-xs text-slate-500 font-medium">Session Fee</div>
-                        <div class="text-xl font-black text-[#00245A]">BDT 1,000 <span class="text-xs font-normal text-slate-500">/ session</span></div>
+                        @if($modulePriceEnabled)
+                            <div class="text-xl font-black text-[#00245A]">BDT 1,000 <span class="text-xs font-normal text-slate-500">/ session</span></div>
+                        @else
+                            <div class="text-xl font-black text-[#00245A] flex items-baseline gap-1.5">
+                                <span class="line-through text-slate-400 text-sm font-semibold">BDT 1,000</span>
+                                <span class="text-emerald-600 font-black">Free</span>
+                            </div>
+                        @endif
                     </div>
                     <div class="flex items-stretch gap-2 w-full sm:w-auto">
                         <a href="{{ route('seminars.show', 'module-2-career-in-pharmaceutical-marketing') }}" class="flex-1 sm:flex-none text-center px-4 py-2.5 rounded-xl border border-slate-300 text-xs font-bold text-slate-700 hover:bg-white transition-colors flex items-center justify-center" style="min-height: 48px;">
@@ -355,8 +376,16 @@
                     </div>
                     <div>
                         <div class="text-xs font-bold uppercase tracking-wider text-slate-400">Registration Fee</div>
-                        <div class="text-lg font-extrabold text-emerald-700 mt-0.5">BDT 1,000 per Session</div>
-                        <div class="text-xs text-slate-500 mt-1">Transparent pricing payable via bKash with instant verification.</div>
+                        @if($modulePriceEnabled)
+                            <div class="text-lg font-extrabold text-emerald-700 mt-0.5">BDT 1,000 per Session</div>
+                            <div class="text-xs text-slate-500 mt-1">Transparent pricing payable via bKash with instant verification.</div>
+                        @else
+                            <div class="text-lg font-extrabold text-emerald-700 mt-0.5 flex items-baseline gap-1.5">
+                                <span class="line-through text-slate-400 text-sm font-semibold">BDT 1,000</span>
+                                <span class="text-emerald-700 font-extrabold">Free Admission</span>
+                            </div>
+                            <div class="text-xs text-slate-500 mt-1">Complimentary registration for this cohort. No payment required.</div>
+                        @endif
                     </div>
                 </div>
 
