@@ -319,7 +319,6 @@
                                required 
                                placeholder="your.email@example.com" 
                                class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-[#0085FF] focus:border-transparent">
-                        <span class="text-[11px] text-slate-400 mt-1 block">Your official admission ticket and session Google Meet link will be sent here.</span>
                     </div>
 
                     <div>
@@ -332,7 +331,6 @@
                                required 
                                placeholder="e.g. 017XXXXXXXX" 
                                class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-[#0085FF] focus:border-transparent">
-                        <span class="text-[11px] text-slate-400 mt-1 block">Used for SMS / WhatsApp session reminders and logistical updates.</span>
                     </div>
                 </div>
 
