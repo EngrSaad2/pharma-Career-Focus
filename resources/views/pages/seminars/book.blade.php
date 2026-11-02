@@ -74,16 +74,8 @@
                 <h1 class="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight leading-tight">
                     Book Seminars Seat
                 </h1>
-                <p class="text-sm sm:text-base text-blue-100/90 mt-3 leading-relaxed font-normal">
-                    Building Your Future in the Pharmaceutical Industry. Live interactive cohorts conducted every <strong>Friday and Saturday</strong>. 
-                    @if($modulePriceEnabled)
-                        Select one or both modules to reserve your seat (BDT 1,000 per module).
-                    @else
-                        Select one or both modules to reserve your seat (<span class="line-through opacity-75">BDT 1,000</span> <strong class="text-[#FFCD00]">Free Registration</strong>).
-                    @endif
-                </p>
 
-                <div class="flex flex-wrap items-center gap-2.5 sm:gap-4 mt-7 sm:mt-8 text-xs text-blue-200">
+                <div class="flex flex-wrap items-center gap-2.5 sm:gap-4 mt-6 text-xs text-blue-200">
                     <span class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl" style="background-color: #003882 !important; color: #ffffff !important;">
                         📅 <strong>Session Days:</strong> Friday & Saturday
                     </span>
