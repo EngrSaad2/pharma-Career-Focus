@@ -268,32 +268,23 @@
                 </div>
 
                 {{-- Live Selection & Pricing Bar (Solid Background) --}}
-                <div class="rounded-2xl p-5 sm:p-6 text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-md"
+                <div class="rounded-2xl p-5 sm:p-6 text-white flex items-center justify-between gap-4 shadow-md"
                      style="background-color: #00245A !important; color: #ffffff !important;">
-                    <div class="flex items-center gap-3.5">
-                        <div class="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 text-xl shadow-xs" style="background-color: #003882 !important;">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 text-xl shadow-xs" style="background-color: #003882 !important;">
                             🎟️
                         </div>
-                        <div>
-                            <div class="text-xs font-semibold" style="color: #cbd5e1 !important;">
-                                Currently Selected: <strong class="font-black text-white" x-text="selectedModules.length + ' Module(s)'"></strong>
-                            </div>
-                            <div class="text-xs font-bold mt-1" style="color: #FFCD00 !important;">
-                                <span x-show="selectedModules.length === 2">Full 2-Day Track (Friday & Saturday sessions)</span>
-                                <span x-show="selectedModules.length === 1 && selectedModules.includes('1')">Module 1 only (Friday Industrial Operations session)</span>
-                                <span x-show="selectedModules.length === 1 && selectedModules.includes('2')">Module 2 only (Saturday Marketing session)</span>
-                            </div>
-                        </div>
+                        <span class="text-sm font-bold text-white tracking-wide">Admission & Total Fee</span>
                     </div>
 
-                    <div class="text-center sm:text-right shrink-0">
+                    <div class="text-right shrink-0">
                         <span class="text-[10px] font-bold uppercase tracking-wider block" style="color: #94a3b8 !important;">Total Investment</span>
                         @if($modulePriceEnabled)
                             <div class="text-2xl sm:text-3xl font-black" style="color: #FFCD00 !important;">
                                 ৳<span x-text="totalAmount.toLocaleString()"></span> <span class="text-xs font-normal text-white">BDT</span>
                             </div>
                         @else
-                            <div class="text-2xl sm:text-3xl font-black flex items-baseline justify-center sm:justify-end gap-2" style="color: #FFCD00 !important;">
+                            <div class="text-2xl sm:text-3xl font-black flex items-baseline justify-end gap-2" style="color: #FFCD00 !important;">
                                 <span class="line-through text-blue-200 text-sm sm:text-base font-semibold">৳<span x-text="totalOriginalAmount.toLocaleString()"></span></span>
                                 <span class="text-emerald-400 font-black">Free</span>
                             </div>
@@ -376,16 +367,6 @@
                                placeholder="e.g. 4th Year B.Pharm / QA Executive" 
                                class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-[#0085FF] focus:border-transparent">
                     </div>
-                </div>
-
-                {{-- Mode Notice --}}
-                <div class="p-3.5 rounded-xl bg-sky-50 border border-sky-200 text-sky-900 text-xs font-semibold flex items-center gap-2.5">
-                    <span class="text-base">🌐</span>
-                    @if($modulePriceEnabled)
-                        <span>These sessions are conducted <strong>Online (Live Interactive via Google Meet)</strong>. You will receive joining coordinates automatically upon payment verification.</span>
-                    @else
-                        <span>These sessions are conducted <strong>Online (Live Interactive via Google Meet)</strong>. You will receive joining coordinates automatically upon instant seat reservation.</span>
-                    @endif
                 </div>
             </div>
 
@@ -647,17 +628,12 @@
                 </div>
 
                 {{-- Free Registration Announcement Box --}}
-                <div class="rounded-2xl p-5 sm:p-6 space-y-2 shadow-xs" style="background-color: #ecfdf5 !important; border: 2px solid #a7f3d0 !important;">
+                <div class="rounded-2xl p-4 sm:p-5 shadow-xs" style="background-color: #ecfdf5 !important; border: 2px solid #a7f3d0 !important;">
                     <div class="flex items-center gap-3">
-                        <span class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-black text-xl shrink-0 shadow-xs">
+                        <span class="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-black text-lg shrink-0 shadow-xs">
                             ✓
                         </span>
-                        <div>
-                            <h3 class="text-base font-black text-emerald-950">Free Admission Promo Active — No Payment Required!</h3>
-                            <p class="text-xs text-emerald-800/90 leading-relaxed mt-0.5">
-                                For this cohort, module fees (<span class="line-through opacity-70">৳1,000 / Module</span>) are 100% waived. Payment options are disabled. Simply agree to attend and confirm your seat below.
-                            </p>
-                        </div>
+                        <h3 class="text-sm sm:text-base font-black text-emerald-950">Free Admission Promo Active — No Payment Required!</h3>
                     </div>
                 </div>
 
