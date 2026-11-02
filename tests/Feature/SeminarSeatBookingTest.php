@@ -195,5 +195,41 @@ class SeminarSeatBookingTest extends TestCase
         $this->actingAs($admin)->post('/admin/seminars/toggle-pricing');
         $this->assertEquals('0', SiteSetting::get('module_price_enabled'));
     }
+
+    public function test_admin_can_send_meeting_link_to_registered_candidates(): void
+    {
+        \Illuminate\Support\Facades\Mail::fake();
+
+        $admin = User::where('role', 'admin')->first() ?? User::factory()->create(['role' => 'admin']);
+
+        $email = 'attendee.' . uniqid() . '@example.com';
+        SeminarRegistration::create([
+            'seminar_id' => 1,
+            'registration_reference' => 'TEST-' . uniqid(),
+            'name' => 'Candidate Test',
+            'email' => $email,
+            'phone' => '01700000000',
+            'amount_payable' => 0,
+            'transaction_id' => 'FREE-' . uniqid(),
+            'payment_status' => 'verified',
+            'registration_status' => 'confirmed',
+        ]);
+
+        $response = $this->actingAs($admin)->post('/admin/seminars/send-meeting-link', [
+            'meeting_link' => 'https://meet.google.com/abc-defg-hij',
+            'target' => 'all',
+            'session_time' => '7:30 PM BST',
+            'custom_note' => 'Please join 5 mins early.',
+        ]);
+
+        $response->assertRedirect();
+        $response->assertSessionHas('success');
+
+        \Illuminate\Support\Facades\Mail::assertSent(\App\Mail\SeminarMeetingLinkMail::class, function ($mail) use ($email) {
+            return $mail->hasTo($email) && $mail->meetingLink === 'https://meet.google.com/abc-defg-hij';
+        });
+
+        $this->assertEquals('https://meet.google.com/abc-defg-hij', SiteSetting::get('last_seminar_meeting_link'));
+    }
 }
 

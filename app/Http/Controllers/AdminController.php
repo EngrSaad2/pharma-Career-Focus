@@ -49,7 +49,10 @@ class AdminController extends Controller
 
         $recentMessages = ContactMessage::latest()->take(5)->get();
 
-        return view('admin.dashboard', compact('metrics', 'recentBookings', 'recentMessages'));
+        $lastMeetingLink = SiteSetting::get('last_seminar_meeting_link', '');
+        $lastMeetingLinkSentAt = SiteSetting::get('last_seminar_meeting_link_sent_at', '');
+
+        return view('admin.dashboard', compact('metrics', 'recentBookings', 'recentMessages', 'lastMeetingLink', 'lastMeetingLinkSentAt'));
     }
 
     // --- Bookings ---

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Mail\SeminarBroadcastUpdateMail;
+use App\Mail\SeminarMeetingLinkMail;
 use App\Mail\SeminarPaymentRejectedMail;
 use App\Mail\SeminarPaymentVerifiedMail;
 use App\Models\Seminar;
@@ -396,7 +397,10 @@ class AdminSeminarController extends Controller
             'module2' => SeminarRegistration::where('seminar_id', 2)->count(),
         ];
 
-        return view('admin.seminars.registrations', compact('registrations', 'seminars', 'counts'));
+        $lastMeetingLink = SiteSetting::get('last_seminar_meeting_link', '');
+        $lastMeetingLinkSentAt = SiteSetting::get('last_seminar_meeting_link_sent_at', '');
+
+        return view('admin.seminars.registrations', compact('registrations', 'seminars', 'counts', 'lastMeetingLink', 'lastMeetingLinkSentAt'));
     }
 
     /**
@@ -690,5 +694,107 @@ class AdminSeminarController extends Controller
             : 'Free mode enabled! Price is now crossed out with "Free" and payment options are hidden.';
 
         return back()->with('success', $statusText);
+    }
+
+    /**
+     * Broadcast live seminar meeting link to registered candidate emails.
+     */
+    public function sendMeetingLink(Request $request)
+    {
+        $validated = $request->validate([
+            'meeting_link' => 'required|url|max:500',
+            'target' => 'required|string|in:all,1,2',
+            'session_time' => 'nullable|string|max:100',
+            'custom_note' => 'nullable|string|max:2000',
+        ]);
+
+        $meetingLink = trim($validated['meeting_link']);
+        $sessionTime = $validated['session_time'] ?: '7:30 PM – 10:00 PM (BST)';
+        $customNote = $validated['custom_note'] ?: null;
+        $target = $validated['target'];
+
+        if ($target === '1') {
+            $query = SeminarRegistration::where('seminar_id', 1);
+            $targetTitle = 'Module 1: Career in Pharmaceutical Industrial Operations (Friday Session)';
+        } elseif ($target === '2') {
+            $query = SeminarRegistration::where('seminar_id', 2);
+            $targetTitle = 'Module 2: Career in Pharmaceutical Marketing (Saturday Session)';
+        } else {
+            $query = SeminarRegistration::query();
+            $targetTitle = 'Pharmaceutical Career Development Program (PCDP)';
+        }
+
+        $registrations = $query->with('seminar')
+            ->whereNotNull('email')
+            ->where('email', '!=', '')
+            ->get();
+
+        // De-duplicate by email so candidates enrolled in both modules receive one broadcast email
+        $uniqueRegistrations = $registrations->unique('email');
+
+        if ($uniqueRegistrations->isEmpty()) {
+            return back()->with('error', 'No registered candidate emails found for the selected target.');
+        }
+
+        // Save last sent meeting link settings
+        SiteSetting::set('last_seminar_meeting_link', $meetingLink);
+        SiteSetting::set('last_seminar_meeting_link_sent_at', now()->toDateTimeString());
+        SiteSetting::set('last_seminar_meeting_link_target', $target);
+
+        // Update online meeting url on seminar models
+        if ($target === '1') {
+            Seminar::where('id', 1)->update(['online_meeting_url' => $meetingLink]);
+        } elseif ($target === '2') {
+            Seminar::where('id', 2)->update(['online_meeting_url' => $meetingLink]);
+        } else {
+            Seminar::whereIn('id', [1, 2])->update(['online_meeting_url' => $meetingLink]);
+        }
+
+        @set_time_limit(300);
+        $sentCount = 0;
+        $failedCount = 0;
+
+        foreach ($uniqueRegistrations as $reg) {
+            try {
+                Mail::to($reg->email)->send(new SeminarMeetingLinkMail(
+                    $reg,
+                    $meetingLink,
+                    $sessionTime,
+                    $customNote,
+                    $targetTitle
+                ));
+
+                SeminarEmailLog::create([
+                    'seminar_registration_id' => $reg->id,
+                    'email_type' => 'broadcast_update',
+                    'recipient_email' => $reg->email,
+                    'subject' => 'Live Session Link: ' . ($reg->seminar->title ?? 'PCDP'),
+                    'status' => 'sent',
+                    'sent_by_user_id' => auth()->id(),
+                ]);
+
+                $sentCount++;
+            } catch (\Throwable $e) {
+                $failedCount++;
+                Log::error("Failed sending meeting link to {$reg->email}: " . $e->getMessage());
+
+                SeminarEmailLog::create([
+                    'seminar_registration_id' => $reg->id,
+                    'email_type' => 'broadcast_update',
+                    'recipient_email' => $reg->email,
+                    'subject' => 'Live Session Link: ' . ($reg->seminar->title ?? 'PCDP'),
+                    'status' => 'failed',
+                    'error_message' => $e->getMessage(),
+                    'sent_by_user_id' => auth()->id(),
+                ]);
+            }
+        }
+
+        $msg = "✓ Live meeting link successfully dispatched to {$sentCount} registered candidate email(s)!";
+        if ($failedCount > 0) {
+            $msg .= " ({$failedCount} delivery attempts failed).";
+        }
+
+        return back()->with('success', $msg);
     }
 }

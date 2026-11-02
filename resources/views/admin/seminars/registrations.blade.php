@@ -3,7 +3,7 @@
 @section('title', 'Seminar Registrations & Payment Verification | Admin Portal')
 
 @section('admin_content')
-<div class="space-y-6">
+<div class="space-y-6" x-data="{ showMeetPanel: {{ request()->has('open_meet') ? 'true' : 'false' }} }">
 
     {{-- Top Action Header --}}
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -11,15 +11,73 @@
             <h1 class="text-2xl font-black text-[#00245A] tracking-tight">Seminar Registrations & Verification</h1>
             <p class="text-xs text-slate-500 mt-1">Review participant submissions, verify bKash transactions, inspect receipts, and manage attendance.</p>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
+            <button type="button" 
+                    @click="showMeetPanel = !showMeetPanel" 
+                    class="px-3.5 py-2 rounded-lg bg-[#0085FF] hover:bg-[#0070d9] text-white font-bold text-xs flex items-center gap-1.5 shadow-xs transition cursor-pointer">
+                <span>📹 Send Meeting Link</span>
+                <span x-text="showMeetPanel ? '▲' : '▼'" class="text-[10px]"></span>
+            </button>
             <a href="{{ route('admin.seminars.registrations.export', request()->query()) }}" class="px-3.5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center gap-1.5 shadow-xs transition">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                <span>Export CSV (Attendance)</span>
+                <span>Export CSV</span>
             </a>
             <a href="{{ route('admin.seminars.index') }}" class="px-3.5 py-2 rounded-lg border border-slate-200 bg-white text-slate-700 font-bold text-xs hover:bg-slate-50 shadow-2xs">
                 ← Seminars List
             </a>
         </div>
+    </div>
+
+    {{-- Live Seminar Meeting Link Broadcast Panel (Expandable) --}}
+    <div x-show="showMeetPanel" x-collapse x-cloak class="bg-gradient-to-br from-white to-blue-50/40 rounded-2xl border-2 border-blue-200 shadow-sm p-6 relative">
+        <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-100">
+            <div class="flex items-center gap-2.5">
+                <span class="w-8 h-8 rounded-lg bg-[#0085FF] text-white flex items-center justify-center font-black text-sm">
+                    📹
+                </span>
+                <div>
+                    <h2 class="text-base font-black text-[#00245A]">Broadcast Live Meeting Link to Candidates</h2>
+                    <p class="text-xs text-slate-500">Send direct Google Meet / Zoom link to all registered candidate emails.</p>
+                </div>
+            </div>
+            <button type="button" @click="showMeetPanel = false" class="text-slate-400 hover:text-slate-600 text-sm font-bold p-1">
+                ✕
+            </button>
+        </div>
+
+        <form action="{{ route('admin.seminars.send-meeting-link') }}" method="POST" class="space-y-4" onsubmit="return confirm('Send live meeting link to all selected candidates now?');">
+            @csrf
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-3">
+                <div class="md:col-span-6">
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Google Meet / Zoom URL <span class="text-red-500">*</span></label>
+                    <input type="url" name="meeting_link" value="{{ old('meeting_link', $lastMeetingLink ?? '') }}" required placeholder="https://meet.google.com/xxx-yyyy-zzz" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-mono text-[#00245A] focus:ring-2 focus:ring-[#0085FF] bg-white">
+                </div>
+                <div class="md:col-span-3">
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Target Audience <span class="text-red-500">*</span></label>
+                    <select name="target" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 bg-white">
+                        <option value="all">All Modules ({{ $counts['total'] ?? 0 }})</option>
+                        <option value="1" {{ request('seminar_id') == '1' ? 'selected' : '' }}>Module 1 Only ({{ $counts['module1'] ?? 0 }})</option>
+                        <option value="2" {{ request('seminar_id') == '2' ? 'selected' : '' }}>Module 2 Only ({{ $counts['module2'] ?? 0 }})</option>
+                    </select>
+                </div>
+                <div class="md:col-span-3">
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Timing (Optional)</label>
+                    <input type="text" name="session_time" value="7:30 PM – 10:00 PM (BST)" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs text-slate-700 bg-white">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-3 items-end">
+                <div class="md:col-span-9">
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Custom Note / Checklist (Optional)</label>
+                    <input type="text" name="custom_note" placeholder="e.g. Please join 5 minutes early with notebook ready." class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs text-slate-700 bg-white">
+                </div>
+                <div class="md:col-span-3">
+                    <button type="submit" class="w-full py-2 px-4 rounded-xl bg-[#0085FF] hover:bg-[#0070d9] text-white font-black text-xs shadow-xs transition flex items-center justify-center gap-1.5 cursor-pointer">
+                        <span>🚀 Send Meeting Link</span>
+                    </button>
+                </div>
+            </div>
+        </form>
     </div>
 
     {{-- Alerts --}}
