@@ -64,11 +64,7 @@
                 <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-2.5">
                     Quick Demo Autofill Credentials
                 </span>
-                <div class="grid grid-cols-3 gap-2">
-                    <button type="button" onclick="fillCreds('admin@pharmacareer.com', 'password')"
-                            class="px-2 py-1.5 rounded-lg bg-slate-900 text-white font-bold text-[10px] uppercase hover:bg-slate-800 transition-colors shadow-sm">
-                        Admin
-                    </button>
+                <div class="grid grid-cols-2 gap-2">
                     <button type="button" onclick="fillCreds('consultant@pharmacareer.com', 'password')"
                             class="px-2 py-1.5 rounded-lg bg-amber-400 text-slate-900 font-bold text-[10px] uppercase hover:bg-amber-500 transition-colors shadow-sm">
                         Consultant

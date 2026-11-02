@@ -379,10 +379,24 @@ class AdminSeminarController extends Controller
             });
         }
 
-        $registrations = $query->orderBy('created_at', 'desc')->paginate(20)->withQueryString();
-        $seminars = Seminar::orderBy('title')->get();
+        $sort = $request->get('sort', 'module');
+        if ($sort === 'newest') {
+            $query->orderBy('created_at', 'desc');
+        } else {
+            // Default: sorted by Module 1 then Module 2 (and newest first within each module)
+            $query->orderBy('seminar_id', 'asc')->orderBy('created_at', 'desc');
+        }
 
-        return view('admin.seminars.registrations', compact('registrations', 'seminars'));
+        $registrations = $query->paginate(25)->withQueryString();
+        $seminars = Seminar::orderBy('id')->get();
+
+        $counts = [
+            'total' => SeminarRegistration::count(),
+            'module1' => SeminarRegistration::where('seminar_id', 1)->count(),
+            'module2' => SeminarRegistration::where('seminar_id', 2)->count(),
+        ];
+
+        return view('admin.seminars.registrations', compact('registrations', 'seminars', 'counts'));
     }
 
     /**
@@ -596,7 +610,13 @@ class AdminSeminarController extends Controller
             $query->where('payment_status', $request->payment_status);
         }
 
-        $registrations = $query->orderBy('created_at', 'desc')->get();
+        $sort = $request->get('sort', 'module');
+        if ($sort === 'newest') {
+            $query->orderBy('created_at', 'desc');
+        } else {
+            $query->orderBy('seminar_id', 'asc')->orderBy('created_at', 'desc');
+        }
+        $registrations = $query->get();
 
         $filename = 'seminar_registrations_' . date('Y-m-d_His') . '.csv';
 

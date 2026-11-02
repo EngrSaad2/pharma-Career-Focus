@@ -15,6 +15,7 @@ use App\Models\ExamQuestion;
 use App\Models\Faq;
 use App\Models\BlogPost;
 use App\Models\BlogCategory;
+use App\Models\SeminarRegistration;
 use App\Models\Service;
 use App\Models\SiteSetting;
 use App\Models\Testimonial;
@@ -30,6 +31,9 @@ class AdminController extends Controller
         $metrics = [
             'users_count' => User::count(),
             'bookings_count' => ConsultationBooking::count(),
+            'seminar_registrations_count' => SeminarRegistration::count(),
+            'module1_registrations_count' => SeminarRegistration::where('seminar_id', 1)->count(),
+            'module2_registrations_count' => SeminarRegistration::where('seminar_id', 2)->count(),
             'exam_questions_count' => ExamQuestion::count(),
             'viva_questions_count' => VivaQuestion::count(),
             'career_paths_count' => CareerPath::count(),

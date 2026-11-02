@@ -36,6 +36,43 @@
         </div>
     @endif
 
+    {{-- Module Filter & Sorting Tabs --}}
+    <div class="flex flex-wrap items-center justify-between gap-3 bg-white p-3.5 rounded-xl border border-slate-200/90 shadow-2xs">
+        <div class="flex flex-wrap items-center gap-2">
+            <a href="{{ route('admin.seminars.registrations', request()->except(['seminar_id', 'page'])) }}" 
+               class="px-4 py-2 rounded-lg text-xs font-bold transition-all flex items-center gap-2 {{ !request('seminar_id') ? 'bg-[#00245A] text-white shadow-xs' : 'bg-slate-100 text-slate-700 hover:bg-slate-200' }}">
+                <span>All Modules</span>
+                <span class="px-2 py-0.5 rounded-full text-[10px] {{ !request('seminar_id') ? 'bg-white/20 text-white' : 'bg-slate-200 text-slate-800' }}">{{ $counts['total'] ?? $registrations->total() }}</span>
+            </a>
+
+            <a href="{{ route('admin.seminars.registrations', array_merge(request()->except(['seminar_id', 'page']), ['seminar_id' => 1])) }}" 
+               class="px-4 py-2 rounded-lg text-xs font-bold transition-all flex items-center gap-2 {{ request('seminar_id') == '1' ? 'bg-[#0085FF] text-white shadow-xs' : 'bg-blue-50 text-[#00245A] border border-blue-200/60 hover:bg-blue-100/60' }}">
+                <span>Module 1: Industrial Operations</span>
+                <span class="px-2 py-0.5 rounded-full text-[10px] {{ request('seminar_id') == '1' ? 'bg-white/20 text-white' : 'bg-blue-200/70 text-blue-900' }}">{{ $counts['module1'] ?? 0 }}</span>
+            </a>
+
+            <a href="{{ route('admin.seminars.registrations', array_merge(request()->except(['seminar_id', 'page']), ['seminar_id' => 2])) }}" 
+               class="px-4 py-2 rounded-lg text-xs font-bold transition-all flex items-center gap-2 {{ request('seminar_id') == '2' ? 'bg-[#0085FF] text-white shadow-xs' : 'bg-amber-50 text-amber-950 border border-amber-200/60 hover:bg-amber-100/60' }}">
+                <span>Module 2: Pharma Marketing</span>
+                <span class="px-2 py-0.5 rounded-full text-[10px] {{ request('seminar_id') == '2' ? 'bg-white/20 text-white' : 'bg-amber-200/70 text-amber-950' }}">{{ $counts['module2'] ?? 0 }}</span>
+            </a>
+        </div>
+
+        <div class="flex items-center gap-1.5 text-xs">
+            <span class="text-slate-400 font-semibold text-[11px]">Sort:</span>
+            <a href="{{ route('admin.seminars.registrations', array_merge(request()->all(), ['sort' => 'module'])) }}" 
+               class="px-2.5 py-1 rounded-md text-[11px] font-bold transition {{ request('sort', 'module') === 'module' ? 'bg-[#00245A] text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200' }}"
+               title="Sort by Module 1, then Module 2">
+                By Module 1 & 2
+            </a>
+            <a href="{{ route('admin.seminars.registrations', array_merge(request()->all(), ['sort' => 'newest'])) }}" 
+               class="px-2.5 py-1 rounded-md text-[11px] font-bold transition {{ request('sort') === 'newest' ? 'bg-[#00245A] text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200' }}"
+               title="Sort by newest registration date">
+                Newest First
+            </a>
+        </div>
+    </div>
+
     {{-- Search & Filtering Panel --}}
     <div class="bg-white p-4 rounded-xl border border-slate-200/90 shadow-2xs">
         <form action="{{ route('admin.seminars.registrations') }}" method="GET" class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
@@ -109,6 +146,7 @@
                         <tr>
                             <th class="py-3 px-3">Reference & Date</th>
                             <th class="py-3 px-3">Participant</th>
+                            <th class="py-3 px-3">Mobile Number</th>
                             <th class="py-3 px-3">Program & Mode</th>
                             <th class="py-3 px-3">Transaction Details</th>
                             <th class="py-3 px-3">Receipt</th>
@@ -135,13 +173,28 @@
                                 {{-- Participant Info --}}
                                 <td class="py-3 px-3">
                                     <div class="font-bold text-slate-900">{{ $reg->full_name }}</div>
-                                    <div class="text-[11px] text-slate-500 flex flex-col">
+                                    <div class="text-[11px] text-slate-500">
                                         <a href="mailto:{{ $reg->email }}" class="hover:text-[#0085FF]">{{ $reg->email }}</a>
-                                        <a href="tel:{{ $reg->phone }}" class="hover:text-[#0085FF]">{{ $reg->phone }}</a>
                                     </div>
                                     @if($reg->organization)
-                                        <div class="text-[10px] text-slate-400 truncate max-w-[160px]">
+                                        <div class="text-[10px] text-slate-400 truncate max-w-[160px] mt-0.5">
                                             {{ $reg->organization }} @if($reg->designation) ({{ $reg->designation }}) @endif
+                                        </div>
+                                    @endif
+                                </td>
+
+                                {{-- Separate Mobile Number Column --}}
+                                <td class="py-3 px-3 whitespace-nowrap">
+                                    <div class="font-mono font-bold text-slate-900 text-xs">
+                                        <a href="tel:{{ $reg->phone }}" class="hover:text-[#0085FF] hover:underline">
+                                            {{ $reg->phone }}
+                                        </a>
+                                    </div>
+                                    @if($reg->phone)
+                                        <div class="flex items-center gap-1.5 mt-0.5">
+                                            <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $reg->phone) }}" target="_blank" class="text-[10px] font-bold text-emerald-600 hover:text-emerald-700 inline-flex items-center gap-1" title="Direct WhatsApp">
+                                                <span>💬 WhatsApp</span>
+                                            </a>
                                         </div>
                                     @endif
                                 </td>

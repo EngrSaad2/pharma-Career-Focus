@@ -11,30 +11,64 @@
     </div>
 
     <!-- Metrics Cards Grid -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
+        
+        {{-- Clickable Seminar Booking Card --}}
+        <a href="{{ route('admin.seminars.registrations') }}" 
+           class="bg-white hover:bg-blue-50/40 p-5 rounded-2xl border-2 border-blue-300/90 hover:border-[#0085FF] shadow-xs hover:shadow-md transition-all block group cursor-pointer relative overflow-hidden">
+            <div class="flex items-center justify-between">
+                <p class="text-[11px] font-black uppercase tracking-wider text-[#00245A] group-hover:text-[#0085FF] transition-colors">
+                    Seminar Bookings
+                </p>
+                <span class="inline-flex items-center gap-1 text-[10px] font-black px-2 py-0.5 rounded-full bg-blue-100 text-[#0085FF]">
+                    PCDP
+                </span>
+            </div>
+            <h3 class="text-3xl font-black text-[#00245A] group-hover:text-[#0085FF] mt-1 transition-colors">
+                {{ $metrics['seminar_registrations_count'] ?? 0 }}
+            </h3>
+            <div class="flex items-center justify-between text-[10px] font-bold text-slate-500 mt-1">
+                <span class="text-emerald-700">M1: {{ $metrics['module1_registrations_count'] ?? 0 }} &bull; M2: {{ $metrics['module2_registrations_count'] ?? 0 }}</span>
+                <span class="text-[#0085FF] group-hover:translate-x-0.5 transition-transform">&rarr;</span>
+            </div>
+        </a>
+
+        {{-- Registered Candidates --}}
         <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
             <p class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Registered Candidates</p>
             <h3 class="text-3xl font-extrabold text-slate-900 mt-1">{{ $metrics['users_count'] ?? 0 }}</h3>
             <p class="text-[10px] text-emerald-600 font-semibold mt-1">Active Accounts</p>
         </div>
 
-        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
-            <p class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Consultation Bookings</p>
+        {{-- Clickable Consultation Bookings --}}
+        <a href="{{ route('admin.bookings') }}" class="bg-white hover:bg-slate-50/70 p-5 rounded-2xl border border-slate-200 hover:border-slate-300 shadow-sm transition-all block group cursor-pointer">
+            <div class="flex items-center justify-between">
+                <p class="text-[11px] font-bold uppercase tracking-wider text-slate-500 group-hover:text-[#0085FF] transition-colors">Consultation Bookings</p>
+                <span class="text-xs text-slate-400 group-hover:text-[#0085FF]">&rarr;</span>
+            </div>
             <h3 class="text-3xl font-extrabold text-[#0085FF] mt-1">{{ $metrics['bookings_count'] ?? 0 }}</h3>
-            <p class="text-[10px] text-slate-500 mt-1">Sessions Scheduled</p>
-        </div>
+            <p class="text-[10px] text-slate-500 mt-1">1-on-1 Sessions Scheduled</p>
+        </a>
 
-        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
-            <p class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Written Question Bank</p>
+        {{-- Written Question Bank --}}
+        <a href="{{ route('admin.exams') }}" class="bg-white hover:bg-slate-50/70 p-5 rounded-2xl border border-slate-200 hover:border-slate-300 shadow-sm transition-all block group cursor-pointer">
+            <div class="flex items-center justify-between">
+                <p class="text-[11px] font-bold uppercase tracking-wider text-slate-500 group-hover:text-[#0085FF] transition-colors">Written Question Bank</p>
+                <span class="text-xs text-slate-400 group-hover:text-[#0085FF]">&rarr;</span>
+            </div>
             <h3 class="text-3xl font-extrabold text-slate-900 mt-1">{{ $metrics['exam_questions_count'] ?? 0 }}</h3>
             <p class="text-[10px] text-slate-500 mt-1">MCQs across 4 Domains</p>
-        </div>
+        </a>
 
-        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
-            <p class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Viva Model Answers</p>
+        {{-- Viva Model Answers --}}
+        <a href="{{ route('admin.viva') }}" class="bg-white hover:bg-slate-50/70 p-5 rounded-2xl border border-slate-200 hover:border-slate-300 shadow-sm transition-all block group cursor-pointer">
+            <div class="flex items-center justify-between">
+                <p class="text-[11px] font-bold uppercase tracking-wider text-slate-500 group-hover:text-amber-600 transition-colors">Viva Model Answers</p>
+                <span class="text-xs text-slate-400 group-hover:text-amber-600">&rarr;</span>
+            </div>
             <h3 class="text-3xl font-extrabold text-amber-500 mt-1">{{ $metrics['viva_questions_count'] ?? 0 }}</h3>
             <p class="text-[10px] text-slate-500 mt-1">Technical viva guides</p>
-        </div>
+        </a>
     </div>
 
     <!-- Secondary Metrics -->

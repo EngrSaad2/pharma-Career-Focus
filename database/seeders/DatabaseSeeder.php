@@ -73,11 +73,11 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        User::firstOrCreate(
-            ['email' => 'admin@pharmacareer.com'],
+        User::updateOrCreate(
+            ['email' => 'bashar@gmail.com'],
             [
                 'name' => 'MD Abul Bashar, RPh',
-                'password' => Hash::make('123456'),
+                'password' => Hash::make('12345678'),
                 'role' => 'admin',
                 'phone' => '+880 1711 000111',
                 'headline' => 'Founder & Lead Pharmaceutical Career Consultant',
