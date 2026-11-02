@@ -621,7 +621,7 @@
                             style="white-space: nowrap !important;" 
                             class="w-full py-4 px-6 rounded-2xl bg-[#0085FF] hover:bg-[#0070d9] text-white font-extrabold text-base shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer">
                         <span style="white-space: nowrap;">
-                            Book Seminars Seat • Complete Registration (৳<span x-text="totalAmount.toLocaleString()"></span> BDT)
+                            Book Registration
                         </span>
                         <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </button>
@@ -682,7 +682,7 @@
                             style="white-space: nowrap !important;" 
                             class="w-full py-4 px-6 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-base shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer">
                         <span style="white-space: nowrap;">
-                            Book Seminars Seat • Free Registration (<span class="line-through text-emerald-200 text-xs font-semibold mr-1">৳<span x-text="totalOriginalAmount.toLocaleString()"></span></span> Free)
+                            Book Registration
                         </span>
                         <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </button>
